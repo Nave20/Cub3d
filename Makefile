@@ -2,14 +2,17 @@ SRC_DIR         = src/
 OBJ_DIR         = objs/
 INC_DIR         = header/
 
-PARS_DIR        = $(SRC_DIR)parsing/
-PARS_OBJDIR     = $(OBJ_DIR)parsing/
+PARS_DIR        = $(SRC_DIR)pars/
+PARS_OBJDIR     = $(OBJ_DIR)pars/
 
 LIB             = $(SRC_DIR)/libft/libft.a
 
-PARS_FILES      =	
+PARS_FILES      =	get_texture.c	\
+					parsing_servo.c	\
+					pars_utils.c	\
+					error_messages.c\
 
-SRC_FILES       =	main.c	\
+SRC_FILES       =	main.c			\
 
 SOURCES         = $(addprefix $(SRC_DIR), $(SRC_FILES)) \
                   $(addprefix $(PARS_DIR), $(PARS_FILES)) \
@@ -38,7 +41,6 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADER)
 $(PARS_OBJDIR)%.o: $(PARS_DIR)%.c $(HEADER)
 	mkdir -p $(PARS_OBJDIR)
 	$(CC) $(FLAGS) -c $< -o $@
-
 
 $(NAME): $(OBJS) $(LIB) $(HEADER) Makefile
 	$(CC) $(FLAGS) -o $@ $(OBJS) $(LIB)

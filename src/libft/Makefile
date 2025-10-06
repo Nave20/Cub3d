@@ -66,13 +66,13 @@ all :  $(OBJS_DIR) ${NAME}
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
 
-$(OBJS_DIR)%.o :  %.c ${HEADER} $(OBJS_DIR)
+$(OBJS_DIR)%.o :  %.c ${HEADER} | $(OBJS_DIR)
 	${CC} ${FLAGS} -c $< -o $@
 
 ${NAME} :  ${OBJS} Makefile
 	${AR} ${NAME} ${OBJS}
 
-bonus   : $(OBJS_DIR) ${B_OBJS}
+bonus   : all $(OBJS_DIR) ${B_OBJS}
 	${AR} ${NAME} ${B_OBJS}
 
 clean   :

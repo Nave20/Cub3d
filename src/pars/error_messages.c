@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error_messages.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/06 13:09:29 by vpirotti         ###   ########.fr       */
+/*   Created: 2025/10/06 16:11:51 by vpirotti          #+#    #+#             */
+/*   Updated: 2025/10/06 16:11:51 by vpirotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3D.h"
+#include "../../header/cub3D.h"
 
-int	main(void)
+int	err_gnl(void)
 {
-	int i = strnstr_int("caramel", "ram", ft_strlen("caramel"));
-	dprintf(2, "%d\n", i);
-	return (0);
+	perror(RED"Error\n -> get_next_line"RESET);
+	return (1);
+}
+
+int	err_strdup(void)
+{
+	perror(RED"Error\n -> ft_strdup"RESET);
+	return (1);
 }

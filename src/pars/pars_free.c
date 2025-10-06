@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pars_free.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/06 13:09:29 by vpirotti         ###   ########.fr       */
+/*   Created: 2025/10/06 16:29:14 by vpirotti          #+#    #+#             */
+/*   Updated: 2025/10/06 16:29:14 by vpirotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3D.h"
+#include "../../header/cub3D.h"
 
-int	main(void)
+int	free_textures(t_texture *texture, char *line)
 {
-	int i = strnstr_int("caramel", "ram", ft_strlen("caramel"));
-	dprintf(2, "%d\n", i);
-	return (0);
+	if (line)
+		free(line);
+	if (texture->north_texture)
+		free(texture->north_texture);
+	if (texture->south_texture)
+		free(texture->south_texture);
+	if (texture->west_texture)
+		free(texture->west_texture);
+	if (texture->east_texture)
+		free(texture->east_texture);
+	free(texture);
+	return (1);
 }

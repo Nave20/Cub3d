@@ -41,8 +41,43 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-//---------------------------GLOBAL VARIABLES--------------------------
-
 //-------------------------------STRUCTS-------------------------------
+
+typedef struct  s_texture		t_texture;
+typedef struct	s_color			t_color;
+
+struct			s_color
+{
+	int				r;
+	int				g;
+	int				b;
+};
+
+struct			s_texture
+{
+	bool			valid;
+	char			*north_texture;
+	char			*south_texture;
+	char			*west_texture;
+	char			*east_texture;
+	t_color			floor_color;
+	t_color			ceiling_color;
+};
+
+//---------------------------------------------------------------------
+//-------------------------------PARSING-------------------------------
+//---------------------------------------------------------------------
+
+//-----------------------------GET_TEXTURE-----------------------------
+
+//--------------------------------UTILS--------------------------------
+int		strnstr_int(const char *src, const char *tofind, size_t size);
+
+//--------------------------------FREE---------------------------------
+int		free_textures(t_texture *texture, char *line);
+
+//-----------------------------ERR_MESSAGE-----------------------------
+int		err_gnl(void);
+int		err_strdup(void);
 
 #endif
