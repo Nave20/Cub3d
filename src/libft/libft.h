@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:41:52 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/07/22 18:29:47 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/06 15:33:34 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,15 @@ void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
-char				*read_buffer(int fd, char **buffrest);
-char				*ft_strcpy_gnl(char *dest, const char *src);
-char				*ft_strjoin_gnl(char *s1, char *s2);
-size_t				ft_strlen_gnl(const char *s);
-char				*get_next_line(int fd);
+char				*get_next_line(int fd, int *error);
+void				free_tabs(char *buffer, char **buffrest, char *line);
 char				*linecheck(char *buffer, char **buffrest, int fd, int i);
 char				*new_line(char **buffrest, char *buffer, int i, char *line);
 char				*create_line(char *buffer, char *line);
 char				*get_buffrest(char *buffer, char **buffrest, int *i);
+char				*read_buffer(int fd, char **buffrest, int *error);
+char				*ft_strcpy(char *dest, const char *src);
+char				*ft_strjoin_gnl(char *s1, char *s2);
+char				*ft_strcpy_gnl(char *dest, const char *src);
 
 #endif
