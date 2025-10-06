@@ -11,6 +11,7 @@ PARS_FILES      =	get_texture.c	\
 					parsing_servo.c	\
 					pars_utils.c	\
 					error_messages.c\
+					pars_free.c		\
 
 SRC_FILES       =	main.c			\
 
@@ -24,7 +25,7 @@ HEADER          = $(INC_DIR)cub3D.h
 NAME            = cub3D
 
 CC              = cc
-FLAGS           = -Wall -Wextra -Werror -I$(INC_DIR)
+FLAGS           = -Wall -Wextra -Werror -g3 -I$(INC_DIR)
 
 all: $(OBJ_DIR) $(PARS_OBJDIR) $(NAME)
 

@@ -33,3 +33,15 @@ int	strnstr_int(const char *src, const char *tofind, size_t size)
 	}
 	return (0);
 }
+
+void	texture_print(t_texture *texture)
+{
+	if (texture->north_texture)
+		printf("North texture : %s\n", texture->north_texture);
+	if (texture->south_texture)
+		printf("South texture : %s\n", texture->south_texture);
+	if (texture->west_texture)
+		printf("West texture : %s\n", texture->west_texture);
+	if (texture->east_texture)
+		printf("East texture : %s\n", texture->east_texture);
+}

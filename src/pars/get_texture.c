@@ -18,9 +18,9 @@ int	get_no(int fd, t_texture *texture, char *line)
 	int error;
 
 	error = 0;
-	while (ft_strnstr(line, "NO ", ft_strlen(line)) == NULL && line)
+	while (line && ft_strnstr(line, "NO ", ft_strlen(line)) == NULL)
 	{
-		free(line);
+		dprintf(2, RED"TEST"RESET);
 		line = get_next_line(fd, &error);
 		if (error)
 			return (err_gnl());
@@ -31,8 +31,8 @@ int	get_no(int fd, t_texture *texture, char *line)
 		i += 3;
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
+		texture->valid_north = true;
 		texture->north_texture = ft_strdup(&line[i]);
-		free(line);
 		if (!texture->north_texture)
 			return (err_strdup());
 		return (0);
@@ -46,9 +46,8 @@ int	get_so(int fd, t_texture *texture, char *line)
 	int error;
 
 	error = 0;
-	while (ft_strnstr(line, "SO ", ft_strlen(line)) == NULL && line)
+	while (line && ft_strnstr(line, "SO ", ft_strlen(line)) == NULL)
 	{
-		free(line);
 		line = get_next_line(fd, &error);
 		if (error)
 			return (err_gnl());
@@ -59,9 +58,9 @@ int	get_so(int fd, t_texture *texture, char *line)
 		i += 3;
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
-		texture->north_texture = ft_strdup(&line[i]);
-		free(line);
-		if (!texture->north_texture)
+		texture->valid_south = true;
+		texture->south_texture = ft_strdup(&line[i]);
+		if (!texture->south_texture)
 			return (err_strdup());
 		return (0);
 	}
@@ -74,9 +73,8 @@ int	get_we(int fd, t_texture *texture, char *line)
 	int error;
 
 	error = 0;
-	while (ft_strnstr(line, "WE ", ft_strlen(line)) == NULL && line)
+	while (line && ft_strnstr(line, "WE ", ft_strlen(line)) == NULL)
 	{
-		free(line);
 		line = get_next_line(fd, &error);
 		if (error)
 			return (err_gnl());
@@ -87,9 +85,9 @@ int	get_we(int fd, t_texture *texture, char *line)
 		i += 3;
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
-		texture->north_texture = ft_strdup(&line[i]);
-		free(line);
-		if (!texture->north_texture)
+		texture->valid_west = true;
+		texture->west_texture = ft_strdup(&line[i]);
+		if (!texture->west_texture)
 			return (err_strdup());
 		return (0);
 	}
@@ -102,9 +100,8 @@ int	get_ea(int fd, t_texture *texture, char *line)
 	int error;
 
 	error = 0;
-	while (ft_strnstr(line, "EA ", ft_strlen(line)) == NULL && line)
+	while (line && ft_strnstr(line, "EA ", ft_strlen(line)) == NULL)
 	{
-		free(line);
 		line = get_next_line(fd, &error);
 		if (error)
 			return (err_gnl());
@@ -115,30 +112,11 @@ int	get_ea(int fd, t_texture *texture, char *line)
 		i += 3;
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
-		texture->north_texture = ft_strdup(&line[i]);
-		free(line);
-		if (!texture->north_texture)
+		texture->valid_east = true;
+		texture->east_texture = ft_strdup(&line[i]);
+		if (!texture->east_texture)
 			return (err_strdup());
 		return (0);
 	}
 	return (1);
-}
-
-int	get_texture(int fd, t_texture *texture)
-{
-	char	*line;
-	int		error;
-
-	line = get_next_line(fd, &error);
-	if (error)
-		return (err_gnl());
-	if (get_no(fd, texture, line))
-		return (free_textures(texture, line));
-	if (get_so(fd, texture, line))
-		return (free_textures(texture, line));
-	if (get_we(fd, texture, line))
-		return (free_textures(texture, line));
-	if (get_ea(fd, texture, line))
-		return (free_textures(texture, line));
-	return (0);
 }

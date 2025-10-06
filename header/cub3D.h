@@ -24,7 +24,6 @@
 # define UNDER "\033[4m"
 # define BLINK "\033[5m"
 # define REVERSE "\033[7m"
-# define MAP_MAX 100
 
 //-------------------------------INCLUDE-------------------------------
 # include "../src/libft/libft.h"
@@ -57,9 +56,13 @@ struct			s_texture
 {
 	bool			valid;
 	char			*north_texture;
+	bool			valid_north;
 	char			*south_texture;
+	bool			valid_south;
 	char			*west_texture;
+	bool			valid_west;
 	char			*east_texture;
+	bool			valid_east;
 	t_color			floor_color;
 	t_color			ceiling_color;
 };
@@ -68,10 +71,17 @@ struct			s_texture
 //-------------------------------PARSING-------------------------------
 //---------------------------------------------------------------------
 
+int		parsing_servo(char *file);
+
 //-----------------------------GET_TEXTURE-----------------------------
+int		get_no(int fd, t_texture *texture, char *line);
+int		get_so(int fd, t_texture *texture, char *line);
+int		get_we(int fd, t_texture *texture, char *line);
+int		get_ea(int fd, t_texture *texture, char *line);
 
 //--------------------------------UTILS--------------------------------
 int		strnstr_int(const char *src, const char *tofind, size_t size);
+void	texture_print(t_texture *texture);
 
 //--------------------------------FREE---------------------------------
 int		free_textures(t_texture *texture, char *line);
