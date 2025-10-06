@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:31:37 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/07/22 18:29:09 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/06 15:36:39 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ char	*linecheck(char *buffer, char **buffrest, int fd, int i)
 				return (free(buffer), NULL);
 			nbread = read(fd, buffer, BUFFER_SIZE);
 			if (nbread < 0)
-				return (free(line), free(buffer), free(*buffrest), NULL);
+				return (free_tabs(buffer, buffrest, line), NULL);
 			if (nbread == 0)
-				return (free(buffer), free(*buffrest), line);
+				return (free_tabs(buffer, buffrest, NULL), line);
 			buffer[nbread] = '\0';
 			i = 0;
 		}
@@ -93,18 +93,19 @@ char	*linecheck(char *buffer, char **buffrest, int fd, int i)
 	}
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int *error)
 {
 	char		*buffer;
 	static char	*buffrest;
 	int			i;
 	char		*line;
 
+	error = 0;
 	i = 0;
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = read_buffer(fd, &buffrest);
+	buffer = read_buffer(fd, &buffrest, error);
 	if (!buffer)
 	{
 		free(buffrest);
@@ -114,6 +115,7 @@ char	*get_next_line(int fd)
 	line = linecheck(buffer, &buffrest, fd, i);
 	if (!line)
 	{
+		*error = 1;
 		free(buffrest);
 		buffrest = NULL;
 	}
