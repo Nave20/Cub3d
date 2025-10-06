@@ -2,12 +2,12 @@ SRC_DIR         = src/
 OBJ_DIR         = objs/
 INC_DIR         = header/
 
-PARS_DIR        = $(SRC_DIR)parsing/
-PARS_OBJDIR     = $(OBJ_DIR)parsing/
+PARS_DIR        = $(SRC_DIR)pars/
+PARS_OBJDIR     = $(OBJ_DIR)pars/
 
 LIB             = $(SRC_DIR)/libft/libft.a
 
-PARS_FILES      =	
+PARS_FILES      =	map_parsing.c \
 
 SRC_FILES       =	main.c	\
 
@@ -32,11 +32,9 @@ $(PARS_OBJDIR):
 	mkdir -p $(PARS_OBJDIR)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADER)
-	mkdir -p $(OBJ_DIR)
 	$(CC) $(FLAGS) -c $< -o $@
 
 $(PARS_OBJDIR)%.o: $(PARS_DIR)%.c $(HEADER)
-	mkdir -p $(PARS_OBJDIR)
 	$(CC) $(FLAGS) -c $< -o $@
 
 
