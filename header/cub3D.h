@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/06 15:23:10 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/07 13:13:03 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,21 @@
 
 //-------------------------------STRUCTS-------------------------------
 
-typedef struct s_data		t_data;
-struct 			s_data
+typedef struct s_data	t_data;
+typedef struct s_lst	t_lst;
+struct					s_data
 {
-	char	**map;
+	char				**map;
+	int					lines;
+	int					cols;
 };
 
-void	get_map(char **map, t_data *data);
-void	char_check(t_data *data);
+// void					get_map(int fd, t_data *data);
+
+void					print_lst(t_list *lst);
+void					find_map(int fd, t_data *data);
+void					char_check(t_data *data);
+void					error_exit(char *err_msg);
+void					free_lst(t_list *lst);
 
 #endif

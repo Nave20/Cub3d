@@ -1,25 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 11:44:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/07 12:35:59 by lpaysant         ###   ########.fr       */
+/*   Created: 2025/10/07 11:27:54 by lpaysant          #+#    #+#             */
+/*   Updated: 2025/10/07 12:45:52 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../header/cub3D.h"
 
-t_list	*ft_lstnew(void *content)
+void	error_exit(char *err_msg)
 {
-	t_list	*new;
+	perror(err_msg);
+	exit(errno);
+}
 
-	new = malloc (sizeof(t_list));
-	if (!new)
-		return (NULL);
-	new ->content = content;
-	new ->next = NULL;
-	return (new);
+void	free_lst(t_list *lst)
+{
+	t_list	*ptr;
+
+	while(lst->next)
+	{
+		ptr = lst->next;
+		if(lst->content)
+		{
+			free(lst->content);
+			lst->content = NULL;
+		}
+		free(lst);
+		lst = ptr;
+	}
+	if(lst->content)
+	{
+		free(lst->content);
+		lst->content = NULL;
+	}
+	free(lst);
 }

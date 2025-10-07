@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:31:37 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/06 15:34:05 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/07 11:58:36 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char	*get_next_line(int fd, int *error)
 	int			i;
 	char		*line;
 
-	error = 0;
+	*error = 0;
 	i = 0;
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)

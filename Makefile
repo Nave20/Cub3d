@@ -8,6 +8,9 @@ PARS_OBJDIR     = $(OBJ_DIR)pars/
 LIB             = $(SRC_DIR)/libft/libft.a
 
 PARS_FILES      =	map_parsing.c \
+					error.c \
+					print_utils.c \
+					get_texture.c \
 
 SRC_FILES       =	main.c	\
 
@@ -21,7 +24,7 @@ HEADER          = $(INC_DIR)cub3D.h
 NAME            = cub3D
 
 CC              = cc
-FLAGS           = -Wall -Wextra -Werror -I$(INC_DIR)
+FLAGS           = -Wall -Wextra -Werror -g3 -I$(INC_DIR)
 
 all: $(OBJ_DIR) $(PARS_OBJDIR) $(NAME)
 
@@ -36,7 +39,6 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADER)
 
 $(PARS_OBJDIR)%.o: $(PARS_DIR)%.c $(HEADER)
 	$(CC) $(FLAGS) -c $< -o $@
-
 
 $(NAME): $(OBJS) $(LIB) $(HEADER) Makefile
 	$(CC) $(FLAGS) -o $@ $(OBJS) $(LIB)
