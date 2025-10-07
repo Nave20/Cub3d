@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/13 14:31:37 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/06 15:36:39 by lpaysant         ###   ########.fr       */
+/*   Created: 2025/10/07 14:30:49 by vpirotti          #+#    #+#             */
+/*   Updated: 2025/10/07 14:30:49 by vpirotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char	*get_next_line(int fd, int *error)
 	int			i;
 	char		*line;
 
-	error = 0;
+	*error = 0;
 	i = 0;
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)

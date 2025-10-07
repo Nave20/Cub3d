@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 12:23:18 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/06 15:36:45 by lpaysant         ###   ########.fr       */
+/*   Created: 2025/10/07 14:30:49 by vpirotti          #+#    #+#             */
+/*   Updated: 2025/10/07 14:38:48 by vpirotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

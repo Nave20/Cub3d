@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # define CLEAR "\033[H\033[J"
 # define YELLOW "\033[33m"
@@ -43,6 +43,7 @@
 //-------------------------------STRUCTS-------------------------------
 
 typedef struct  s_texture		t_texture;
+typedef struct  s_data			t_data;
 typedef struct	s_color			t_color;
 
 struct			s_color
@@ -68,6 +69,13 @@ struct			s_texture
 	bool			valid_floor;
 	t_color			*ceiling_color;
 	bool			valid_ceiling;
+};
+
+struct					s_data
+{
+	char				**map;
+	int					lines;
+	int					cols;
 };
 
 //---------------------------------------------------------------------
@@ -104,5 +112,12 @@ int		err_split(void);
 int		err_strdup(void);
 int		wrong_format(void);
 void	err_malloc(int fd);
+
+//---------------------------------MAP---------------------------------
+void	print_lst(t_list *lst);
+void	find_map(int fd, t_data *data);
+void	char_check(t_data *data);
+void	error_exit(char *err_msg);
+void	free_lst(t_list *lst);
 
 #endif

@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   print_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 11:44:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/07 12:35:59 by lpaysant         ###   ########.fr       */
+/*   Created: 2025/10/07 11:38:50 by lpaysant          #+#    #+#             */
+/*   Updated: 2025/10/07 12:02:51 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../header/cub3D.h"
 
-t_list	*ft_lstnew(void *content)
+void	print_lst(t_list *lst)
 {
-	t_list	*new;
+	t_list	*ptr;
 
-	new = malloc (sizeof(t_list));
-	if (!new)
-		return (NULL);
-	new ->content = content;
-	new ->next = NULL;
-	return (new);
+	ptr = lst;
+	while(ptr != NULL)
+	{
+		printf("%s", (char *)ptr->content);
+		ptr = ptr->next;
+	}
+	return ;
 }
