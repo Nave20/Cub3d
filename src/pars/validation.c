@@ -35,12 +35,8 @@ int	valid_xpm(char *line)
 	return (0);
 }
 
-int	color_components(char **line)
+int	color_components(char **line, int i, int j)
 {
-	int i;
-	int j;
-
-	i = 0;
 	while (line[i])
 		i++;
 	if (i != 3)
@@ -86,15 +82,12 @@ int	color_range(t_color *color)
 	return (0);
 }
 
-int	valid_color(t_color *color)
+int	valid_color(t_color *color, int i, char **tmp)
 {
-	int		i;
-	char	**tmp;
-
-	i = 0;
 	while (color->color[i])
 	{
-		if (color->color[i] == ' ' || color->color[i] == '\t' || color->color[i] == '\n')
+		if (color->color[i] == ' ' || color->color[i] == '\t'
+			|| color->color[i] == '\n')
 		{
 			color->color[i] = 0;
 			break ;
@@ -106,7 +99,7 @@ int	valid_color(t_color *color)
 	color->color = NULL;
 	if (!tmp)
 		return (err_split());
-	if (color_components(tmp))
+	if (color_components(tmp, 0, 0))
 		return (free_double_tab(tmp));
 	color->r = ft_atoi(tmp[0]);
 	color->g = ft_atoi(tmp[1]);
@@ -127,9 +120,9 @@ int	arg_validation(t_texture *texture)
 		return (wrong_format());
 	if (valid_xpm(texture->east_texture))
 		return (wrong_format());
-	if (valid_color(texture->floor_color))
+	if (valid_color(texture->floor_color, 0, NULL))
 		return (1);
-	if (valid_color(texture->ceiling_color))
+	if (valid_color(texture->ceiling_color, 0, NULL))
 		return (1);
 	return (0);
 }

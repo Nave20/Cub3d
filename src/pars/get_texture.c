@@ -15,7 +15,7 @@
 int	get_no(int fd, t_texture *texture, char *line)
 {
 	int	i;
-	int error;
+	int	error;
 
 	error = 0;
 	while (line && ft_strnstr(line, "NO ", ft_strlen(line)) == NULL)
@@ -42,7 +42,7 @@ int	get_no(int fd, t_texture *texture, char *line)
 int	get_so(int fd, t_texture *texture, char *line)
 {
 	int	i;
-	int error;
+	int	error;
 
 	error = 0;
 	while (line && ft_strnstr(line, "SO ", ft_strlen(line)) == NULL)
@@ -69,7 +69,7 @@ int	get_so(int fd, t_texture *texture, char *line)
 int	get_we(int fd, t_texture *texture, char *line)
 {
 	int	i;
-	int error;
+	int	error;
 
 	error = 0;
 	while (line && ft_strnstr(line, "WE ", ft_strlen(line)) == NULL)
@@ -96,7 +96,7 @@ int	get_we(int fd, t_texture *texture, char *line)
 int	get_ea(int fd, t_texture *texture, char *line)
 {
 	int	i;
-	int error;
+	int	error;
 
 	error = 0;
 	while (line && ft_strnstr(line, "EA ", ft_strlen(line)) == NULL)

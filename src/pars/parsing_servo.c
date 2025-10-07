@@ -68,6 +68,7 @@ void	texture_init(t_texture *texture)
 t_texture	*texture_alloc(void)
 {
 	t_texture	*texture;
+
 	texture = malloc(sizeof(t_texture));
 	if (texture == NULL)
 		return (NULL);

@@ -15,7 +15,7 @@
 int	get_f(int fd, t_texture *texture, char *line)
 {
 	int	i;
-	int error;
+	int	error;
 
 	error = 0;
 	while (line && ft_strnstr(line, "F ", ft_strlen(line)) == NULL)
@@ -42,7 +42,7 @@ int	get_f(int fd, t_texture *texture, char *line)
 int	get_c(int fd, t_texture *texture, char *line)
 {
 	int	i;
-	int error;
+	int	error;
 
 	error = 0;
 	while (line && ft_strnstr(line, "C ", ft_strlen(line)) == NULL)
