@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/06 13:09:29 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/10/07 17:49:28 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,28 @@
 int	main(int argc, char **argv)
 {
 	t_data	*data;
-	int	fd;
-	int	nb;
+	int		fd;
+	int		nb;
 
 	if (argc != 2)
 	{
-		perror(RED "Error\nThere must be exactly one map file as argument\n" RESET);
+		perror(RED "Error\nThere must be only one arg\n" RESET);
 		return (1);
 	}
 	(void)argv;
 	nb = ft_strlen(argv[1]);
 	if (ft_strncmp(".cub", argv[1] + ft_strlen(argv[1]) - 4, 5) != 0)
 	{
-		ft_putstr_fd("Error\nWrong file extension\n", 2);
+		perror(RED "Error\nWrong file extension\n" RESET);
 		return (1);
 	}
-	data = NULL;
 	fd = open("test.txt", O_RDONLY);
-	if(fd == -1)
-		error_exit("Error\nFile opening failure\n");
-	parsing_servo("test.txt");
+	if (fd == -1)
+		error_exit("Error\nFile opening failure\n", NULL, NULL);
+	data = ft_calloc(1, sizeof(t_data));
+	// parsing_servo("test.txt");
 	find_map(fd, data);
+	free_map_tab(data->map);
+	free(data);
 	return (0);
 }

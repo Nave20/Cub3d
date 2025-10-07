@@ -6,18 +6,18 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 11:27:54 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/07 15:12:28 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/07 17:50:07 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3D.h"
+#include "../../header/cub3D.h"
 
-void	free_double_tab(char **tab)
+void	free_map_tab(char **tab)
 {
 	int	i;
 
 	i = 0;
-	while(tab[i])
+	while (tab[i])
 	{
 		free(tab[i]);
 		i++;
@@ -27,10 +27,14 @@ void	free_double_tab(char **tab)
 
 void	error_exit(char *err_msg, t_list *lst, t_data *data)
 {
-	if(lst)
+	if (lst)
 		free_lst(lst);
-	if(data)
-		free_double_tab(data->map);
+	if (data)
+	{
+		if (data->map)
+			free_map_tab(data->map);
+		free(data);
+	}
 	perror(err_msg);
 	exit(errno);
 }
@@ -39,10 +43,10 @@ void	free_lst(t_list *lst)
 {
 	t_list	*ptr;
 
-	while(lst->next)
+	while (lst->next)
 	{
 		ptr = lst->next;
-		if(lst->content)
+		if (lst->content)
 		{
 			free(lst->content);
 			lst->content = NULL;
@@ -50,7 +54,7 @@ void	free_lst(t_list *lst)
 		free(lst);
 		lst = ptr;
 	}
-	if(lst->content)
+	if (lst->content)
 	{
 		free(lst->content);
 		lst->content = NULL;

@@ -20,9 +20,11 @@ PARS_FILES      =	get_texture.c	\
 					error_messages.c\
 					pars_free.c		\
 					validation.c	\
-					map_parsing.c 	\
-					error.c 		\
-					print_utils.c 	\
+					get_map.c		\
+					error.c			\
+					print_utils.c	\
+					is_something.c	\
+					copy_utils.c	\
 
 MOV_FILES		=
 
@@ -44,7 +46,7 @@ HEADER          = $(INC_DIR)cub3D.h
 NAME            = cub3D
 
 CC              = cc
-FLAGS           = -Wall -Wextra -Werror -I$(INC_DIR)
+FLAGS           = -Wall -Wextra -Werror -g3 -I$(INC_DIR)
 
 all: $(OBJ_DIR) $(PARS_OBJDIR) $(MOV_OBJDIR) $(RAY_OBJDIR) $(NAME)
 
