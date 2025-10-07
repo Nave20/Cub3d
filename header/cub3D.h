@@ -47,6 +47,7 @@ typedef struct	s_color			t_color;
 
 struct			s_color
 {
+	char			*color;
 	int				r;
 	int				g;
 	int				b;
@@ -63,14 +64,17 @@ struct			s_texture
 	bool			valid_west;
 	char			*east_texture;
 	bool			valid_east;
-	t_color			floor_color;
-	t_color			ceiling_color;
+	t_color			*floor_color;
+	bool			valid_floor;
+	t_color			*ceiling_color;
+	bool			valid_ceiling;
 };
 
 //---------------------------------------------------------------------
 //-------------------------------PARSING-------------------------------
 //---------------------------------------------------------------------
 
+//--------------------------------SERVO--------------------------------
 int		parsing_servo(char *file);
 
 //-----------------------------GET_TEXTURE-----------------------------
@@ -79,15 +83,26 @@ int		get_so(int fd, t_texture *texture, char *line);
 int		get_we(int fd, t_texture *texture, char *line);
 int		get_ea(int fd, t_texture *texture, char *line);
 
+//------------------------------GET_COLOR------------------------------
+int		get_f(int fd, t_texture *texture, char *line);
+int		get_c(int fd, t_texture *texture, char *line);
+
+//------------------------------VALIDATION-----------------------------
+int		arg_validation(t_texture *texture);
+
 //--------------------------------UTILS--------------------------------
 int		strnstr_int(const char *src, const char *tofind, size_t size);
 void	texture_print(t_texture *texture);
 
 //--------------------------------FREE---------------------------------
 int		free_textures(t_texture *texture, char *line);
+int		free_double_tab(char **tab);
 
 //-----------------------------ERR_MESSAGE-----------------------------
 int		err_gnl(void);
+int		err_split(void);
 int		err_strdup(void);
+int		wrong_format(void);
+void	err_malloc(int fd);
 
 #endif

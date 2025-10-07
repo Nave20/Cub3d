@@ -27,3 +27,17 @@ int	free_textures(t_texture *texture, char *line)
 	free(texture);
 	return (1);
 }
+
+int	free_double_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+	return (1);
+}

@@ -44,4 +44,10 @@ void	texture_print(t_texture *texture)
 		printf("West texture : %s\n", texture->west_texture);
 	if (texture->east_texture)
 		printf("East texture : %s\n", texture->east_texture);
+	if (texture->floor_color)
+		printf("Floor color : %d, %d, %d\n", texture->floor_color->r,
+			texture->floor_color->g, texture->floor_color->b);
+	if (texture->ceiling_color)
+		printf("Ceiling color : %d, %d, %d\n", texture->ceiling_color->r,
+			texture->ceiling_color->g, texture->ceiling_color->b);
 }

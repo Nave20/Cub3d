@@ -20,7 +20,6 @@ int	get_no(int fd, t_texture *texture, char *line)
 	error = 0;
 	while (line && ft_strnstr(line, "NO ", ft_strlen(line)) == NULL)
 	{
-		dprintf(2, RED"TEST"RESET);
 		line = get_next_line(fd, &error);
 		if (error)
 			return (err_gnl());

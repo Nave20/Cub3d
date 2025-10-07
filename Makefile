@@ -8,10 +8,12 @@ PARS_OBJDIR     = $(OBJ_DIR)pars/
 LIB             = $(SRC_DIR)/libft/libft.a
 
 PARS_FILES      =	get_texture.c	\
+					get_color.c		\
 					parsing_servo.c	\
 					pars_utils.c	\
 					error_messages.c\
 					pars_free.c		\
+					validation.c	\
 
 SRC_FILES       =	main.c			\
 

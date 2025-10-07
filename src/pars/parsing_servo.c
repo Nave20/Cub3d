@@ -31,6 +31,12 @@ int	dispatcher(int fd, t_texture *texture, int error, char *line)
 		else if (ft_strnstr(line, "EA ", ft_strlen(line)) != NULL
 			&& texture->valid_east == false)
 			get_ea(fd, texture, line);
+		else if (ft_strnstr(line, "F ", ft_strlen(line)) != NULL
+			&& texture->valid_floor == false)
+			get_f(fd, texture, line);
+		else if (ft_strnstr(line, "C ", ft_strlen(line)) != NULL
+			&& texture->valid_ceiling == false)
+			get_c(fd, texture, line);
 		else
 		{
 			free(line);
@@ -45,14 +51,41 @@ int	dispatcher(int fd, t_texture *texture, int error, char *line)
 void	texture_init(t_texture *texture)
 {
 	texture->valid = false;
+	texture->floor_color->color = NULL;
+	texture->ceiling_color->color = NULL;
 	texture->north_texture = NULL;
 	texture->south_texture = NULL;
 	texture->west_texture = NULL;
 	texture->east_texture = NULL;
+	texture->valid_ceiling = false;
+	texture->valid_floor = false;
 	texture->valid_north = false;
 	texture->valid_south = false;
 	texture->valid_west = false;
 	texture->valid_east = false;
+}
+
+t_texture	*texture_alloc(void)
+{
+	t_texture	*texture;
+	texture = malloc(sizeof(t_texture));
+	if (texture == NULL)
+		return (NULL);
+	texture->floor_color = malloc(sizeof(t_color));
+	if (texture->floor_color == NULL)
+	{
+		free(texture);
+		return (NULL);
+	}
+	texture->ceiling_color = malloc(sizeof(t_color));
+	if (texture->ceiling_color == NULL)
+	{
+		free(texture->floor_color);
+		free(texture);
+		return (NULL);
+	}
+	texture_init(texture);
+	return (texture);
 }
 
 int	parsing_servo(char *file)
@@ -66,15 +99,12 @@ int	parsing_servo(char *file)
 		perror(RED"Error\n opening file"RESET);
 		exit(errno);
 	}
-	texture = malloc(sizeof(t_texture));
+	texture = texture_alloc();
 	if (!texture)
-	{
-		close(fd);
-		perror(RED"Error\n allocating memory"RESET);
-		exit(errno);
-	}
-	texture_init(texture);
+		err_malloc(fd);
 	if (dispatcher(fd, texture, 0, NULL))
+		return (1);
+	if (arg_validation(texture))
 		return (1);
 	texture_print(texture);
 	free_textures(texture, NULL);
