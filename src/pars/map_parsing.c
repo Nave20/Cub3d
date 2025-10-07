@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:07:44 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/07 13:21:52 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/07 15:12:04 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,24 @@ void	cpy_map_to_lst(t_list *lst, char *buffer, int fd, int error)
 		if (error != 0)
 			error_exit("Error\nGNL failure\n");
 	}
-	print_lst(lst);
+	// print_lst(lst);
 	free_lst(lst);
 	return ;
+}
+
+void	add_last_border_to_tab(t_list *lst, t_data *data, int i)
+{
+	int	j;
+
+	j = 0;
+	data->map[i] = ft_calloc(data->cols + 3, sizeof(char));
+	if(!data->map[i])
+		error_exit("Error\nMalloc failure\n");
+	while(i < data->cols + 3)
+	{
+		data->map[i][j] = 'X';
+		j++;
+	}
 }
 
 void	add_fist_border_to_tab(t_list *lst, t_data *data)
@@ -64,7 +79,7 @@ void	add_fist_border_to_tab(t_list *lst, t_data *data)
 	i = 0;
 	data->map[0] = ft_calloc(data->cols + 3, sizeof(char));
 	if(!data->map[0])
-		error_exit("Error\nMalloc failure\n");
+		error_exit("Error\nMalloc failure\n", lst. data);
 	while(i < data->cols + 3)
 	{
 		data->map[0][i] = 'X';
@@ -91,19 +106,35 @@ void	find_cols_nb_map(t_data *data, t_list *lst)
 void	cpy_lst_to_tab(t_list *lst, t_data *data)
 {
 	t_list	*ptr;
+	char	*str;
 	int	i;
 	int	j;
+	int	jm;
 
 	data->lines = ft_lstsize(lst);
 	i = 1;
 	j = 0;
+	jm = 0;
 	ptr = lst;
 	data->map = ft_calloc(data->lines + 3, sizeof(char *));
 	add_fist_border_to_tab(lst, data);
 	while(ptr != NULL)
 	{
-		while()
+		data->map[i] = ft_calloc(data->cols + 3, sizeof(char));
+		data->map[i][j++] = 'X';
+		str = ptr->content;
+		while (str[jm])
+		{
+			data->map[i][j] = str[jm];
+			j++;
+			jm++;
+		}
+		data->map[i][j++] = 'X';
+		i++;
+		j = 0;
+		jm = 0;
 	}
+	add_last_border_to_tab(lst, data, i);
 }
 
 void	find_map(int fd, t_data *data)

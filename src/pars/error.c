@@ -6,14 +6,31 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 11:27:54 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/07 12:45:52 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/07 15:12:28 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3D.h"
 
-void	error_exit(char *err_msg)
+void	free_double_tab(char **tab)
 {
+	int	i;
+
+	i = 0;
+	while(tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
+void	error_exit(char *err_msg, t_list *lst, t_data *data)
+{
+	if(lst)
+		free_lst(lst);
+	if(data)
+		free_double_tab(data->map);
 	perror(err_msg);
 	exit(errno);
 }
