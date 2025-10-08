@@ -6,30 +6,30 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/08 15:05:26 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/08 17:35:51 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3D.h"
 
+void	arg_nbr_and_extension_check(int argc, char **argv)
+{
+	int	nb;
+
+	if (argc != 2)
+		error_exit("Error\nThere must be only one arg\n", NULL, NULL);
+	(void)argv;
+	nb = ft_strlen(argv[1]);
+	if (ft_strncmp(".cub", argv[1] + ft_strlen(argv[1]) - 4, 5) != 0)
+		error_exit("Error\nWrong file extension\n", NULL, NULL);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
 	int		fd;
-	int		nb;
 
-	if (argc != 2)
-	{
-		perror(RED "Error\nThere must be only one arg\n" RESET);
-		return (1);
-	}
-	(void)argv;
-	nb = ft_strlen(argv[1]);
-	if (ft_strncmp(".cub", argv[1] + ft_strlen(argv[1]) - 4, 5) != 0)
-	{
-		perror(RED "Error\nWrong file extension\n" RESET);
-		return (1);
-	}
+	arg_nbr_and_extension_check(argc, argv);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		error_exit("Error\nFile opening failure\n", NULL, NULL);
