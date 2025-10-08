@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:40:24 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/07 17:50:55 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/08 17:26:37 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ bool	is_map_line(char *str)
 	i = 0;
 	if (!str)
 		return (0);
-	while (str[i])
+	while (str[i] && str[i] != '\n')
 	{
-		if (is_good_char(str[i]))
-			return (1);
+		if (!is_good_char(str[i]) && str[i] != ' ')
+			return (0);
 		i++;
 	}
-	return (0);
+	if (i == 0)
+		return (0);
+	return (1);
 }

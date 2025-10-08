@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/07 17:49:28 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/08 15:05:26 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,13 @@ int	main(int argc, char **argv)
 		perror(RED "Error\nWrong file extension\n" RESET);
 		return (1);
 	}
-	fd = open("test.txt", O_RDONLY);
+	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		error_exit("Error\nFile opening failure\n", NULL, NULL);
 	data = ft_calloc(1, sizeof(t_data));
 	// parsing_servo("test.txt");
 	find_map(fd, data);
+	map_parsing(data);
 	free_map_tab(data->map);
 	free(data);
 	return (0);

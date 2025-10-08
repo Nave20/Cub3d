@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:07:44 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/07 17:56:52 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/08 17:23:22 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	fill_line(t_data *data, char *line, int i, int j)
 		data->map[i][j] = ' ';
 		j++;
 	}
-	data->map[i][j] = 'X';
+	data->map[i][j] = ' ';
 }
 
 void	cpy_lst_to_tab(t_list *lst, t_data *data)
@@ -47,7 +47,7 @@ void	cpy_lst_to_tab(t_list *lst, t_data *data)
 	while (ptr != NULL)
 	{
 		data->map[i] = ft_calloc(data->cols + 3, sizeof(char));
-		data->map[i][j++] = 'X';
+		data->map[i][j++] = ' ';
 		fill_line(data, ptr->content, i, j);
 		i++;
 		j = 0;
@@ -56,7 +56,7 @@ void	cpy_lst_to_tab(t_list *lst, t_data *data)
 	add_last_border_to_tab(lst, data, i);
 }
 
-t_list	*cpy_map_to_lst(char *buffer, int fd, int error)
+t_list	*cpy_map_to_lst(t_data *data, char *buffer, int fd, int error)
 {
 	t_list	*ptr;
 	t_list	*lst;
@@ -66,13 +66,36 @@ t_list	*cpy_map_to_lst(char *buffer, int fd, int error)
 	{
 		ptr = ft_lstnew(buffer);
 		if (!ptr)
-			error_exit("Error\nft_lstnew failure\n", lst, NULL);
+			error_exit("Error\nft_lstnew failure\n", lst, data);
 		ft_lstadd_back(&lst, ptr);
 		buffer = get_next_line(fd, &error);
 		if (error != 0)
-			error_exit("Error\nGNL failure\n", lst, NULL);
+			error_exit("Error\nGNL failure\n", lst, data);
 	}
+	if (buffer)
+		check_file_ending(fd, data, buffer, lst);
 	return (lst);
+}
+
+void	map_handling(char *buffer, int fd, t_data *data, t_list *lst)
+{
+	int	error;
+
+	error = 0;
+	if (buffer && is_map_line(buffer))
+	{
+		lst = cpy_map_to_lst(data, buffer, fd, error);
+		cpy_lst_to_tab(lst, data);
+		free_lst(lst);
+		print_map(data->map);
+		return ;
+	}
+	else
+	{
+		free(buffer);
+		error_exit("Error\nThere are no requested characters for the map\n ",
+			NULL, data);
+	}
 }
 
 void	find_map(int fd, t_data *data)
@@ -85,20 +108,13 @@ void	find_map(int fd, t_data *data)
 	buffer = get_next_line(fd, &error);
 	if (error != 0)
 		error_exit("Error\nGNL failure\n", NULL, data);
-	while (buffer != NULL)
+	while (buffer && buffer[0] == '\n')
 	{
-		if (is_map_line(buffer))
-		{
-			lst = cpy_map_to_lst(buffer, fd, error);
-			cpy_lst_to_tab(lst, data);
-			free_lst(lst);
-			print_map(data->map);
-			return ;
-		}
+		free(buffer);
 		buffer = get_next_line(fd, &error);
 		if (error != 0)
 			error_exit("Error\nGNL failure\n", NULL, data);
 	}
-	error_exit("Error\nThere are no requested characters\n ", NULL, data);
+	map_handling(buffer, fd, data, lst);
 	return ;
 }

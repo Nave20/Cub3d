@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/07 17:55:49 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/08 17:21:39 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,11 @@ void	free_lst(t_list *lst);
 void	free_map_tab(char **tab);
 void	print_map(char **tab);
 bool	is_map_line(char *str);
+bool	is_good_char(char c);
 void	find_cols_nb_map(t_data *data, t_list *lst);
 void	add_fist_border_to_tab(t_list *lst, t_data *data);
 void	add_last_border_to_tab(t_list *lst, t_data *data, int i);
+void	map_parsing(t_data *data);
+void	check_file_ending(int fd, t_data *data, char *buffer, t_list *lst);
 
 #endif

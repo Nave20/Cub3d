@@ -25,6 +25,7 @@ PARS_FILES      =	get_texture.c	\
 					print_utils.c	\
 					is_something.c	\
 					copy_utils.c	\
+					map_parsing.c	\
 
 MOV_FILES		=
 
