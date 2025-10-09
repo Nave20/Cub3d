@@ -25,8 +25,8 @@
 # define BLINK "\033[5m"
 # define REVERSE "\033[7m"
 # define PI 3.14159265358979323846
-# define SIZE 60
-# define STEP 5
+# define SIZE 100
+# define STEP 0.49
 
 //-------------------------------INCLUDE-------------------------------
 # include "../src/libft/libft.h"
@@ -42,6 +42,7 @@
 # include <sys/resource.h>
 # include <sys/wait.h>
 # include <unistd.h>
+# include <math.h>
 
 //-------------------------------STRUCTS-------------------------------
 
@@ -149,8 +150,18 @@ void	check_file_ending(int fd, t_data *data, char *buffer, t_list *lst);
 //---------------------------------------------------------------------
 
 //--------------------------------SERVO--------------------------------
+int		mov_servo(t_data *data);
 
 //-------------------------------PLAYER--------------------------------
 int		create_player(t_data *data);
+
+//--------------------------------WASD---------------------------------
+void	w_key(t_data *data);
+void	a_key(t_data *data);
+void	s_key(t_data *data);
+void	d_key(t_data *data);
+
+//--------------------------------UTILS--------------------------------
+void	print_pos(t_player *player);
 
 #endif

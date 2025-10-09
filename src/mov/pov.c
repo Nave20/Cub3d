@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mov.c                                              :+:      :+:    :+:   */
+/*   pov.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 14:54:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/07 14:54:29 by vpirotti         ###   ########.fr       */
+/*   Created: 2025/10/09 11:48:31 by vpirotti          #+#    #+#             */
+/*   Updated: 2025/10/09 11:48:31 by vpirotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3D.h"
 
-int	mov_servo(t_data *data)
+void	letf_arr(t_data *data)
 {
-	create_player(data);
+	data->player->radian += 0.125;
+}
 
-	return (0);
+void	right_arr(t_data *data)
+{
+	data->player->radian -= 0.125;
 }

@@ -27,7 +27,10 @@ PARS_FILES      =	get_texture.c	\
 					copy_utils.c	\
 					map_parsing.c	\
 
-MOV_FILES		=
+MOV_FILES		=	mov.c			\
+					mov_utils.c		\
+					player.c		\
+					wasd.c			\
 
 RAY_FILES		=
 
@@ -79,8 +82,8 @@ $(RAY_OBJDIR)%.o: $(RAY_DIR)%.c $(HEADER)
 	mkdir -p $(RAY_OBJDIR)
 	$(CC) $(FLAGS) -c $< -o $@
 
-$(NAME): $(OBJS) $(LIB) $(HEADER) Makefile
-	$(CC) $(FLAGS) -o $@ $(OBJS) $(LIB)
+$(NAME): $(OBJS) $(LIB)
+	$(CC) $(FLAGS) -o $@ $(OBJS) $(LIB) -lm
 
 $(LIB): FORCE
 	make bonus -C $(SRC_DIR)libft
