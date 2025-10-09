@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:07:44 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/08 17:23:22 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/08 17:44:40 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,14 @@ void	cpy_lst_to_tab(t_list *lst, t_data *data)
 	j = 0;
 	ptr = lst;
 	data->map = ft_calloc(data->lines + 3, sizeof(char *));
+	if(!data->map)
+		error_exit("Error\nMalloc failure", lst, data);
 	add_fist_border_to_tab(lst, data);
 	while (ptr != NULL)
 	{
 		data->map[i] = ft_calloc(data->cols + 3, sizeof(char));
+		if(!data->map[i])
+			error_exit("Error\nMalloc failure", lst, data);
 		data->map[i][j++] = ' ';
 		fill_line(data, ptr->content, i, j);
 		i++;
