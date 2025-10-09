@@ -15,7 +15,7 @@
 bool	is_good_char(char c)
 {
 	if (c && c != '1' && c != '0' && c != 'N' && c != 'S' && c != 'W'
-		&& c != 'O')
+		&& c != 'O' && c != 'E')
 		return (0);
 	else
 		return (1);

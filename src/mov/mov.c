@@ -15,6 +15,5 @@
 int	mov_servo(t_data *data)
 {
 	create_player(data);
-
 	return (0);
 }

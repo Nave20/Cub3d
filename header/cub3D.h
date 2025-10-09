@@ -50,6 +50,7 @@ typedef struct  s_texture		t_texture;
 typedef struct  s_data			t_data;
 typedef struct	s_color			t_color;
 typedef struct	s_player		t_player;
+typedef struct	s_ray			t_ray;
 
 struct			s_color
 {
@@ -81,7 +82,17 @@ struct					s_data
 	char				**map;
 	int					lines;
 	int					cols;
+	t_ray				*ray;
 	t_player			*player;
+
+};
+
+struct					s_ray
+{
+	float				end_x;
+	float				end_y;
+	float				temp_x;
+	float				temp_y;
 };
 
 struct					s_player
@@ -161,7 +172,17 @@ void	a_key(t_data *data);
 void	s_key(t_data *data);
 void	d_key(t_data *data);
 
+//---------------------------------POV---------------------------------
+void	letf_arr(t_data *data);
+void	right_arr(t_data *data);
+
 //--------------------------------UTILS--------------------------------
 void	print_pos(t_player *player);
+
+//---------------------------------------------------------------------
+//----------------------------------RAY--------------------------------
+//---------------------------------------------------------------------
+
+void	ray_servo(t_data *data);
 
 #endif

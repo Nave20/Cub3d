@@ -30,9 +30,10 @@ PARS_FILES      =	get_texture.c	\
 MOV_FILES		=	mov.c			\
 					mov_utils.c		\
 					player.c		\
+					pov.c			\
 					wasd.c			\
 
-RAY_FILES		=
+RAY_FILES		=	ray.c			\
 
 SRC_FILES       =	main.c	\
 

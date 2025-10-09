@@ -38,6 +38,7 @@ int	main(int argc, char **argv)
 	find_map(fd, data);
 	map_parsing(data);
 	mov_servo(data);
+	ray_servo(data);
 	free_map_tab(data->map);
 	free(data);
 	return (0);
