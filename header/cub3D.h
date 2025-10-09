@@ -91,8 +91,6 @@ struct					s_ray
 {
 	float				end_x;
 	float				end_y;
-	float				temp_x;
-	float				temp_y;
 };
 
 struct					s_player

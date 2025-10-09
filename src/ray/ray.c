@@ -38,27 +38,15 @@ void	print_ray_touch(t_data *data, int x, int y)
 void	send_ray(t_data *data)
 {
 	t_ray	*ray;
-	// float	a;
 
 	ray = data->ray;
 	ray->end_x = data->player->pos_x;
 	ray->end_y = data->player->pos_y;
-	ray->temp_x = 0;
-	ray->temp_y = 0;
 	while (data->map[(int)ray->end_x][(int)ray->end_y] != '1')
 	{
 		ray->end_y -= 0.01 * sin((data->player->radian + 1.5) * PI);
 		ray->end_x -= 0.01 * cos((data->player->radian + 1.5) * PI);
 	}
-	// printf(YELLOW"RADIAN %fπ\n"RESET, data->player->radian);
-	// printf(BLUE"POS_END x :"RESET);
-	// printf(BOLD " %f\n"RESET, ray->end_x);
-	// printf(RED"POS_END y :"RESET);
-	// printf(BOLD " %f\n"RESET, ray->end_y);
-	// printf("\n");
-	// ray->end_x = roundf(ray->end_x);
-	// ray->end_y = roundf(ray->end_y);
-	// print_ray_touch(data, ray->end_x, ray->end_y);
 }
 
 float	ray_length(t_data *data)
