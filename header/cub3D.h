@@ -51,6 +51,15 @@ typedef struct  s_data			t_data;
 typedef struct	s_color			t_color;
 typedef struct	s_player		t_player;
 typedef struct	s_ray			t_ray;
+typedef enum    e_side			t_side;
+
+enum			e_side
+{
+	EAST,
+	NORTH,
+	WEST,
+	SOUTH,
+};
 
 struct			s_color
 {
@@ -91,6 +100,7 @@ struct					s_ray
 {
 	float				end_x;
 	float				end_y;
+	t_side				side;
 };
 
 struct					s_player
