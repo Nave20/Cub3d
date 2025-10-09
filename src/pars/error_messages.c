@@ -14,7 +14,8 @@
 
 void	err_malloc(int fd)
 {
-	close(fd);
+	if (fd != -1)
+		close(fd);
 	perror(RED"Error\n -> allocating memory"RESET);
 	exit(errno);
 }

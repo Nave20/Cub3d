@@ -83,7 +83,7 @@ $(NAME): $(OBJS) $(LIB) $(HEADER) Makefile
 	$(CC) $(FLAGS) -o $@ $(OBJS) $(LIB)
 
 $(LIB): FORCE
-	make -C $(SRC_DIR)libft
+	make bonus -C $(SRC_DIR)libft
 
 FORCE:
 

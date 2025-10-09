@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 	if (fd == -1)
 		error_exit("Error\nFile opening failure\n", NULL, NULL);
 	data = ft_calloc(1, sizeof(t_data));
-	// parsing_servo("test.txt");
+	// parsing_servo("test.cub");
 	find_map(fd, data);
 	map_parsing(data);
 	free_map_tab(data->map);

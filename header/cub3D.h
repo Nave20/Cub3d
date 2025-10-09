@@ -24,6 +24,9 @@
 # define UNDER "\033[4m"
 # define BLINK "\033[5m"
 # define REVERSE "\033[7m"
+# define PI 3.14159265358979323846
+# define SIZE 60
+# define STEP 5
 
 //-------------------------------INCLUDE-------------------------------
 # include "../src/libft/libft.h"
@@ -45,6 +48,7 @@
 typedef struct  s_texture		t_texture;
 typedef struct  s_data			t_data;
 typedef struct	s_color			t_color;
+typedef struct	s_player		t_player;
 
 struct			s_color
 {
@@ -76,6 +80,17 @@ struct					s_data
 	char				**map;
 	int					lines;
 	int					cols;
+	t_player			*player;
+};
+
+struct					s_player
+{
+	t_data				*data;
+	float				radian;
+	int					grid_x;
+	int					grid_y;
+	float				pos_x;
+	float				pos_y;
 };
 
 //---------------------------------------------------------------------
@@ -128,5 +143,14 @@ void	add_fist_border_to_tab(t_list *lst, t_data *data);
 void	add_last_border_to_tab(t_list *lst, t_data *data, int i);
 void	map_parsing(t_data *data);
 void	check_file_ending(int fd, t_data *data, char *buffer, t_list *lst);
+
+//---------------------------------------------------------------------
+//-------------------------------MOVEMENT------------------------------
+//---------------------------------------------------------------------
+
+//--------------------------------SERVO--------------------------------
+
+//-------------------------------PLAYER--------------------------------
+int		create_player(t_data *data);
 
 #endif
