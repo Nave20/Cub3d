@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:59:30 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/08 17:25:48 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/09 12:08:46 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,39 @@ bool	is_invalid_char(char c)
 		return (0);
 }
 
+bool	is_player(char c)
+{
+	if(c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	else
+		return (0);
+}
+
+void	player_check(t_data *data)
+{
+	int	i;
+	int	j;
+	int	nbplayer;
+
+	i = 1;
+	j = 1;
+	nbplayer = 0;
+	while(i <= data->lines)
+	{
+		while(j <= data->cols)
+		{
+			if(is_player(data->map[i][j]))
+				nbplayer++;
+			j++;
+		}
+		j = 1;
+		i++;
+	}
+	if(nbplayer != 1)
+		error_exit("Error\nThere must be exactly one player in the map\n",
+			NULL, data);
+}
+
 void	map_parsing(t_data *data)
 {
 	int	i;
@@ -64,4 +97,5 @@ void	map_parsing(t_data *data)
 		j = 1;
 		i++;
 	}
+	player_check(data);
 }
