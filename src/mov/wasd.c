@@ -19,22 +19,22 @@ void	w_key(t_data *data)
 
 	player = data->player;
 	tmp = player->pos_y;
-	player->pos_y -= STEP * sin((player->radian + 1.5) * PI);
+	player->pos_y -= STEP * ft_trig(data, player->radian, SIN);
 	if (data->map[(int)player->pos_x][(int)player->pos_y] == '1')
 	{
 		if (player->pos_y > tmp)
-			player->pos_y = ((int)tmp) - 0.1;
+			player->pos_y = ((int)tmp) - 0.1f;
 		else
-			player->pos_y = ((int)tmp) + 0.1;
+			player->pos_y = ((int)tmp) + 0.1f;
 	}
 	tmp = player->pos_x;
-	player->pos_x -= STEP * cos((player->radian + 1.5) * PI);
+	player->pos_x -= STEP * ft_trig(data, player->radian, COS);
 	if (data->map[(int)player->pos_x][(int)player->pos_y] == '1')
 	{
 		if (player->pos_x > tmp)
-			player->pos_x = ((int)tmp) - 0.1;
+			player->pos_x = ((int)tmp) - 0.1f;
 		else
-			player->pos_x = ((int)tmp) + 0.1;
+			player->pos_x = ((int)tmp) + 0.1f;
 	}
 	player->grid_y = (int) player->pos_y;
 	player->grid_x = (int) player->pos_x;
@@ -47,22 +47,22 @@ void	a_key(t_data *data)
 
 	player = data->player;
 	tmp = player->pos_y;
-	player->pos_y -= STEP * sin(player->radian * PI);
+	player->pos_y -= STEP * ft_trig(data, player->radian, SIN);
 	if (data->map[(int)player->pos_x][(int)player->pos_y] == '1')
 	{
 		if (player->pos_y > tmp)
-			player->pos_y = ((int)tmp) - 0.1;
+			player->pos_y = ((int)tmp) - 0.1f;
 		else
-			player->pos_y = ((int)tmp) + 0.1;
+			player->pos_y = ((int)tmp) + 0.1f;
 	}
 	tmp = player->pos_x;
-	player->pos_x -= STEP * cos(player->radian * PI);
+	player->pos_x -= STEP * ft_trig(data, player->radian, COS);
 	if (data->map[(int)player->pos_x][(int)player->pos_y] == '1')
 	{
 		if (player->pos_x > tmp)
-			player->pos_x = ((int)tmp) - 0.1;
+			player->pos_x = ((int)tmp) - 0.1f;
 		else
-			player->pos_x = ((int)tmp) + 0.1;
+			player->pos_x = ((int)tmp) + 0.1f;
 	}
 	player->grid_y = (int) player->pos_y;
 	player->grid_x = (int) player->pos_x;
@@ -75,22 +75,22 @@ void	s_key(t_data *data)
 
 	player = data->player;
 	tmp = player->pos_y;
-	player->pos_y -= STEP * sin((player->radian + 1) * PI);
+	player->pos_y -= STEP * ft_trig(data, player->radian, SIN);
 	if (data->map[(int)player->pos_x][(int)player->pos_y] == '1')
 	{
 		if (player->pos_y > tmp)
-			player->pos_y = ((int)tmp) - 0.1;
+			player->pos_y = ((int)tmp) - 0.1f;
 		else
-			player->pos_y = ((int)tmp) + 0.1;
+			player->pos_y = ((int)tmp) + 0.1f;
 	}
 	tmp = player->pos_x;
-	player->pos_x -= STEP * cos((player->radian + 1) * PI);
+	player->pos_x -= STEP * ft_trig(data, player->radian, COS);
 	if (data->map[(int)player->pos_x][(int)player->pos_y] == '1')
 	{
 		if (player->pos_x > tmp)
-			player->pos_x = ((int)tmp) - 0.1;
+			player->pos_x = ((int)tmp) - 0.1f;
 		else
-			player->pos_x = ((int)tmp) + 0.1;
+			player->pos_x = ((int)tmp) + 0.1f;
 	}
 	player->grid_y = (int) player->pos_y;
 	player->grid_x = (int) player->pos_x;
@@ -103,22 +103,22 @@ void	d_key(t_data *data)
 
 	player = data->player;
 	tmp = player->pos_y;
-	player->pos_y -= STEP * sin((player->radian + 0.5) * PI);
+	player->pos_y -= STEP * ft_trig(data, player->radian, SIN);
 	if (data->map[(int)player->pos_x][(int)player->pos_y] == '1')
 	{
 		if (player->pos_y > tmp)
-			player->pos_y = (int) tmp - 0.1;
+			player->pos_y = (int) tmp - 0.1f;
 		else
-			player->pos_y = (int) tmp + 0.1;
+			player->pos_y = (int) tmp + 0.1f;
 	}
 	tmp = player->pos_x;
-	player->pos_x -= STEP * cos((player->radian + 0.5) * PI);
+	player->pos_x -= STEP * ft_trig(data, player->radian, COS);
 	if (data->map[(int)player->pos_x][(int)player->pos_y] == '1')
 	{
 		if (player->pos_x > tmp)
-			player->pos_x = (int)tmp - 0.1;
+			player->pos_x = (int)tmp - 0.1f;
 		else
-			player->pos_x = (int)tmp + 0.1;
+			player->pos_x = (int)tmp + 0.1f;
 	}
 	player->grid_y = (int) player->pos_y;
 	player->grid_x = (int) player->pos_x;

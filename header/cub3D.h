@@ -54,6 +54,7 @@ typedef struct	s_color			t_color;
 typedef struct	s_player		t_player;
 typedef struct	s_ray			t_ray;
 typedef enum    e_side			t_side;
+typedef enum    e_trig			t_trig;
 
 enum			e_side
 {
@@ -61,6 +62,13 @@ enum			e_side
 	NORTH,
 	WEST,
 	SOUTH,
+};
+
+enum			e_trig
+{
+	COS,
+	SIN,
+	TAN,
 };
 
 struct			s_color
@@ -205,6 +213,7 @@ void	print_pos(t_player *player);
 
 void	ray_servo(t_data *data);
 void	fast_trig(t_data *data);
+float	ft_trig(t_data *data, float angle, t_trig type);
 float	pre_dda(t_data *data);
 void	print_ray_touch(t_data *data, int x, int y);
 #endif

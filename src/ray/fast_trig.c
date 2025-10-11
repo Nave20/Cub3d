@@ -27,3 +27,13 @@ void	fast_trig(t_data *data)
 		i++;
 	}
 }
+
+float	ft_trig(t_data *data, float angle, t_trig type)
+{
+	if (type == COS)
+		return (data->f_cos[(int)((angle) * PI * TRIG_TABLE / TWOPI)]);
+	if (type == SIN)
+		return (data->f_sin[(int)((angle) * PI * TRIG_TABLE / TWOPI)]);
+	if (type == TAN)
+		return (data->f_tan[(int)((angle) * PI * TRIG_TABLE / TWOPI)]);
+}
