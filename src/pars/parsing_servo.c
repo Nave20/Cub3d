@@ -89,17 +89,16 @@ t_texture	*texture_alloc(void)
 	return (texture);
 }
 
-int	parsing_servo(char *file)
+int	parsing_servo(int fd)
 {
-	int			fd;
 	t_texture	*texture;
 
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-	{
-		perror(RED"Error\n opening file"RESET);
-		exit(errno);
-	}
+	// fd = open(file, O_RDONLY);
+	// if (fd == -1)
+	// {
+	// 	perror(RED"Error\n opening file"RESET);
+	// 	exit(errno);
+	// }
 	texture = texture_alloc();
 	if (!texture)
 		err_malloc(fd);

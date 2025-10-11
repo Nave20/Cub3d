@@ -25,6 +25,8 @@
 # define BLINK "\033[5m"
 # define REVERSE "\033[7m"
 # define PI 3.14159265358979323846
+# define TWOPI 6.28318530717958647692
+# define TRIG_TABLE 1024
 # define SIZE 100
 # define STEP 0.49
 
@@ -91,6 +93,9 @@ struct					s_data
 	char				**map;
 	int					lines;
 	int					cols;
+	float				f_sin[TRIG_TABLE];
+	float				f_cos[TRIG_TABLE];
+	float				f_tan[TRIG_TABLE];
 	t_ray				*ray;
 	t_player			*player;
 
@@ -98,8 +103,15 @@ struct					s_data
 
 struct					s_ray
 {
-	float				end_x;
-	float				end_y;
+	int					map_x;
+	int					map_y;
+	int					step_x;
+	int					step_y;
+	float				delta_x;
+	float				delta_y;
+	float				side_x;
+	float				side_y;
+	bool				last_side;
 	t_side				side;
 };
 
@@ -118,7 +130,7 @@ struct					s_player
 //---------------------------------------------------------------------
 
 //--------------------------------SERVO--------------------------------
-int		parsing_servo(char *file);
+int		parsing_servo(int fd);
 
 //-----------------------------GET_TEXTURE-----------------------------
 int		get_no(int fd, t_texture *texture, char *line);
@@ -192,5 +204,7 @@ void	print_pos(t_player *player);
 //---------------------------------------------------------------------
 
 void	ray_servo(t_data *data);
-
+void	fast_trig(t_data *data);
+float	pre_dda(t_data *data);
+void	print_ray_touch(t_data *data, int x, int y);
 #endif

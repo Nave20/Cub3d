@@ -34,6 +34,8 @@ MOV_FILES		=	mov.c			\
 					wasd.c			\
 
 RAY_FILES		=	ray.c			\
+					dda.c			\
+					fast_trig.c		\
 
 SRC_FILES       =	main.c	\
 

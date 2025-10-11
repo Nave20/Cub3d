@@ -29,11 +29,11 @@ void	find_player(t_data *data, int i, int j)
 				if (data->map[i][j] == 'E')
 					data->player->radian = 0;
 				if (data->map[i][j] == 'N')
-					data->player->radian = 0.5;
+					data->player->radian = 0.5f;
 				if (data->map[i][j] == 'W')
 					data->player->radian = 1;
 				if (data->map[i][j] == 'S')
-					data->player->radian = 1.5;
+					data->player->radian = 1.5f;
 			}
 			j++;
 		}

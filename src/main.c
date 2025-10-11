@@ -26,24 +26,27 @@ void	arg_nbr_and_extension_check(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	// t_data	*data;
-	t_all	*all;
+	t_data	*data;
+	// t_all	*all;
 	int		fd;
 
-	all = ft_calloc(1, sizeof(t_all));
+	// all = ft_calloc(1, sizeof(t_all));
 	arg_nbr_and_extension_check(argc, argv);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		error_exit("Error\nFile opening failure\n", NULL, NULL);
-	all->data = ft_calloc(1, sizeof(t_data));
-	if(!all->data)
+	data = ft_calloc(1, sizeof(t_data));
+	if(!data)
 		error_exit("Error\nMalloc failure\n", NULL, NULL);
-	// parsing_servo(argv[1]);
-	find_map(fd, all->data);
-	map_parsing(all->data);
-	all->mlx = ft_calloc(1, sizeof(t_mlx));
-	fill_color_struct(all);
-	free_map_tab(all->data->map);
-	free(all->data);
+	// parsing_servo(fd);
+	find_map(fd, data);
+	map_parsing(data);
+	fast_trig(data);
+	create_player(data);
+	ray_servo(data);
+	// all->mlx = ft_calloc(1, sizeof(t_mlx));
+	// fill_color_struct(all);
+	free_map_tab(data->map);
+	free(data);
 	return (0);
 }
