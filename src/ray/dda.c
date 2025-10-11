@@ -61,13 +61,11 @@ void	ray_values(t_data *data, float dir_x, float dir_y)
 	ray->map_y = data->player->grid_y;
 }
 
-float	dda(t_data *data, float dir_x, float dir_y)
+float	dda(t_data *data, float dir_x, float dir_y, bool hit)
 {
 	t_ray	*ray;
-	bool	hit;
 
 	ray = data->ray;
-	hit = false;
 	ray_values(data, dir_x, dir_y);
 	while (hit == false)
 	{
@@ -90,7 +88,6 @@ float	dda(t_data *data, float dir_x, float dir_y)
 		return ((ray->map_x - data->player->pos_x + (1 - ray->step_x) / 2.0f) / dir_x);
 	else
 		return ((ray->map_y - data->player->pos_y + (1 - ray->step_y) / 2.0f) / dir_y);
-
 }
 
 float	pre_dda(t_data *data)
@@ -104,5 +101,5 @@ float	pre_dda(t_data *data)
 	alpha_revised = fmodf(data->player->radian + 0.5f, 2.0f);
 	dir_x = data->f_cos[(int)((alpha_revised) * PI * TRIG_TABLE / TWOPI)];
 	dir_y = data->f_sin[(int)((alpha_revised) * PI * TRIG_TABLE / TWOPI)];
-	return (dda(data, dir_x, dir_y));
+	return (dda(data, dir_x, dir_y, false));
 }
