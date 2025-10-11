@@ -98,6 +98,8 @@ struct			s_texture
 
 struct					s_data
 {
+	int					screen_width;
+	int					screen_height;
 	char				**map;
 	int					lines;
 	int					cols;
@@ -115,6 +117,8 @@ struct					s_ray
 	int					map_y;
 	int					step_x;
 	int					step_y;
+	float				dir_x;
+	float				dir_y;
 	float				delta_x;
 	float				delta_y;
 	float				side_x;
@@ -212,6 +216,7 @@ void	print_pos(t_player *player);
 //---------------------------------------------------------------------
 
 void	ray_servo(t_data *data);
+void	side_touched(t_data *data);
 void	fast_trig(t_data *data);
 float	ft_trig(t_data *data, float angle, t_trig type);
 float	pre_dda(t_data *data);

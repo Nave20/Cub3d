@@ -84,22 +84,33 @@ float	dda(t_data *data, float dir_x, float dir_y, bool hit)
 		if (data->map[ray->map_x][ray->map_y] == '1')
 			hit = true;
 	}
+	// printf(RED"x : %d, y : %d\n"RESET, ray->map_x, ray->map_y);
+	// printf(YELLOW"side : %d\n"RESET, ray->last_side);
+	// printf(BLUE"res : %f\n"RESET, dir_x);
 	if (ray->last_side == 0)
+	{
+		if (roundf(dir_x * 10000) == 0.0f)
+			return ((ray->map_x - data->player->pos_x + (1 - ray->step_x) / 2.0f));
 		return ((ray->map_x - data->player->pos_x + (1 - ray->step_x) / 2.0f) / dir_x);
+	}
 	else
 		return ((ray->map_y - data->player->pos_y + (1 - ray->step_y) / 2.0f) / dir_y);
 }
 
 float	pre_dda(t_data *data)
 {
-	float	dir_x;
-	float	dir_y;
 	float	alpha_revised;
+	float	res;
 
 	if (data->player->radian < 0)
 		data->player->radian = 2.0f - fabsf(data->player->radian);
 	alpha_revised = fmodf(data->player->radian + 0.5f, 2.0f);
-	dir_x = data->f_cos[(int)((alpha_revised) * PI * TRIG_TABLE / TWOPI)];
-	dir_y = data->f_sin[(int)((alpha_revised) * PI * TRIG_TABLE / TWOPI)];
-	return (dda(data, dir_x, dir_y, false));
+	data->ray->dir_x = ft_trig(data, alpha_revised, COS);
+	data->ray->dir_y = ft_trig(data, alpha_revised, SIN);
+	printf("\n");
+	printf("dir_x : %f\n", data->ray->dir_x);
+	printf("dir_y : %f\n", data->ray->dir_y);
+	res = dda(data, data->ray->dir_x, data->ray->dir_y, false);
+	side_touched(data);
+	return (res);
 }

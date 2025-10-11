@@ -36,4 +36,5 @@ float	ft_trig(t_data *data, float angle, t_trig type)
 		return (data->f_sin[(int)((angle) * PI * TRIG_TABLE / TWOPI)]);
 	if (type == TAN)
 		return (data->f_tan[(int)((angle) * PI * TRIG_TABLE / TWOPI)]);
+	return (0);
 }
