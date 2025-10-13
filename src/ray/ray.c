@@ -39,15 +39,16 @@ float	pre_dda(t_data *data, float ray)
 {
 	float	res;
 
+	printf("\nRay info:\n");
+	printf("angle factor: %.2fπ\n", ray);
+	// ray += 1;
 	if (ray < 0)
 		ray = 2.0f - fabsf(ray);
 	if (ray > 2.0f)
 		ray = fmodf(ray, 2.0f);
 	data->ray->dir_x = ft_trig(data, ray, COS);
-	data->ray->dir_y = ft_trig(data, ray, SIN);
+	data->ray->dir_y = -ft_trig(data, ray, SIN);
 
-	printf("\nRay info:\n");
-	printf("angle factor: %.2fπ\n", ray);
 	printf("dir_x: %.6f | dir_y: %.6f\n", data->ray->dir_x, data->ray->dir_y);
 
 	res = dda(data, data->ray->dir_x, data->ray->dir_y);
@@ -76,40 +77,68 @@ void	side_touched(t_data *data, int side, float dir_x, float dir_y)
 	{
 		if (dir_y > 0)
 		{
-			printf("NORTH\n");
-			data->ray->side = NORTH;
-		}
-		else
-		{
 			printf("SOUTH\n");
 			data->ray->side = SOUTH;
 		}
+		else
+		{
+			printf("NORTH\n");
+			data->ray->side = NORTH;
+		}
 	}
 }
 
-void	ray_servo(t_data *data, int i)
+void	get_ray_impact(t_data *data, float distance)
 {
-	float	ray_start;
-	float	ray_end;
-	float	incr;
-	float	wall_dist;
+	float	pos_x;
+	float	pos_y;
 
-	incr = 0.5f / (float) data->screen_width;
-	ray_start = data->player->radian - 0.25f;
-	if (ray_start < 0)
-		ray_start = 2.0f - fabsf(ray_start);
-	if (ray_start > 2.0f)
-		ray_start = fmodf(ray_start, 2.0f);
-	ray_end = data->player->radian + 0.25f;
-	if (ray_end < 0)
-		ray_end = 2.0f - fabsf(ray_end);
-	if (ray_end > 2.0f)
-		ray_end = fmodf(ray_end, 2.0f);
-	while (ray_start < ray_end)
+	pos_x = data->player->pos_x;
+	pos_y = data->player->pos_y;
+	pos_x += data->ray->dir_x * distance;
+	pos_y += data->ray->dir_y * distance;
+	printf(GREEN"X = %f, Y = %f\n"RESET, pos_x, pos_y);
+}
+
+void	ray_servo(t_data *data)
+{
+	float	distance;
+	data->player->radian = 0.05f;
+	// print_pos(data->player);
+	// distance = pre_dda(data, data->player->radian);
+	// get_ray_impact(data, distance);
+	for (int i = 0; i < 4; i++)
 	{
-		wall_dist = pre_dda(data, ray_start);
-		wall_height(data, wall_dist, i, ray_start);
-		ray_start += incr;
-		i++;
+		print_pos(data->player);
+		distance = pre_dda(data, data->player->radian);
+		// get_ray_impact(data, distance);
+		data->player->radian += 0.5f;
 	}
 }
+
+// void	ray_servo(t_data *data, int i)
+// {
+// 	float	ray_start;
+// 	float	ray_end;
+// 	float	incr;
+// 	float	wall_dist;
+//
+// 	incr = 0.5f / (float) data->screen_width;
+// 	ray_start = data->player->radian - 0.25f;
+// 	if (ray_start < 0)
+// 		ray_start = 2.0f - fabsf(ray_start);
+// 	if (ray_start > 2.0f)
+// 		ray_start = fmodf(ray_start, 2.0f);
+// 	ray_end = data->player->radian + 0.25f;
+// 	if (ray_end < 0)
+// 		ray_end = 2.0f - fabsf(ray_end);
+// 	if (ray_end > 2.0f)
+// 		ray_end = fmodf(ray_end, 2.0f);
+// 	while (ray_start < ray_end)
+// 	{
+// 		wall_dist = pre_dda(data, ray_start);
+// 		wall_height(data, wall_dist, i, ray_start);
+// 		ray_start += incr;
+// 		i++;
+// 	}
+// }

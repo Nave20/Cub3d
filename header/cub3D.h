@@ -257,6 +257,7 @@ void	print_pos(t_player *player);
 //---------------------------------------------------------------------
 
 void	ray_servo(t_data *data);
+float	pre_dda(t_data *data, float ray);
 float	dda(t_data *data, float dir_x, float dir_y);
 void	side_touched(t_data *data, int side, float dir_x, float dir_y);
 void	fast_trig(t_data *data);

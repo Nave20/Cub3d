@@ -53,15 +53,17 @@ void	ray_values(t_data *data, float dir_x, float dir_y)
 
 	ray->map_x = data->player->grid_x;
 	ray->map_y = data->player->grid_y;
-	if (fabsf(dir_x) < EPSILON)
-		ray->delta_x = HUGE;
-	else
-		ray->delta_x = fabsf(1.0f / dir_x);
-
-	if (fabsf(dir_y) < EPSILON)
-		ray->delta_y = HUGE;
-	else
-		ray->delta_y = fabsf(1.0f / dir_y);
+	// if (fabsf(dir_x) < EPSILON)
+	// 	ray->delta_x = HUGE;
+	// else
+	// 	ray->delta_x = fabsf(1.0f / dir_x);
+	//
+	// if (fabsf(dir_y) < EPSILON)
+	// 	ray->delta_y = HUGE;
+	// else
+	// 	ray->delta_y = fabsf(1.0f / dir_y);
+	ray->delta_x = fabsf(1.0f / dir_x);
+	ray->delta_y = fabsf(1.0f / dir_y);
 	ray->side_x = side_x(data, dir_x, ray->delta_x);
 	ray->side_y = side_y(data, dir_y, ray->delta_y);
 }
@@ -76,17 +78,11 @@ float	dda_return(t_data *data, float dir_x, float dir_y)
 	printf(RED"ray_step_x : %d ray_step_y : %d\n"RESET, ray->step_x, ray->step_y);
 	if (ray->last_side == 0)
 	{
-		if (ray->step_x > 0)
-			wall_dist = (ray->map_x - 1.0f - data->player->pos_x) / dir_x;
-		else
-			wall_dist = (ray->map_x - data->player->pos_x) / dir_x;
+		wall_dist = (ray->map_x - data->player->pos_x + (1 - ray->step_x) / 2.0f) / dir_x;
 	}
 	else
 	{
-		if (ray->step_y > 0)
-			wall_dist = (ray->map_y - data->player->pos_y) / dir_y;
-		else
-			wall_dist = (ray->map_y + 1.0f - data->player->pos_y) / dir_y;
+		wall_dist = (ray->map_y - data->player->pos_y + (1 - ray->step_y) / 2.0f) / dir_y;
 	}
 	return (fabsf(wall_dist));
 }
@@ -99,8 +95,10 @@ float	dda(t_data *data, float dir_x, float dir_y)
 	ray = data->ray;
 	hit = false;
 	ray_values(data, dir_x, dir_y);
+	printf(GREEN"delta x : %f, delta y : %f\n"RESET, ray->delta_x, ray->delta_y);
 	while (!hit)
 	{
+		printf(YELLOW"side x : %f, side y : %f \n"RESET, ray->side_x, ray->side_y);
 		if (ray->side_x < ray->side_y)
 		{
 			ray->side_x += ray->delta_x;
@@ -116,6 +114,7 @@ float	dda(t_data *data, float dir_x, float dir_y)
 		if (data->map[ray->map_y][ray->map_x] == '1')
 			hit = true;
 	}
+	printf(CYAN"X = %d, Y = %d\n", ray->map_x, ray->map_y);
 	return (dda_return(data, dir_x, dir_y));
 }
 

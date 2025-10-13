@@ -22,10 +22,10 @@ void	find_player(t_data *data, int i, int j)
 			if (data->map[i][j] == 'N' || data->map[i][j] == 'S'
 				|| data->map[i][j] == 'W' || data->map[i][j] == 'E')
 			{
-				data->player->grid_y = i;
 				data->player->grid_x = j;
-				data->player->pos_x = i;
-				data->player->pos_y = j;
+				data->player->grid_y = i;
+				data->player->pos_x = j;
+				data->player->pos_y = i;
 				if (data->map[i][j] == 'E')
 					data->player->radian = 0.0f;
 				if (data->map[i][j] == 'N')
