@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/08 17:21:39 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/13 14:15:12 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ struct			s_mlx
 	void	*e_texture;
 	void	*w_texture;
 	void	*fc_image;
+	char	**img_tab;
 	t_argb	f_color;
 	t_argb	c_color;
 };

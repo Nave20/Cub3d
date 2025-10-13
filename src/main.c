@@ -24,6 +24,16 @@ void	arg_nbr_and_extension_check(t_all *all, int argc, char **argv)
 		error_exit("Error\nWrong file extension\n", all, NULL);
 }
 
+void	get_screen_size(t_all *all)
+{
+	int	x;
+	int	y;
+
+	mlx_get_screen_size(all->mlx->mlx_ptr, &x, &y);
+	all->data->screen_height = x;
+	all->data->screen_width = y;
+}
+
 int	main(int argc, char **argv)
 {
 	t_all	*all;
@@ -44,6 +54,8 @@ int	main(int argc, char **argv)
 	all->mlx = ft_calloc(1, sizeof(t_mlx));
 	if (!all->mlx)
 		error_exit("Error\nMalloc failure\n", all, NULL);
+	get_screen_size(all);
+	display_game(all, all->mlx);
 	fast_trig(all->data);
 	create_player(all->data);
 	all->data->ray = malloc(sizeof(t_ray));
