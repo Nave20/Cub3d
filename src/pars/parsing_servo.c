@@ -45,6 +45,8 @@ int	dispatcher(int fd, t_texture *texture, int error, char *line)
 				return (1);
 		}
 	}
+	if (line == NULL)
+		return (1);
 	return (0);
 }
 

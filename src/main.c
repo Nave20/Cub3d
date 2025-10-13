@@ -37,12 +37,19 @@ int	main(int argc, char **argv)
 	all->data = ft_calloc(1, sizeof(t_data));
 	if (!all->data)
 		error_exit("Error\nMalloc failure\n", all, NULL);
-	parsing_servo(fd);
+	all->data->all = all;
+	// parsing_servo(fd);
 	find_map(fd, all);
 	map_parsing(all->data, all);
 	all->mlx = ft_calloc(1, sizeof(t_mlx));
 	if (!all->mlx)
 		error_exit("Error\nMalloc failure\n", all, NULL);
+	fast_trig(all->data);
+	create_player(all->data);
+	all->data->ray = malloc(sizeof(t_ray));
+	if (!all->data->ray)
+		return (1);
+	ray_servo(all->data);
 	free_map_tab(all->data->map);
 	free(all->data);
 	return (0);

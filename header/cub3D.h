@@ -147,7 +147,7 @@ struct					s_data
 	float				f_tan[TRIG_TABLE];
 	t_ray				*ray;
 	t_player			*player;
-
+	t_all				*all;
 };
 
 struct					s_ray
@@ -261,6 +261,6 @@ float	dda(t_data *data, float dir_x, float dir_y);
 void	side_touched(t_data *data, int side, float dir_x, float dir_y);
 void	fast_trig(t_data *data);
 float	ft_trig(t_data *data, float angle, t_trig type);
-float	pre_dda(t_data *data);
 void	print_ray_touch(t_data *data, int x, int y);
+void	wall_height(t_data *data, float wall_dist, int col, float ray);
 #endif

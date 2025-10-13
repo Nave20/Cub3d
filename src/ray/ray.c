@@ -35,17 +35,19 @@
 // 	}
 // }
 
-float	pre_dda(t_data *data)
+float	pre_dda(t_data *data, float ray)
 {
 	float	res;
 
-	if (data->player->radian < 0)
-		data->player->radian = 2.0f - fabsf(data->player->radian);
-	data->ray->dir_x = ft_trig(data, data->player->radian, COS);
-	data->ray->dir_y = ft_trig(data, data->player->radian, SIN);
+	if (ray < 0)
+		ray = 2.0f - fabsf(ray);
+	if (ray > 2.0f)
+		ray = fmodf(ray, 2.0f);
+	data->ray->dir_x = ft_trig(data, ray, COS);
+	data->ray->dir_y = ft_trig(data, ray, SIN);
 
 	printf("\nRay info:\n");
-	printf("angle factor: %.2fπ\n", data->player->radian);
+	printf("angle factor: %.2fπ\n", ray);
 	printf("dir_x: %.6f | dir_y: %.6f\n", data->ray->dir_x, data->ray->dir_y);
 
 	res = dda(data, data->ray->dir_x, data->ray->dir_y);
@@ -85,23 +87,29 @@ void	side_touched(t_data *data, int side, float dir_x, float dir_y)
 	}
 }
 
-void	ray_servo(t_data *data)
+void	ray_servo(t_data *data, int i)
 {
+	float	ray_start;
+	float	ray_end;
+	float	incr;
 	float	wall_dist;
-	// float	line_height;
 
-	data->ray = malloc(sizeof(t_ray));
-	if (!data->ray)
-		return ;
-	print_pos(data->player);
-	data->player->radian = 1.25f;
-	// while (data->player->radian > 0.75f)
-	// {
-	// 	wall_dist = pre_dda(data);
-	// 	data->player->radian -= 0.0001f;
-	// }
-	for (int i = 0; i < 1920 ; i++)
+	incr = 0.5f / (float) data->screen_width;
+	ray_start = data->player->radian - 0.25f;
+	if (ray_start < 0)
+		ray_start = 2.0f - fabsf(ray_start);
+	if (ray_start > 2.0f)
+		ray_start = fmodf(ray_start, 2.0f);
+	ray_end = data->player->radian + 0.25f;
+	if (ray_end < 0)
+		ray_end = 2.0f - fabsf(ray_end);
+	if (ray_end > 2.0f)
+		ray_end = fmodf(ray_end, 2.0f);
+	while (ray_start < ray_end)
 	{
-		wall_dist = pre_dda(data);
+		wall_dist = pre_dda(data, ray_start);
+		wall_height(data, wall_dist, i, ray_start);
+		ray_start += incr;
+		i++;
 	}
 }
