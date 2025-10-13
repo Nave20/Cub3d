@@ -11,7 +11,9 @@ MOV_OBJDIR     = $(OBJ_DIR)mov/
 RAY_DIR        = $(SRC_DIR)ray/
 RAY_OBJDIR     = $(OBJ_DIR)ray/
 
-LIB             = $(SRC_DIR)/libft/libft.a
+LIB            = $(SRC_DIR)/libft/libft.a
+MLXPATH        = ./minilibx-linux
+MLX            =$(MLX_PATH)/libmlx.a
 
 PARS_FILES      =	get_texture.c	\
 					get_color.c		\
@@ -32,6 +34,8 @@ MOV_FILES		=
 RAY_FILES		=
 
 SRC_FILES       =	main.c	\
+					mlx_init.c \
+					exit_game.c \
 
 SOURCES         = $(addprefix $(SRC_DIR), $(SRC_FILES)) \
                   $(addprefix $(PARS_DIR), $(PARS_FILES)) \
@@ -49,7 +53,7 @@ NAME            = cub3D
 CC              = cc
 FLAGS           = -Wall -Wextra -Werror -g3 -I$(INC_DIR)
 
-all: $(OBJ_DIR) $(PARS_OBJDIR) $(MOV_OBJDIR) $(RAY_OBJDIR) $(NAME)
+all: $(OBJ_DIR) $(PARS_OBJDIR) $(MOV_OBJDIR) $(RAY_OBJDIR) $(MLX) $(NAME)
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
@@ -80,7 +84,10 @@ $(RAY_OBJDIR)%.o: $(RAY_DIR)%.c $(HEADER)
 	$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS) $(LIB) $(HEADER) Makefile
-	$(CC) $(FLAGS) -o $@ $(OBJS) $(LIB)
+	$(CC) $(FLAGS) -o $@ $(OBJS) $(LIB) -L$(MLXPATH) -lmlx -lXext -lX11 -lm -lz
+
+$(MLX) :
+	make -C $(MLXPATH) all
 
 $(LIB): FORCE
 	make -C $(SRC_DIR)libft
