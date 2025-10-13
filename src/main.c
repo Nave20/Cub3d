@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/09 18:26:39 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/13 12:39:58 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ void	arg_nbr_and_extension_check(t_all *all, int argc, char **argv)
 	nb = ft_strlen(argv[1]);
 	if (ft_strncmp(".cub", argv[1] + ft_strlen(argv[1]) - 4, 5) != 0)
 		error_exit("Error\nWrong file extension\n", all, NULL);
+}
+
+void	get_screen_size(t_all *all)
+{
+	int	x;
+	int	y;
+
+	mlx_get_screen_size(all->mlx->mlx_ptr, &x, &y);
+	all->data->screen_height = x;
+	all->data->screen_width = y;
 }
 
 int	main(int argc, char **argv)
@@ -43,6 +53,8 @@ int	main(int argc, char **argv)
 	all->mlx = ft_calloc(1, sizeof(t_mlx));
 	if (!all->mlx)
 		error_exit("Error\nMalloc failure\n", all, NULL);
+	get_screen_size(all);
+	display_game(all, all->mlx);
 	free_map_tab(all->data->map);
 	free(all->data);
 	return (0);
