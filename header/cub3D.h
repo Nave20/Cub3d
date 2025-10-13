@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/08 17:21:39 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/09 18:25:15 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 //-------------------------------INCLUDE-------------------------------
 # include "../src/libft/libft.h"
+# include "../minilibx-linux/mlx.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <readline/history.h>
@@ -44,7 +45,46 @@
 
 typedef struct  s_texture		t_texture;
 typedef struct  s_data			t_data;
-typedef struct	s_color			t_color;
+typedef struct  s_color			t_color;
+typedef struct  s_mlx			t_mlx;
+typedef struct  s_all			t_all;
+typedef union   s_argb			t_argb;
+
+union			s_argb
+{
+	uint32_t	argb;
+	struct
+	{
+		uint8_t	a;
+		uint8_t	r;
+		uint8_t	g;
+		uint8_t	b;
+	};
+};
+
+struct			s_all
+{
+	t_mlx		*mlx;
+	t_color		*color;
+	t_texture	*texture;
+	t_data		*data;
+};
+
+struct			s_mlx
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	int		w_win;
+	int		h_win;
+	void	*n_texture;
+	void	*s_texture;
+	void	*e_texture;
+	void	*w_texture;
+	void	*fc_image;
+	t_argb	f_color;
+	t_argb	c_color;
+};
+
 
 struct			s_color
 {
@@ -83,7 +123,7 @@ struct					s_data
 //---------------------------------------------------------------------
 
 //--------------------------------SERVO--------------------------------
-int		parsing_servo(char *file);
+int		parsing_servo(int fd);
 
 //-----------------------------GET_TEXTURE-----------------------------
 int		get_no(int fd, t_texture *texture, char *line);
@@ -115,18 +155,20 @@ void	err_malloc(int fd);
 
 //---------------------------------MAP---------------------------------
 void	print_lst(t_list *lst);
-void	find_map(int fd, t_data *data);
-void	char_check(t_data *data);
-void	error_exit(char *err_msg, t_list *lst, t_data *data);
+void	find_map(int fd, t_all *all);
+void	error_exit(char *err_msg, t_all *all, t_list *lst);
 void	free_lst(t_list *lst);
 void	free_map_tab(char **tab);
 void	print_map(char **tab);
 bool	is_map_line(char *str);
 bool	is_good_char(char c);
 void	find_cols_nb_map(t_data *data, t_list *lst);
-void	add_fist_border_to_tab(t_list *lst, t_data *data);
-void	add_last_border_to_tab(t_list *lst, t_data *data, int i);
-void	map_parsing(t_data *data);
-void	check_file_ending(int fd, t_data *data, char *buffer, t_list *lst);
+void	add_fist_border_to_tab(t_list *lst, t_all *all);
+void	add_last_border_to_tab(t_list *lst, t_all *all, int i);
+void	map_parsing(t_data *data, t_all *all);
+void	check_file_ending(int fd, t_all *all, char *buffer, t_list *lst);
+
+void	display_game(t_all *all, t_mlx *mlx);
+void	exit_game(t_all *all);
 
 #endif
