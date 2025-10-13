@@ -38,6 +38,7 @@ MOV_FILES		=	mov.c			\
 RAY_FILES		=	ray.c			\
 					dda.c			\
 					fast_trig.c		\
+					wall_height.c	\
 
 SRC_FILES       =	main.c	\
 					mlx_init.c \

@@ -76,6 +76,7 @@ char	*dup_img_line(t_all *all, char *img, int start, int end)
 	char	*cpy;
 	int	i;
 
+	i = 0;
 	cpy = ft_calloc(end - start + 1, sizeof(char));
 	if(!cpy)
 		error_exit("Error\nmalloc failure\n", all, NULL);
@@ -96,6 +97,7 @@ void	fc_image_to_dble_tab(t_all *all)
 	char	**img_tab;
 	char	*img;
 
+	i = 0;
 	img_tab = ft_calloc(all->data->screen_height, sizeof(char *));
 	if(!img_tab)
 		error_exit("Error\nMalloc failure\n", all, NULL);
@@ -158,20 +160,20 @@ void	fill_color_struct(t_all *all)
 // 	}
 // }
 
-void	display_game(t_all *all, t_mlx *mlx)
-{
-	int	x;
-	int	y;
-
-	mlx->mlx_ptr = mlx_init();
-	if (!mlx->mlx_ptr)
-		error_exit("Error\nMLX init failure\n", NULL, NULL);
-	// mlx_get_screen_size(mlx->mlx_ptr, &x, &y);
-	// mlx->w_win = x;
-	// mlx->h_win = y;
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, all->data->screen_height, all->data->screen_width, "cub3D");
-	all->mlx->fc_image = mlx_new_image(mlx->mlx_ptr, 100, 100);
-	fill_color_struct(all);
-	fill_fc_image(all);
-	mlx_hook(all->mlx->win_ptr, 17, 0, exit_game, all);
-}
+// void	display_game(t_all *all, t_mlx *mlx)
+// {
+// 	int	x;
+// 	int	y;
+//
+// 	mlx->mlx_ptr = mlx_init();
+// 	if (!mlx->mlx_ptr)
+// 		error_exit("Error\nMLX init failure\n", NULL, NULL);
+// 	// mlx_get_screen_size(mlx->mlx_ptr, &x, &y);
+// 	// mlx->w_win = x;
+// 	// mlx->h_win = y;
+// 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, all->data->screen_height, all->data->screen_width, "cub3D");
+// 	all->mlx->fc_image = mlx_new_image(mlx->mlx_ptr, 100, 100);
+// 	fill_color_struct(all);
+// 	fill_fc_image(all);
+// 	mlx_hook(all->mlx->win_ptr, 17, 0, exit_game, all);
+// }

@@ -29,6 +29,7 @@ void	get_screen_size(t_all *all)
 	int	x;
 	int	y;
 
+	all->mlx->mlx_ptr = mlx_init();
 	mlx_get_screen_size(all->mlx->mlx_ptr, &x, &y);
 	all->data->screen_height = x;
 	all->data->screen_width = y;
@@ -55,7 +56,7 @@ int	main(int argc, char **argv)
 	if (!all->mlx)
 		error_exit("Error\nMalloc failure\n", all, NULL);
 	get_screen_size(all);
-	display_game(all, all->mlx);
+	// display_game(all, all->mlx);
 	fast_trig(all->data);
 	create_player(all->data);
 	all->data->ray = malloc(sizeof(t_ray));

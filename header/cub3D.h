@@ -20,7 +20,11 @@
 # define GREEN "\033[0;32m"
 # define CYAN "\033[36m"
 # define RED "\033[31m"
+# define PURPLE "\033[35m"
+# define PINK "\033[38;5;201m"
+# define ORANGE "\033[38;5;214m"
 # define BOLD "\033[1m"
+# define WHITE "\033[0m"
 # define UNDER "\033[4m"
 # define BLINK "\033[5m"
 # define REVERSE "\033[7m"
@@ -29,6 +33,7 @@
 # define TRIG_TABLE 1024
 # define SIZE 100
 # define STEP 0.49
+# define TEXT_RES 100
 
 //-------------------------------INCLUDE-------------------------------
 # include "../src/libft/libft.h"
@@ -163,6 +168,8 @@ struct					s_ray
 	float				delta_y;
 	float				side_x;
 	float				side_y;
+	float				impact_x;
+	float				impact_y;
 	bool				last_side;
 	t_side				side;
 };
@@ -265,4 +272,5 @@ void	fast_trig(t_data *data);
 float	ft_trig(t_data *data, float angle, t_trig type);
 void	print_ray_touch(t_data *data, int x, int y);
 void	wall_height(t_data *data, float wall_dist, int col, float ray);
+float	select_impact(t_data *data);
 #endif

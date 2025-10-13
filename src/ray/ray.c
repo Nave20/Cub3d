@@ -97,23 +97,29 @@ void	get_ray_impact(t_data *data, float distance)
 	pos_y = data->player->pos_y;
 	pos_x += data->ray->dir_x * distance;
 	pos_y += data->ray->dir_y * distance;
-	printf(GREEN"X = %f, Y = %f\n"RESET, pos_x, pos_y);
+	data->ray->impact_x = pos_x;
+	data->ray->impact_y = pos_y;
+	printf(GREEN"X impact : %f, Y impact : %f\n"RESET, data->ray->impact_x, data->ray->impact_y);
+	printf(PURPLE"---------->%f\n"RESET,select_impact(data));
 }
 
 void	ray_servo(t_data *data)
 {
 	float	distance;
-	data->player->radian = 0.05f;
-	// print_pos(data->player);
-	// distance = pre_dda(data, data->player->radian);
-	// get_ray_impact(data, distance);
-	for (int i = 0; i < 4; i++)
-	{
-		print_pos(data->player);
-		distance = pre_dda(data, data->player->radian);
-		// get_ray_impact(data, distance);
-		data->player->radian += 0.5f;
-	}
+	data->player->radian = 0.50f;
+	data->player->pos_x += 0.1f;
+	data->player->pos_y += 0.1f;
+	print_pos(data->player);
+	distance = pre_dda(data, data->player->radian);
+	get_ray_impact(data, distance);
+	wall_height(data, distance, 0, data->player->radian);
+	// for (int i = 0; i < 4; i++)
+	// {
+	// 	print_pos(data->player);
+	// 	distance = pre_dda(data, data->player->radian);
+	// 	// get_ray_impact(data, distance);
+	// 	data->player->radian += 0.5f;
+	// }
 }
 
 // void	ray_servo(t_data *data, int i)
