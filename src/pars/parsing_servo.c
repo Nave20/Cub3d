@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_servo.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:04:00 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/06 14:04:00 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/10/09 17:44:50 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,17 +89,16 @@ t_texture	*texture_alloc(void)
 	return (texture);
 }
 
-int	parsing_servo(char *file)
+int	parsing_servo(int fd)
 {
-	int			fd;
 	t_texture	*texture;
 
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-	{
-		perror(RED"Error\n opening file"RESET);
-		exit(errno);
-	}
+	// fd = open(file, O_RDONLY);
+	// if (fd == -1)
+	// {
+	// 	perror(RED"Error\n opening file"RESET);
+	// 	exit(errno);
+	// }
 	texture = texture_alloc();
 	if (!texture)
 		err_malloc(fd);

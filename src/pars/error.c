@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 11:27:54 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/07 17:50:07 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/09 17:49:39 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,17 @@ void	free_map_tab(char **tab)
 	free(tab);
 }
 
-void	error_exit(char *err_msg, t_list *lst, t_data *data)
+void	error_exit(char *err_msg, t_all *all, t_list *lst)
 {
 	if (lst)
 		free_lst(lst);
-	if (data)
+	if (all->data)
 	{
-		if (data->map)
-			free_map_tab(data->map);
-		free(data);
+		if (all->data->map)
+			free_map_tab(all->data->map);
+		free(all->data);
 	}
+	free(all);
 	perror(err_msg);
 	exit(errno);
 }
