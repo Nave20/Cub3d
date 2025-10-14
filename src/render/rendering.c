@@ -47,7 +47,7 @@ void	render_north(t_all *all, t_render *render, int x, int z)
 	int i = 0;
 	while (y < render->draw_end)
 	{
-		if (z % (int)coef_pix == 0)
+		if (coef_pix != 0 && z % (int)coef_pix == 0)
 		{
 			lost_pix += (coef_pix - (int) coef_pix);
 			color = yx_back_converter(all->texture->addr_n, z /
