@@ -1,0 +1,23 @@
+       
+ 11111 
+ 11011 
+ 10N01 
+ 10001 
+ 11111 
+       
+[34mPOS x :[0m[1m 3.000000
+[0m[31mPOS y :[0m[1m 3.000000
+[0m
+EAST
+[0;32mX impact : 4.000000, Y impact : 2.500000
+[0m[35m---------->0.000000
+[0mRAY : 0.250521π
+Wall dist 0.707107
+Wall height : 1527.35
+Pourcentage du mur à afficher : 70.71%
+Draw start : 0
+Draw end : 1080
+select impact : 0.000000
+Impact, affiche la 0ème colonne de la texture
+
+

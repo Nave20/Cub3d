@@ -32,8 +32,7 @@
 # define TWOPI 6.28318530717958647692
 # define TRIG_TABLE 1024
 # define SIZE 100
-# define STEP 0.49
-# define TEXT_RES 100
+# define STEP 0.2
 
 //-------------------------------INCLUDE-------------------------------
 # include "../src/libft/libft.h"
@@ -51,6 +50,7 @@
 # include <sys/wait.h>
 # include <unistd.h>
 # include <math.h>
+# include <X11/keysym.h>
 
 //-------------------------------STRUCTS-------------------------------
 
@@ -64,6 +64,8 @@ typedef struct  s_all			t_all;
 typedef enum    e_side			t_side;
 typedef enum    e_trig			t_trig;
 typedef union   s_argb			t_argb;
+typedef struct	s_render		t_render;
+typedef struct	s_addr			t_addr;
 
 enum			e_side
 {
@@ -85,15 +87,19 @@ union			s_argb
 	uint32_t	argb;
 	struct
 	{
-		uint8_t	a;
-		uint8_t	r;
-		uint8_t	g;
 		uint8_t	b;
+		uint8_t	g;
+		uint8_t	r;
+		uint8_t	a;
 	};
 };
 
 struct			s_all
 {
+	char		*addr;
+	int			bpp;
+	int			line_length;
+	int			endian;
 	t_mlx		*mlx;
 	t_color		*color;
 	t_texture	*texture;
@@ -129,12 +135,24 @@ struct			s_texture
 	bool			valid;
 	char			*north_texture;
 	bool			valid_north;
+	int				width_n;
+	int				height_n;
+	t_addr			*addr_n;
 	char			*south_texture;
 	bool			valid_south;
+	int				width_s;
+	int				height_s;
+	t_addr			*addr_s;
 	char			*west_texture;
 	bool			valid_west;
+	int				width_w;
+	int				height_w;
+	t_addr			*addr_w;
 	char			*east_texture;
 	bool			valid_east;
+	int				width_e;
+	int				height_e;
+	t_addr			*addr_e;
 	t_color			*floor_color;
 	bool			valid_floor;
 	t_color			*ceiling_color;
@@ -154,6 +172,18 @@ struct					s_data
 	t_ray				*ray;
 	t_player			*player;
 	t_all				*all;
+	t_render			*render;
+	t_texture			*texture;
+};
+
+struct					s_render
+{
+	float				wall_height;
+	float				correct_dist;
+	float				text_perc;
+	float				impact;
+	int					draw_start;
+	int					draw_end;
 };
 
 struct					s_ray
@@ -184,12 +214,20 @@ struct					s_player
 	float				pos_y;
 };
 
+struct					s_addr
+{
+	char				*addr;
+	int					line_length;
+	int					bpp;
+	int					endian;
+};
+
 //---------------------------------------------------------------------
 //-------------------------------PARSING-------------------------------
 //---------------------------------------------------------------------
 
 //--------------------------------SERVO--------------------------------
-int		parsing_servo(int fd);
+int		parsing_servo(t_all *all, int fd);
 
 //-----------------------------GET_TEXTURE-----------------------------
 int		get_no(int fd, t_texture *texture, char *line);
@@ -235,7 +273,7 @@ void	map_parsing(t_data *data, t_all *all);
 void	check_file_ending(int fd, t_all *all, char *buffer, t_list *lst);
 
 void	display_game(t_all *all, t_mlx *mlx);
-void	exit_game(t_all *all);
+int		exit_game(t_all *all);
 
 //---------------------------------------------------------------------
 //-------------------------------MOVEMENT------------------------------
@@ -252,6 +290,7 @@ void	w_key(t_data *data);
 void	a_key(t_data *data);
 void	s_key(t_data *data);
 void	d_key(t_data *data);
+int		key_event(int keycode, t_all *all);
 
 //---------------------------------POV---------------------------------
 void	letf_arr(t_data *data);
@@ -264,13 +303,25 @@ void	print_pos(t_player *player);
 //----------------------------------RAY--------------------------------
 //---------------------------------------------------------------------
 
-void	ray_servo(t_data *data);
+void	ray_servo(t_data *data, int i);
 float	pre_dda(t_data *data, float ray);
 float	dda(t_data *data, float dir_x, float dir_y);
 void	side_touched(t_data *data, int side, float dir_x, float dir_y);
 void	fast_trig(t_data *data);
 float	ft_trig(t_data *data, float angle, t_trig type);
 void	print_ray_touch(t_data *data, int x, int y);
-void	wall_height(t_data *data, float wall_dist, int col, float ray);
+void	wall_height(t_data *data, float wall_dist, int col,float ray);
 float	select_impact(t_data *data);
+void	get_ray_impact(t_data *data, float distance);
+void	fill_fc_image(t_all *all);
+
+
+
+void	update(t_all *all);
+
+void	fc_image_to_dble_tab(t_all *all);
+void	dble_tab_to_fc_image(t_all *all);
+
+void	rendering(t_all *all, t_render *render, int x);
+
 #endif

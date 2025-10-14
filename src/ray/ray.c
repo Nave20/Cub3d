@@ -39,8 +39,8 @@ float	pre_dda(t_data *data, float ray)
 {
 	float	res;
 
-	printf("\nRay info:\n");
-	printf("angle factor: %.2fπ\n", ray);
+	// printf("\nRay info:\n");
+	// printf("angle factor: %.2fπ\n", ray);
 	// ray += 1;
 	if (ray < 0)
 		ray = 2.0f - fabsf(ray);
@@ -49,12 +49,12 @@ float	pre_dda(t_data *data, float ray)
 	data->ray->dir_x = ft_trig(data, ray, COS);
 	data->ray->dir_y = -ft_trig(data, ray, SIN);
 
-	printf("dir_x: %.6f | dir_y: %.6f\n", data->ray->dir_x, data->ray->dir_y);
+	// printf("dir_x: %.6f | dir_y: %.6f\n", data->ray->dir_x, data->ray->dir_y);
 
 	res = dda(data, data->ray->dir_x, data->ray->dir_y);
 	side_touched(data, data->ray->last_side, data->ray->dir_x, data->ray->dir_y);
 
-	printf("→ distance: %.6f\n", res);
+	// printf("→ distance: %.6f\n", res);
 	return (res);
 }
 
@@ -64,12 +64,10 @@ void	side_touched(t_data *data, int side, float dir_x, float dir_y)
 	{
 		if (dir_x > 0)
 		{
-			printf("EAST\n");
 			data->ray->side = EAST;
 		}
 		else
 		{
-			printf("WEST\n");
 			data->ray->side = WEST;
 		}
 	}
@@ -77,12 +75,10 @@ void	side_touched(t_data *data, int side, float dir_x, float dir_y)
 	{
 		if (dir_y > 0)
 		{
-			printf("SOUTH\n");
 			data->ray->side = SOUTH;
 		}
 		else
 		{
-			printf("NORTH\n");
 			data->ray->side = NORTH;
 		}
 	}
@@ -99,52 +95,55 @@ void	get_ray_impact(t_data *data, float distance)
 	pos_y += data->ray->dir_y * distance;
 	data->ray->impact_x = pos_x;
 	data->ray->impact_y = pos_y;
-	printf(GREEN"X impact : %f, Y impact : %f\n"RESET, data->ray->impact_x, data->ray->impact_y);
-	printf(PURPLE"---------->%f\n"RESET,select_impact(data));
+	// printf(GREEN"X impact : %f, Y impact : %f\n"RESET, data->ray->impact_x, data->ray->impact_y);
+	// printf(PURPLE"---------->%f\n"RESET,select_impact(data));
 }
 
-void	ray_servo(t_data *data)
-{
-	float	distance;
-	data->player->radian = 0.50f;
-	data->player->pos_x += 0.1f;
-	data->player->pos_y += 0.1f;
-	print_pos(data->player);
-	distance = pre_dda(data, data->player->radian);
-	get_ray_impact(data, distance);
-	wall_height(data, distance, 0, data->player->radian);
-	// for (int i = 0; i < 4; i++)
-	// {
-	// 	print_pos(data->player);
-	// 	distance = pre_dda(data, data->player->radian);
-	// 	// get_ray_impact(data, distance);
-	// 	data->player->radian += 0.5f;
-	// }
-}
-
-// void	ray_servo(t_data *data, int i)
+// void	ray_servo(t_data *data)
 // {
-// 	float	ray_start;
-// 	float	ray_end;
-// 	float	incr;
-// 	float	wall_dist;
-//
-// 	incr = 0.5f / (float) data->screen_width;
-// 	ray_start = data->player->radian - 0.25f;
-// 	if (ray_start < 0)
-// 		ray_start = 2.0f - fabsf(ray_start);
-// 	if (ray_start > 2.0f)
-// 		ray_start = fmodf(ray_start, 2.0f);
-// 	ray_end = data->player->radian + 0.25f;
-// 	if (ray_end < 0)
-// 		ray_end = 2.0f - fabsf(ray_end);
-// 	if (ray_end > 2.0f)
-// 		ray_end = fmodf(ray_end, 2.0f);
-// 	while (ray_start < ray_end)
-// 	{
-// 		wall_dist = pre_dda(data, ray_start);
-// 		wall_height(data, wall_dist, i, ray_start);
-// 		ray_start += incr;
-// 		i++;
-// 	}
+// 	float	distance;
+// 	data->player->radian = 0.250521f;
+// 	// data->player->pos_x += 0.f;
+// 	// data->player->pos_y -= 0.6f;
+// 	print_pos(data->player);
+// 		data->screen_width = 1920;
+// 		data->player->pos_x += 0.5f;
+// 	distance = pre_dda(data, data->player->radian);
+// 	get_ray_impact(data, distance);
+// 	wall_height(data, distance, data->player->radian);
+// 	// for (int i = 0; i < 4; i++)
+// 	// {
+// 	// 	print_pos(data->player);
+// 	// 	distance = pre_dda(data, data->player->radian);
+// 	// 	// get_ray_impact(data, distance);
+// 	// 	data->player->radian += 0.5f;
+// 	// }
 // }
+
+void	ray_servo(t_data *data, int i)
+{
+	float	ray_start;
+	float	ray_end;
+	float	incr;
+	float	wall_dist;
+
+	incr = 0.5f / (float) data->screen_width;
+	ray_start = data->player->radian - 0.25f;
+	// if (ray_start < 0)
+	// 	ray_start = 2.0f - fabsf(ray_start);
+	// if (ray_start > 2.0f)
+	// 	ray_start = fmodf(ray_start, 2.0f);
+	ray_end = data->player->radian + 0.25f;
+	// if (ray_end < 0)
+	// 	ray_end = 2.0f - fabsf(ray_end);
+	while (ray_start < ray_end)
+	{
+		wall_dist = pre_dda(data, ray_start);
+		get_ray_impact(data, wall_dist);
+		wall_height(data, wall_dist, i,ray_start);
+		ray_start += incr;
+		i++;
+	}
+	if (ray_end > 2.0f)
+		ray_end = fmodf(ray_end, 2.0f);
+}

@@ -65,7 +65,7 @@ void	free_texture(t_texture *texture)
 	}
 }
 
-void	exit_game(t_all *all)
+int	exit_game(t_all *all)
 {
 	if (all->data)
 	{
@@ -78,4 +78,6 @@ void	exit_game(t_all *all)
 	if (all->texture)
 		free_texture(all->texture);
 	free(all);
+	exit(0);
+	return (0);
 }

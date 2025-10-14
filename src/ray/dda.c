@@ -74,8 +74,8 @@ float	dda_return(t_data *data, float dir_x, float dir_y)
 	t_ray	*ray;
 
 	ray = data->ray;
-	printf(BLUE"last side : %d\n"RESET, ray->last_side);
-	printf(RED"ray_step_x : %d ray_step_y : %d\n"RESET, ray->step_x, ray->step_y);
+	// printf(BLUE"last side : %d\n"RESET, ray->last_side);
+	// printf(RED"ray_step_x : %d ray_step_y : %d\n"RESET, ray->step_x, ray->step_y);
 	if (ray->last_side == 0)
 	{
 		wall_dist = (ray->map_x - data->player->pos_x + (1 - ray->step_x) / 2.0f) / dir_x;
@@ -95,10 +95,10 @@ float	dda(t_data *data, float dir_x, float dir_y)
 	ray = data->ray;
 	hit = false;
 	ray_values(data, dir_x, dir_y);
-	printf(GREEN"delta x : %f, delta y : %f\n"RESET, ray->delta_x, ray->delta_y);
+	// printf(GREEN"delta x : %f, delta y : %f\n"RESET, ray->delta_x, ray->delta_y);
 	while (!hit)
 	{
-		printf(YELLOW"side x : %f, side y : %f \n"RESET, ray->side_x, ray->side_y);
+		// printf(YELLOW"side x : %f, side y : %f \n"RESET, ray->side_x, ray->side_y);
 		if (ray->side_x < ray->side_y)
 		{
 			ray->side_x += ray->delta_x;
@@ -114,7 +114,7 @@ float	dda(t_data *data, float dir_x, float dir_y)
 		if (data->map[ray->map_y][ray->map_x] == '1')
 			hit = true;
 	}
-	printf(CYAN"X = %d, Y = %d\n", ray->map_x, ray->map_y);
+	// printf(CYAN"X = %d, Y = %d\n", ray->map_x, ray->map_y);
 	return (dda_return(data, dir_x, dir_y));
 }
 

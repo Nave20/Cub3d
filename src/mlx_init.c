@@ -23,27 +23,51 @@ void	get_images(t_all *all, t_mlx *mlx)
 		error_exit("Error\nXPM to image failure\n", NULL, NULL);
 	if (w <= 0 || h <= 0)
 		error_exit("Error\nBad image dimensions\n", NULL, NULL);
+	all->texture->width_n = w;
+	all->texture->height_n = h;
+	t_addr *addr_n = all->texture->addr_n;
+	addr_n->addr = mlx_get_data_addr(all->mlx->n_texture,
+	&addr_n->bpp, &addr_n->line_length, &addr_n->endian); //SECURISER PITIE
+
+
 	mlx->s_texture = mlx_xpm_file_to_image(all->mlx->mlx_ptr,
 			all->texture->south_texture, &w, &h);
 	if (!mlx->s_texture)
 		error_exit("Error\nXPM to image failure\n", NULL, NULL);
 	if (w <= 0 || h <= 0)
 		error_exit("Error\nBad image dimensions\n", NULL, NULL);
+	all->texture->width_s = w;
+	all->texture->height_s = h;
+	t_addr *addr_s = all->texture->addr_s;
+	addr_s->addr = mlx_get_data_addr(all->mlx->s_texture,
+	&addr_s->bpp, &addr_s->line_length, &addr_s->endian);
+
 	mlx->e_texture = mlx_xpm_file_to_image(all->mlx->mlx_ptr,
 			all->texture->east_texture, &w, &h);
 	if (!mlx->e_texture)
 		error_exit("Error\nXPM to image failure\n", NULL, NULL);
 	if (w <= 0 || h <= 0)
 		error_exit("Error\nBad image dimensions\n", NULL, NULL);
+	all->texture->width_e = w;
+	all->texture->height_e = h;
+	t_addr *addr_e = all->texture->addr_e;
+	addr_e->addr = mlx_get_data_addr(all->mlx->e_texture,
+	&addr_e->bpp, &addr_e->line_length, &addr_e->endian);
+
 	mlx->w_texture = mlx_xpm_file_to_image(all->mlx->mlx_ptr,
 			all->texture->west_texture, &w, &h);
 	if (!mlx->w_texture)
 		error_exit("Error\nXPM to image failure\n", NULL, NULL);
 	if (w <= 0 || h <= 0)
 		error_exit("Error\nBad image dimensions\n", NULL, NULL);
+	all->texture->width_w = w;
+	all->texture->height_w = h;
+	t_addr *addr_w = all->texture->addr_w;
+	addr_w->addr = mlx_get_data_addr(all->mlx->w_texture,
+	&addr_w->bpp, &addr_w->line_length, &addr_w->endian);
 }
 
-void	dlbe_tab_to_fc_image(t_all *all)
+void	dble_tab_to_fc_image(t_all *all)
 {
 	int		i;
 	int		j;
@@ -58,13 +82,13 @@ void	dlbe_tab_to_fc_image(t_all *all)
 	img = ft_calloc((all->mlx->h_win * all->mlx->w_win) + 1, sizeof(char));
 	while(tab[i])
 	{
+		j = 0;
 		while(tab[i][j])
 		{
 			img[index] = tab[i][j];
 			index++;
 			j++;
 		}
-		j = 0;
 		i++;
 	}
 	free(all->mlx->fc_image);
@@ -113,24 +137,35 @@ void	fc_image_to_dble_tab(t_all *all)
 		end++;
 		start = end;
 	}
+	all->mlx->img_tab = img_tab;
 }
 
 void	fill_fc_image(t_all *all)
 {
-	int		i;
-	char	*img;
+	int		x;
+	int		y;
+	int		half_height;
 
-	img = (char *)all->mlx->fc_image;
-	i = 0;
-	while (i < (all->data->screen_height * all->data->screen_width))
+	// ⚙️ Récupération du buffer pixel
+	all->addr = mlx_get_data_addr(all->mlx->fc_image, &all->bpp, &all->line_length, &all->endian);
+
+	half_height = all->data->screen_height / 2;
+
+	for (y = 0; y < all->data->screen_height; y++)
 	{
-		while (i < ((all->data->screen_height * all->data->screen_width) / 2))
+		for (x = 0; x < all->data->screen_width; x++)
 		{
-			img[i] = all->mlx->c_color.argb;
-			i++;
+			union s_argb color;
+
+			// 🌈 Choix de la couleur selon la moitié de l'écran
+			if (y < half_height)
+				color = all->mlx->c_color; // couleur du "ciel"
+			else
+				color = all->mlx->f_color; // couleur du "sol"
+
+			// 🧠 Écriture du pixel (4 octets)
+			*(uint32_t *)(all->addr + (y * all->line_length + x * (all->bpp / 8))) = color.argb;
 		}
-		img[i] = all->mlx->f_color.argb;
-		i++;
 	}
 }
 
@@ -160,20 +195,24 @@ void	fill_color_struct(t_all *all)
 // 	}
 // }
 
-// void	display_game(t_all *all, t_mlx *mlx)
-// {
-// 	int	x;
-// 	int	y;
-//
-// 	mlx->mlx_ptr = mlx_init();
-// 	if (!mlx->mlx_ptr)
-// 		error_exit("Error\nMLX init failure\n", NULL, NULL);
-// 	// mlx_get_screen_size(mlx->mlx_ptr, &x, &y);
-// 	// mlx->w_win = x;
-// 	// mlx->h_win = y;
-// 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, all->data->screen_height, all->data->screen_width, "cub3D");
-// 	all->mlx->fc_image = mlx_new_image(mlx->mlx_ptr, 100, 100);
-// 	fill_color_struct(all);
-// 	fill_fc_image(all);
-// 	mlx_hook(all->mlx->win_ptr, 17, 0, exit_game, all);
-// }
+void	display_game(t_all *all, t_mlx *mlx)
+{
+	// int	x;
+	// int	y;
+
+	mlx->mlx_ptr = mlx_init();
+	if (!mlx->mlx_ptr)
+		error_exit("Error\nMLX init failure\n", NULL, NULL);
+	// mlx_get_screen_size(mlx->mlx_ptr, &x, &y);
+	// mlx->w_win = x;
+	// mlx->h_win = y;
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, all->data->screen_width, all->data->screen_height, "cub3D");
+	all->mlx->fc_image = mlx_new_image(mlx->mlx_ptr, all->data->screen_width, all->data->screen_height);
+	fill_color_struct(all);
+	fill_fc_image(all);
+	all->texture->addr_n = malloc(sizeof(t_addr));
+	all->texture->addr_s = malloc(sizeof(t_addr));
+	all->texture->addr_e = malloc(sizeof(t_addr));
+	all->texture->addr_w = malloc(sizeof(t_addr));
+	get_images(all, all->mlx);
+}

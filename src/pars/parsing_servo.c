@@ -37,6 +37,8 @@ int	dispatcher(int fd, t_texture *texture, int error, char *line)
 		else if (ft_strnstr(line, "C ", ft_strlen(line)) != NULL
 			&& texture->valid_ceiling == false)
 			get_c(fd, texture, line);
+		else if (texture->valid_north == true && texture->valid_south == true && texture->valid_west == true && texture->valid_east == true && texture->valid_floor == true && texture->valid_ceiling == true)
+			return (0);
 		else
 		{
 			free(line);
@@ -91,24 +93,14 @@ t_texture	*texture_alloc(void)
 	return (texture);
 }
 
-int	parsing_servo(int fd)
+int	parsing_servo(t_all *all, int fd)
 {
-	t_texture	*texture;
-
-	// fd = open(file, O_RDONLY);
-	// if (fd == -1)
-	// {
-	// 	perror(RED"Error\n opening file"RESET);
-	// 	exit(errno);
-	// }
-	texture = texture_alloc();
-	if (!texture)
+	all->texture = texture_alloc();
+	if (!all->texture)
 		err_malloc(fd);
-	if (dispatcher(fd, texture, 0, NULL))
+	if (dispatcher(fd, all->texture, 0, NULL))
 		return (1);
-	if (arg_validation(texture))
+	if (arg_validation(all->texture))
 		return (1);
-	texture_print(texture);
-	free_textures(texture, NULL);
 	return (0);
 }

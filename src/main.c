@@ -31,8 +31,8 @@ void	get_screen_size(t_all *all)
 
 	all->mlx->mlx_ptr = mlx_init();
 	mlx_get_screen_size(all->mlx->mlx_ptr, &x, &y);
-	all->data->screen_height = x;
-	all->data->screen_width = y;
+	all->data->screen_height = y;
+	all->data->screen_width = x;
 }
 
 int	main(int argc, char **argv)
@@ -49,20 +49,30 @@ int	main(int argc, char **argv)
 	if (!all->data)
 		error_exit("Error\nMalloc failure\n", all, NULL);
 	all->data->all = all;
-	// parsing_servo(fd);
+	parsing_servo(all, fd);
 	find_map(fd, all);
 	map_parsing(all->data, all);
 	all->mlx = ft_calloc(1, sizeof(t_mlx));
 	if (!all->mlx)
 		error_exit("Error\nMalloc failure\n", all, NULL);
 	get_screen_size(all);
-	// display_game(all, all->mlx);
+	display_game(all, all->mlx);
 	fast_trig(all->data);
 	create_player(all->data);
+	all->data->texture = all->texture;
 	all->data->ray = malloc(sizeof(t_ray));
 	if (!all->data->ray)
 		return (1);
-	ray_servo(all->data);
+	all->data->render = malloc(sizeof(t_render));
+	if (!all->data->render)
+		return (1);
+	// all->data->player->radian = 0.01f;
+	// all->data->player->pos_x += 0.5;
+	ray_servo(all->data, 0);
+	mlx_put_image_to_window(all->mlx->mlx_ptr, all->mlx->win_ptr, all->mlx->fc_image, 0, 0);
+	mlx_key_hook(all->mlx->win_ptr, key_event, all);
+	mlx_hook(all->mlx->win_ptr, 17, 0, exit_game, all);
+	mlx_loop(all->mlx->mlx_ptr);
 	free_map_tab(all->data->map);
 	free(all->data);
 	return (0);
