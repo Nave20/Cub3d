@@ -168,7 +168,7 @@ void	fill_fc_image(t_all *all)
 				color = all->mlx->f_color; // couleur du "sol"
 
 			// 🧠 Écriture du pixel (4 octets)
-			*(uint32_t *)(all->addr + (y * all->line_length + x * (all->bpp / 8))) = color.argb;
+			*(uint32_t *)(all->addr + (y * all->line_length + x * (all->bpp))) = color.argb;
 		}
 	}
 }
