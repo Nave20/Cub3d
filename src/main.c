@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/09 18:26:39 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/15 10:46:12 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,22 @@ void	get_screen_size(t_all *all)
 	all->data->screen_width = x;
 }
 
+// void	struct_init(t_all *all)
+// {
+
+// }
+
 int	main(int argc, char **argv)
 {
 	t_all	*all;
 	int		fd;
 
 	all = ft_calloc(1, sizeof(t_all));
+	if(!all)
+	{
+		ft_putstr_fd("Error\nMalloc failure\n", 2);
+		return (1);
+	}
 	arg_nbr_and_extension_check(all, argc, argv);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
@@ -52,7 +62,8 @@ int	main(int argc, char **argv)
 	parsing_servo(all, fd);
 	find_map(fd, all);
 	map_parsing(all->data, all);
-	all->mlx = ft_calloc(1, sizeof(t_mlx));
+	// all->mlx = ft_calloc(1, sizeof(t_mlx));
+	all->mlx = NULL;
 	if (!all->mlx)
 		error_exit("Error\nMalloc failure\n", all, NULL);
 	get_screen_size(all);
@@ -62,10 +73,10 @@ int	main(int argc, char **argv)
 	all->data->texture = all->texture;
 	all->data->ray = malloc(sizeof(t_ray));
 	if (!all->data->ray)
-		return (1);
+		error_exit("Error\nMalloc failure\n", all, NULL);
 	all->data->render = malloc(sizeof(t_render));
 	if (!all->data->render)
-		return (1);
+		error_exit("Error\nMalloc failure\n", all, NULL);
 	// all->data->player->radian = 0.01f;
 	// all->data->player->pos_x += 0.5;
 	ray_servo(all->data, 0);

@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:04:00 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/09 17:44:50 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/15 10:17:14 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int	dispatcher(int fd, t_texture *texture, int error, char *line)
 			&& texture->valid_ceiling == false)
 			get_c(fd, texture, line);
 		else if (texture->valid_north == true && texture->valid_south == true && texture->valid_west == true && texture->valid_east == true && texture->valid_floor == true && texture->valid_ceiling == true)
+		{
+			free(line);
 			return (0);
+		}
 		else
 		{
 			free(line);

@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 11:27:54 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/09 17:49:39 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/15 10:47:05 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,15 @@ void	error_exit(char *err_msg, t_all *all, t_list *lst)
 {
 	if (lst)
 		free_lst(lst);
-	if (all->data)
-	{
-		if (all->data->map)
-			free_map_tab(all->data->map);
-		free(all->data);
-	}
-	free(all);
+	// if (all->data)
+	// {
+	// 	if (all->data->map)
+	// 		free_map_tab(all->data->map);
+	// 	free(all->data);
+	// }
 	perror(err_msg);
+	if(all)
+		exit_game(all);
 	exit(errno);
 }
 

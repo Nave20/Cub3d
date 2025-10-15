@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 12:16:45 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/13 15:10:05 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/15 10:41:34 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,22 +197,21 @@ void	fill_color_struct(t_all *all)
 
 void	display_game(t_all *all, t_mlx *mlx)
 {
-	// int	x;
-	// int	y;
-
-	mlx->mlx_ptr = mlx_init();
-	if (!mlx->mlx_ptr)
-		error_exit("Error\nMLX init failure\n", NULL, NULL);
-	// mlx_get_screen_size(mlx->mlx_ptr, &x, &y);
-	// mlx->w_win = x;
-	// mlx->h_win = y;
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, all->data->screen_width, all->data->screen_height, "cub3D");
 	all->mlx->fc_image = mlx_new_image(mlx->mlx_ptr, all->data->screen_width, all->data->screen_height);
 	fill_color_struct(all);
 	fill_fc_image(all);
 	all->texture->addr_n = malloc(sizeof(t_addr));
+	if(!all->texture->addr_n)
+		exit_game(all);
 	all->texture->addr_s = malloc(sizeof(t_addr));
+	if(!all->texture->addr_s)
+		exit_game(all);
 	all->texture->addr_e = malloc(sizeof(t_addr));
+	if(!all->texture->addr_e)
+		exit_game(all);
 	all->texture->addr_w = malloc(sizeof(t_addr));
+	if(!all->texture->addr_w)
+		exit_game(all);
 	get_images(all, all->mlx);
 }
