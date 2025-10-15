@@ -46,6 +46,7 @@ RAY_FILES		=	ray.c			\
 SRC_FILES       =	main.c			\
 					mlx_init.c		\
 					exit_game.c		\
+					get_images.c	\
 
 RENDER_FILES	=	rendering.c		\
 

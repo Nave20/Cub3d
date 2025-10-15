@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/15 10:46:12 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/15 15:37:42 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,25 @@ void	struct_init(t_all *all)
 		error_exit("Error\nMalloc failure\n", all, NULL);
 }
 
+void	open_game(t_all *all, t_mlx *mlx)
+{
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr,
+			all->data->screen_width, all->data->screen_height, "cub3D");
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->fc_image, 0, 0);
+	mlx_key_hook(mlx->win_ptr, key_event, all);
+	mlx_hook(mlx->win_ptr, 17, 0, exit_game, all);
+	mlx_loop(mlx->mlx_ptr);
+	free_map_tab(all->data->map);
+	free(all->data);
+}
+
 int	main(int argc, char **argv)
 {
 	t_all	*all;
 	int		fd;
 
 	all = ft_calloc(1, sizeof(t_all));
-	if(!all)
+	if (!all)
 	{
 		ft_putstr_fd("Error\nMalloc failure\n", 2);
 		return (1);
@@ -80,11 +92,6 @@ int	main(int argc, char **argv)
 	fast_trig(all->data);
 	create_player(all->data);
 	ray_servo(all->data, 0);
-	mlx_put_image_to_window(all->mlx->mlx_ptr, all->mlx->win_ptr, all->mlx->fc_image, 0, 0);
-	mlx_key_hook(all->mlx->win_ptr, key_event, all);
-	mlx_hook(all->mlx->win_ptr, 17, 0, exit_game, all);
-	mlx_loop(all->mlx->mlx_ptr);
-	free_map_tab(all->data->map);
-	free(all->data);
+	open_game(all, all->mlx);
 	return (0);
 }

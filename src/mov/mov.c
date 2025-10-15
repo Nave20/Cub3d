@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mov.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:54:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/07 14:54:29 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:23:43 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	update(t_all *all)
 {
-	fill_fc_image(all);
+	fill_fc_image(all, 0, 0);
 	ray_servo(all->data, 0);
 	mlx_put_image_to_window(all->mlx->mlx_ptr, all->mlx->win_ptr, all->mlx->fc_image, 0, 0);
 }

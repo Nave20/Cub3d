@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:59:30 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/13 12:35:56 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/15 15:43:55 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 void	char_check(t_all *all)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	**tab;
 
 	i = 1;
 	j = 1;
+	tab = all->data->map;
 	while (i <= all->data->lines)
 	{
 		while (j <= all->data->cols)
 		{
-			if (!is_good_char(all->data->map[i][j]) && all->data->map[i][j] != ' ')
+			if (!is_good_char(tab[i][j]) && tab[i][j] != ' ')
 				error_exit("Error\nOne or several unauthorized character\n",
 					all, NULL);
 			j++;
@@ -43,7 +45,7 @@ bool	is_invalid_char(char c)
 
 bool	is_player(char c)
 {
-	if(c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		return (1);
 	else
 		return (0);
@@ -58,18 +60,18 @@ void	player_check(t_all *all)
 	i = 1;
 	j = 1;
 	nbplayer = 0;
-	while(i <= all->data->lines)
+	while (i <= all->data->lines)
 	{
-		while(j <= all->data->cols)
+		while (j <= all->data->cols)
 		{
-			if(is_player(all->data->map[i][j]))
+			if (is_player(all->data->map[i][j]))
 				nbplayer++;
 			j++;
 		}
 		j = 1;
 		i++;
 	}
-	if(nbplayer != 1)
+	if (nbplayer != 1)
 		error_exit("Error\nThere must be exactly one player in the map\n",
 			all, NULL);
 }

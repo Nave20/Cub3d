@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:22:13 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/15 10:22:39 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/15 15:34:22 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ void	free_mlx(t_mlx *mlx)
 
 void	free_addr(t_texture *texture)
 {
-	if(texture->addr_e)
+	if (texture->addr_e)
 		free(texture->addr_e);
-	if(texture->addr_n)
+	if (texture->addr_n)
 		free(texture->addr_n);
-	if(texture->addr_s)
+	if (texture->addr_s)
 		free(texture->addr_s);
-	if(texture->addr_w)
+	if (texture->addr_w)
 		free(texture->addr_w);
 }
 
@@ -82,13 +82,13 @@ void	free_texture(t_texture *texture)
 
 void	free_data(t_data *data)
 {
-	if(data->map)
+	if (data->map)
 		free_map_tab(data->map);
-	if(data->ray)
+	if (data->ray)
 		free(data->ray);
-	if(data->player)
+	if (data->player)
 		free(data->player);
-	if(data->render)
+	if (data->render)
 		free(data->render);
 	free(data);
 }

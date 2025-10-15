@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/13 14:15:12 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/15 15:41:17 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -313,14 +313,13 @@ void	print_ray_touch(t_data *data, int x, int y);
 void	wall_height(t_data *data, float wall_dist, int col,float ray);
 float	select_impact(t_data *data);
 void	get_ray_impact(t_data *data, float distance);
-void	fill_fc_image(t_all *all);
+void	fill_fc_image(t_all *all, int x, int y);
 
 
 
 void	update(t_all *all);
 
-void	fc_image_to_dble_tab(t_all *all);
-void	dble_tab_to_fc_image(t_all *all);
+void	get_images(t_all *all, t_mlx *mlx);
 
 void	rendering(t_all *all, t_render *render, int x);
 
