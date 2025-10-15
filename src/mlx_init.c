@@ -28,6 +28,7 @@ void	get_images(t_all *all, t_mlx *mlx)
 	t_addr *addr_n = all->texture->addr_n;
 	addr_n->addr = mlx_get_data_addr(all->mlx->n_texture,
 	&addr_n->bpp, &addr_n->line_length, &addr_n->endian); //SECURISER PITIE
+	addr_n->bpp /= 8;
 
 
 	mlx->s_texture = mlx_xpm_file_to_image(all->mlx->mlx_ptr,
@@ -41,6 +42,7 @@ void	get_images(t_all *all, t_mlx *mlx)
 	t_addr *addr_s = all->texture->addr_s;
 	addr_s->addr = mlx_get_data_addr(all->mlx->s_texture,
 	&addr_s->bpp, &addr_s->line_length, &addr_s->endian);
+	addr_s->bpp /= 8;
 
 	mlx->e_texture = mlx_xpm_file_to_image(all->mlx->mlx_ptr,
 			all->texture->east_texture, &w, &h);
@@ -53,6 +55,7 @@ void	get_images(t_all *all, t_mlx *mlx)
 	t_addr *addr_e = all->texture->addr_e;
 	addr_e->addr = mlx_get_data_addr(all->mlx->e_texture,
 	&addr_e->bpp, &addr_e->line_length, &addr_e->endian);
+	addr_e->bpp /= 8;
 
 	mlx->w_texture = mlx_xpm_file_to_image(all->mlx->mlx_ptr,
 			all->texture->west_texture, &w, &h);
@@ -65,6 +68,7 @@ void	get_images(t_all *all, t_mlx *mlx)
 	t_addr *addr_w = all->texture->addr_w;
 	addr_w->addr = mlx_get_data_addr(all->mlx->w_texture,
 	&addr_w->bpp, &addr_w->line_length, &addr_w->endian);
+	addr_w->bpp /= 8;
 }
 
 void	dble_tab_to_fc_image(t_all *all)
@@ -148,7 +152,7 @@ void	fill_fc_image(t_all *all)
 
 	// ⚙️ Récupération du buffer pixel
 	all->addr = mlx_get_data_addr(all->mlx->fc_image, &all->bpp, &all->line_length, &all->endian);
-
+	all->bpp /= 8;
 	half_height = all->data->screen_height / 2;
 
 	for (y = 0; y < all->data->screen_height; y++)
@@ -164,7 +168,7 @@ void	fill_fc_image(t_all *all)
 				color = all->mlx->f_color; // couleur du "sol"
 
 			// 🧠 Écriture du pixel (4 octets)
-			*(uint32_t *)(all->addr + (y * all->line_length + x * (all->bpp / 8))) = color.argb;
+			*(uint32_t *)(all->addr + (y * all->line_length + x * (all->bpp))) = color.argb;
 		}
 	}
 }

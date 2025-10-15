@@ -20,7 +20,7 @@ void	w_key(t_data *data)
 	player = data->player;
 	tmp = player->pos_y;
 	player->pos_y -= STEP * ft_trig(data, player->radian, SIN);
-	if (data->map[(int)player->pos_x][(int)player->pos_y] == '1')
+	if (data->map[(int)player->pos_y][(int)player->pos_x] == '1')
 	{
 		if (player->pos_y > tmp)
 			player->pos_y = ((int)tmp) - 0.1f;
@@ -29,7 +29,7 @@ void	w_key(t_data *data)
 	}
 	tmp = player->pos_x;
 	player->pos_x -= STEP * ft_trig(data, player->radian, COS);
-	if (data->map[(int)player->pos_x][(int)player->pos_y] == '1')
+	if (data->map[(int)player->pos_y][(int)player->pos_x] == '1')
 	{
 		if (player->pos_x > tmp)
 			player->pos_x = ((int)tmp) - 0.1f;
@@ -49,7 +49,7 @@ void	a_key(t_data *data)
 	player = data->player;
 	tmp = player->pos_y;
 	player->pos_y -= STEP * ft_trig(data, player->radian + 0.5f, SIN);
-	if (data->map[(int)player->pos_x][(int)player->pos_y] == '1')
+	if (data->map[(int)player->pos_y][(int)player->pos_x] == '1')
 	{
 		if (player->pos_y > tmp)
 			player->pos_y = ((int)tmp) - 0.1f;
@@ -58,7 +58,7 @@ void	a_key(t_data *data)
 	}
 	tmp = player->pos_x;
 	player->pos_x -= STEP * ft_trig(data, player->radian + 0.5f, COS);
-	if (data->map[(int)player->pos_x][(int)player->pos_y] == '1')
+	if (data->map[(int)player->pos_y][(int)player->pos_x] == '1')
 	{
 		if (player->pos_x > tmp)
 			player->pos_x = ((int)tmp) - 0.1f;
@@ -78,7 +78,7 @@ void	s_key(t_data *data)
 	player = data->player;
 	tmp = player->pos_y;
 	player->pos_y -= STEP * ft_trig(data, player->radian + 1.0f, SIN);
-	if (data->map[(int)player->pos_x][(int)player->pos_y] == '1')
+	if (data->map[(int)player->pos_y][(int)player->pos_x] == '1')
 	{
 		if (player->pos_y > tmp)
 			player->pos_y = ((int)tmp) - 0.1f;
@@ -87,7 +87,7 @@ void	s_key(t_data *data)
 	}
 	tmp = player->pos_x;
 	player->pos_x -= STEP * ft_trig(data, player->radian + 1.0f, COS);
-	if (data->map[(int)player->pos_x][(int)player->pos_y] == '1')
+	if (data->map[(int)player->pos_y][(int)player->pos_x] == '1')
 	{
 		if (player->pos_x > tmp)
 			player->pos_x = ((int)tmp) - 0.1f;
@@ -107,7 +107,7 @@ void	d_key(t_data *data)
 	player = data->player;
 	tmp = player->pos_y;
 	player->pos_y -= STEP * ft_trig(data, player->radian - 0.5f, SIN);
-	if (data->map[(int)player->pos_x][(int)player->pos_y] == '1')
+	if (data->map[(int)player->pos_y][(int)player->pos_x] == '1')
 	{
 		if (player->pos_y > tmp)
 			player->pos_y = (int) tmp - 0.1f;
@@ -116,7 +116,7 @@ void	d_key(t_data *data)
 	}
 	tmp = player->pos_x;
 	player->pos_x -= STEP * ft_trig(data, player->radian - 0.5f, COS);
-	if (data->map[(int)player->pos_x][(int)player->pos_y] == '1')
+	if (data->map[(int)player->pos_y][(int)player->pos_x] == '1')
 	{
 		if (player->pos_x > tmp)
 			player->pos_x = (int)tmp - 0.1f;

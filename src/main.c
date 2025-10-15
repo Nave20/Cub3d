@@ -62,8 +62,7 @@ int	main(int argc, char **argv)
 	parsing_servo(all, fd);
 	find_map(fd, all);
 	map_parsing(all->data, all);
-	// all->mlx = ft_calloc(1, sizeof(t_mlx));
-	all->mlx = NULL;
+	all->mlx = ft_calloc(1, sizeof(t_mlx));
 	if (!all->mlx)
 		error_exit("Error\nMalloc failure\n", all, NULL);
 	get_screen_size(all);
@@ -77,8 +76,6 @@ int	main(int argc, char **argv)
 	all->data->render = malloc(sizeof(t_render));
 	if (!all->data->render)
 		error_exit("Error\nMalloc failure\n", all, NULL);
-	// all->data->player->radian = 0.01f;
-	// all->data->player->pos_x += 0.5;
 	ray_servo(all->data, 0);
 	mlx_put_image_to_window(all->mlx->mlx_ptr, all->mlx->win_ptr, all->mlx->fc_image, 0, 0);
 	mlx_key_hook(all->mlx->win_ptr, key_event, all);

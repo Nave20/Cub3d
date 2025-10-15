@@ -129,13 +129,7 @@ void	ray_servo(t_data *data, int i)
 
 	incr = 0.5f / (float) data->screen_width;
 	ray_start = data->player->radian - 0.25f;
-	// if (ray_start < 0)
-	// 	ray_start = 2.0f - fabsf(ray_start);
-	// if (ray_start > 2.0f)
-	// 	ray_start = fmodf(ray_start, 2.0f);
 	ray_end = data->player->radian + 0.25f;
-	// if (ray_end < 0)
-	// 	ray_end = 2.0f - fabsf(ray_end);
 	while (ray_start < ray_end)
 	{
 		wall_dist = pre_dda(data, ray_start);

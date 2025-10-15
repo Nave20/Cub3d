@@ -24,16 +24,16 @@ void	find_player(t_data *data, int i, int j)
 			{
 				data->player->grid_x = j;
 				data->player->grid_y = i;
-				data->player->pos_x = j;
-				data->player->pos_y = i;
+				data->player->pos_x = j + 0.5f;
+				data->player->pos_y = i + 0.5f;
 				if (data->map[i][j] == 'E')
-					data->player->radian = 0.0f;
-				if (data->map[i][j] == 'N')
 					data->player->radian = 0.5f;
-				if (data->map[i][j] == 'W')
+				if (data->map[i][j] == 'N')
 					data->player->radian = 1.0f;
-				if (data->map[i][j] == 'S')
+				if (data->map[i][j] == 'W')
 					data->player->radian = 1.5f;
+				if (data->map[i][j] == 'S')
+					data->player->radian = 0.0f;
 			}
 			j++;
 		}

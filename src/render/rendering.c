@@ -17,14 +17,14 @@ void	yx_converter(t_all *all, t_argb color, int y, int x)
 	uint32_t	color_bis;
 
 	color_bis = color.argb;
-	*(uint32_t *)(all->addr + (y * all->line_length + x * (all->bpp / 8))) = color_bis;
+	*(uint32_t *)(all->addr + (y * all->line_length + x * (all->bpp))) = color_bis;
 }
 
 t_argb	yx_back_converter(t_addr *addr, int y, int x)
 {
 	t_argb	color;
 
-	color.argb = *(uint32_t *)(addr->addr + (y * addr->line_length + x * (addr->bpp / 8)));
+	color.argb = *(uint32_t *)(addr->addr + (y * addr->line_length + x * (addr->bpp)));
 	return (color);
 }
 
@@ -37,6 +37,7 @@ void	render_north(t_all *all, t_render *render, int x, int z)
 	float	text_to_put;
 	float	coef_pix;
 	float	lost_pix;
+	float	start_on_texture;
 
 	lost_pix = 0;
 	to_draw = render->draw_end - render->draw_start;
@@ -44,14 +45,15 @@ void	render_north(t_all *all, t_render *render, int x, int z)
 	y = render->draw_start;
 	text_to_put = (render->text_perc / 100) * all->texture->height_n;
 	coef_pix = to_draw / text_to_put;
+	start_on_texture = (all->texture->height_n - text_to_put) / 2;
 	int i = 0;
 	while (y < render->draw_end)
 	{
 		if (coef_pix != 0 && z % (int)coef_pix == 0)
 		{
 			lost_pix += (coef_pix - (int) coef_pix);
-			color = yx_back_converter(all->texture->addr_n, z /
-				(int) coef_pix, 100 - (int) render->impact);
+			color = yx_back_converter(all->texture->addr_n, (int) start_on_texture + (z /
+				(int) coef_pix), 100 - (int) render->impact);
 		}
 		if (lost_pix >= 1)
 		{
@@ -74,6 +76,7 @@ void	render_south(t_all *all, t_render *render, int x, int z)
 	float	text_to_put;
 	float	coef_pix;
 	float	lost_pix;
+	float	start_on_texture;
 
 	lost_pix = 0;
 	to_draw = render->draw_end - render->draw_start;
@@ -81,14 +84,15 @@ void	render_south(t_all *all, t_render *render, int x, int z)
 	y = render->draw_start;
 	text_to_put = (render->text_perc / 100) * all->texture->height_s;
 	coef_pix = to_draw / text_to_put;
+	start_on_texture = (all->texture->height_n - text_to_put) / 2;
 	int i = 0;
 	while (y < render->draw_end)
 	{
 		if (z % (int)coef_pix == 0)
 		{
 			lost_pix += (coef_pix - (int) coef_pix);
-			color = yx_back_converter(all->texture->addr_s, z /
-				(int) coef_pix, 100 - (int) render->impact);
+			color = yx_back_converter(all->texture->addr_s, (int) start_on_texture + (z /
+				(int) coef_pix), 100 - (int) render->impact);
 		}
 		if (lost_pix >= 1)
 		{
@@ -111,6 +115,7 @@ void	render_west(t_all *all, t_render *render, int x, int z)
 	float	text_to_put;
 	float	coef_pix;
 	float	lost_pix;
+	float	start_on_texture;
 
 	lost_pix = 0;
 	to_draw = render->draw_end - render->draw_start;
@@ -118,14 +123,15 @@ void	render_west(t_all *all, t_render *render, int x, int z)
 	y = render->draw_start;
 	text_to_put = (render->text_perc / 100) * all->texture->height_w;
 	coef_pix = to_draw / text_to_put;
+	start_on_texture = (all->texture->height_n - text_to_put) / 2;
 	int i = 0;
 	while (y < render->draw_end)
 	{
 		if (z % (int)coef_pix == 0)
 		{
 			lost_pix += (coef_pix - (int) coef_pix);
-			color = yx_back_converter(all->texture->addr_w, z /
-				(int) coef_pix, 100 - (int) render->impact);
+			color = yx_back_converter(all->texture->addr_w, (int) start_on_texture + (z /
+				(int) coef_pix), 100 - (int) render->impact);
 		}
 		if (lost_pix >= 1)
 		{
@@ -148,6 +154,7 @@ void	render_east(t_all *all, t_render *render, int x, int z)
 	float	text_to_put;
 	float	coef_pix;
 	float	lost_pix;
+	float	start_on_texture;
 
 	lost_pix = 0;
 	to_draw = render->draw_end - render->draw_start;
@@ -155,14 +162,15 @@ void	render_east(t_all *all, t_render *render, int x, int z)
 	y = render->draw_start;
 	text_to_put = (render->text_perc / 100) * all->texture->height_e;
 	coef_pix = to_draw / text_to_put;
+	start_on_texture = (all->texture->height_n - text_to_put) / 2;
 	int i = 0;
 	while (y < render->draw_end)
 	{
 		if (z % (int)coef_pix == 0)
 		{
 			lost_pix += (coef_pix - (int) coef_pix);
-			color = yx_back_converter(all->texture->addr_e, z /
-				(int) coef_pix, 100 - (int) render->impact);
+			color = yx_back_converter(all->texture->addr_e, (int) start_on_texture + (z /
+				(int) coef_pix), 100 - (int) render->impact);
 		}
 		if (lost_pix >= 1)
 		{

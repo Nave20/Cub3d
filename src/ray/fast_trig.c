@@ -30,6 +30,13 @@ void	fast_trig(t_data *data)
 
 float	ft_trig(t_data *data, float angle, t_trig type)
 {
+	float	alpha;
+
+	alpha = angle;
+	if (alpha < 0)
+		alpha = 2.0f - fabsf(alpha);
+	if (alpha > 2.0f)
+		alpha = fmodf(alpha, 2.0f);
 	if (type == COS)
 		return (data->f_cos[(int)((angle) * PI * TRIG_TABLE / TWOPI)]);
 	if (type == SIN)
