@@ -35,10 +35,26 @@ void	get_screen_size(t_all *all)
 	all->data->screen_width = x;
 }
 
-// void	struct_init(t_all *all)
-// {
-
-// }
+void	struct_init(t_all *all)
+{
+	all->data = ft_calloc(1, sizeof(t_data));
+	if (!all->data)
+		error_exit("Error\nMalloc failure\n", all, NULL);
+	all->data->all = all;
+	all->mlx = ft_calloc(1, sizeof(t_mlx));
+	if (!all->mlx)
+		error_exit("Error\nMalloc failure\n", all, NULL);
+	all->texture = ft_calloc(1, sizeof(t_texture));
+	if (!all->texture)
+		error_exit("Error\nMalloc failure\n", all, NULL);
+	all->data->texture = all->texture;
+	all->data->ray = malloc(sizeof(t_ray));
+	if (!all->data->ray)
+		error_exit("Error\nMalloc failure\n", all, NULL);
+	all->data->render = malloc(sizeof(t_render));
+	if (!all->data->render)
+		error_exit("Error\nMalloc failure\n", all, NULL);
+}
 
 int	main(int argc, char **argv)
 {
@@ -55,27 +71,14 @@ int	main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		error_exit("Error\nFile opening failure\n", all, NULL);
-	all->data = ft_calloc(1, sizeof(t_data));
-	if (!all->data)
-		error_exit("Error\nMalloc failure\n", all, NULL);
-	all->data->all = all;
+	struct_init(all);
 	parsing_servo(all, fd);
 	find_map(fd, all);
 	map_parsing(all->data, all);
-	all->mlx = ft_calloc(1, sizeof(t_mlx));
-	if (!all->mlx)
-		error_exit("Error\nMalloc failure\n", all, NULL);
 	get_screen_size(all);
 	display_game(all, all->mlx);
 	fast_trig(all->data);
 	create_player(all->data);
-	all->data->texture = all->texture;
-	all->data->ray = malloc(sizeof(t_ray));
-	if (!all->data->ray)
-		error_exit("Error\nMalloc failure\n", all, NULL);
-	all->data->render = malloc(sizeof(t_render));
-	if (!all->data->render)
-		error_exit("Error\nMalloc failure\n", all, NULL);
 	ray_servo(all->data, 0);
 	mlx_put_image_to_window(all->mlx->mlx_ptr, all->mlx->win_ptr, all->mlx->fc_image, 0, 0);
 	mlx_key_hook(all->mlx->win_ptr, key_event, all);

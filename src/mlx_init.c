@@ -20,9 +20,9 @@ void	get_images(t_all *all, t_mlx *mlx)
 	mlx->n_texture = mlx_xpm_file_to_image(all->mlx->mlx_ptr,
 			all->texture->north_texture, &w, &h);
 	if (!mlx->n_texture)
-		error_exit("Error\nXPM to image failure\n", NULL, NULL);
+		error_exit("Error\nXPM to image failure\n", all, NULL);
 	if (w <= 0 || h <= 0)
-		error_exit("Error\nBad image dimensions\n", NULL, NULL);
+		error_exit("Error\nBad image dimensions\n", all, NULL);
 	all->texture->width_n = w;
 	all->texture->height_n = h;
 	t_addr *addr_n = all->texture->addr_n;
@@ -34,9 +34,9 @@ void	get_images(t_all *all, t_mlx *mlx)
 	mlx->s_texture = mlx_xpm_file_to_image(all->mlx->mlx_ptr,
 			all->texture->south_texture, &w, &h);
 	if (!mlx->s_texture)
-		error_exit("Error\nXPM to image failure\n", NULL, NULL);
+		error_exit("Error\nXPM to image failure\n", all, NULL);
 	if (w <= 0 || h <= 0)
-		error_exit("Error\nBad image dimensions\n", NULL, NULL);
+		error_exit("Error\nBad image dimensions\n", all, NULL);
 	all->texture->width_s = w;
 	all->texture->height_s = h;
 	t_addr *addr_s = all->texture->addr_s;
@@ -47,9 +47,9 @@ void	get_images(t_all *all, t_mlx *mlx)
 	mlx->e_texture = mlx_xpm_file_to_image(all->mlx->mlx_ptr,
 			all->texture->east_texture, &w, &h);
 	if (!mlx->e_texture)
-		error_exit("Error\nXPM to image failure\n", NULL, NULL);
+		error_exit("Error\nXPM to image failure\n", all, NULL);
 	if (w <= 0 || h <= 0)
-		error_exit("Error\nBad image dimensions\n", NULL, NULL);
+		error_exit("Error\nBad image dimensions\n", all, NULL);
 	all->texture->width_e = w;
 	all->texture->height_e = h;
 	t_addr *addr_e = all->texture->addr_e;
@@ -60,9 +60,9 @@ void	get_images(t_all *all, t_mlx *mlx)
 	mlx->w_texture = mlx_xpm_file_to_image(all->mlx->mlx_ptr,
 			all->texture->west_texture, &w, &h);
 	if (!mlx->w_texture)
-		error_exit("Error\nXPM to image failure\n", NULL, NULL);
+		error_exit("Error\nXPM to image failure\n", all, NULL);
 	if (w <= 0 || h <= 0)
-		error_exit("Error\nBad image dimensions\n", NULL, NULL);
+		error_exit("Error\nBad image dimensions\n", all, NULL);
 	all->texture->width_w = w;
 	all->texture->height_w = h;
 	t_addr *addr_w = all->texture->addr_w;
@@ -168,7 +168,7 @@ void	fill_fc_image(t_all *all)
 				color = all->mlx->f_color; // couleur du "sol"
 
 			// 🧠 Écriture du pixel (4 octets)
-			*(uint32_t *)(all->addr + (y * all->line_length + x * (all->bpp))) = color.argb;
+			*(uint32_t *)(all->addr + (y * all->line_length + x * (all->bpp / 8))) = color.argb;
 		}
 	}
 }
@@ -207,15 +207,15 @@ void	display_game(t_all *all, t_mlx *mlx)
 	fill_fc_image(all);
 	all->texture->addr_n = malloc(sizeof(t_addr));
 	if(!all->texture->addr_n)
-		exit_game(all);
+		error_exit("Error\nMalloc failure\n", all, NULL);
 	all->texture->addr_s = malloc(sizeof(t_addr));
 	if(!all->texture->addr_s)
-		exit_game(all);
+		error_exit("Error\nMalloc failure\n", all, NULL);
 	all->texture->addr_e = malloc(sizeof(t_addr));
 	if(!all->texture->addr_e)
-		exit_game(all);
+		error_exit("Error\nMalloc failure\n", all, NULL);
 	all->texture->addr_w = malloc(sizeof(t_addr));
 	if(!all->texture->addr_w)
-		exit_game(all);
+		error_exit("Error\nMalloc failure\n", all, NULL);
 	get_images(all, all->mlx);
 }
