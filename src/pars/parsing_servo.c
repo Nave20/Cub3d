@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:04:00 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/15 10:17:14 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/15 11:11:08 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,33 +72,20 @@ void	texture_init(t_texture *texture)
 	texture->valid_east = false;
 }
 
-t_texture	*texture_alloc(void)
+void	texture_alloc(t_all *all)
 {
-	t_texture	*texture;
-
-	texture = malloc(sizeof(t_texture));
-	if (texture == NULL)
-		return (NULL);
-	texture->floor_color = malloc(sizeof(t_color));
-	if (texture->floor_color == NULL)
-	{
-		free(texture);
-		return (NULL);
-	}
-	texture->ceiling_color = malloc(sizeof(t_color));
-	if (texture->ceiling_color == NULL)
-	{
-		free(texture->floor_color);
-		free(texture);
-		return (NULL);
-	}
-	texture_init(texture);
-	return (texture);
+	all->texture->floor_color = malloc(sizeof(t_color));
+	if (all->texture->floor_color == NULL)
+		error_exit("Error\nMalloc failure\n", all, NULL);
+	all->texture->ceiling_color = malloc(sizeof(t_color));
+	if (all->texture->ceiling_color == NULL)
+		error_exit("Error\nMalloc failure\n", all, NULL);
+	texture_init(all->texture);
 }
 
 int	parsing_servo(t_all *all, int fd)
 {
-	all->texture = texture_alloc();
+	texture_alloc(all);
 	if (!all->texture)
 		err_malloc(fd);
 	if (dispatcher(fd, all->texture, 0, NULL))
