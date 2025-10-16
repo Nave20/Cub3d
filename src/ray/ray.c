@@ -104,7 +104,7 @@ void	ray_servo(t_data *data, int i)
 	float	incr;
 	float	wall_dist;
 
-	data->player->radian = 0.25f;
+	// data->player->radian = 0.25f;
 	incr = 0.5f / (float) data->screen_width;
 	ray_start = data->player->radian - 0.25f;
 	ray_end = data->player->radian + 0.25f;
