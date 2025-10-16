@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 12:27:53 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/16 11:21:26 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/16 15:19:27 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	wall_height(t_data *data, float wall_dist, int col, float ray)
 	t_render	*render;
 
 	render = data->render;
-	render->correct_dist = wall_dist
-		* ft_trig(data, ray - data->player->radian, COS);
+	// (void) ray;
+	render->correct_dist = wall_dist * ft_trig(data, ray - data->player->radian, COS);
 	render->wall_height = data->screen_height / render->correct_dist;
 	render->text_perc = render->wall_height / data->screen_height * 100;
 	if (render->text_perc > 100)

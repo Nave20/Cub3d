@@ -47,13 +47,13 @@ void	render_north(t_all *all, t_render *render, int x, int z)
 	text_to_put = (render->text_perc / 100) * all->texture->height_e;
 	coef_pix = to_draw / text_to_put;
 	start_on_texture = (all->texture->height_e - text_to_put) / 2;
-	int i = 0;
-	int a = 0;
+	z = (start_on_texture - (int) start_on_texture) * coef_pix;
+	color = yx_back_converter(all->texture->addr_e, (int) start_on_texture + (z /
+				(int) coef_pix), 100 - (int) render->impact);
 	while (y < render->draw_end)
 	{
 		if (z % (int)coef_pix == 0)
 		{
-			i++;
 			lost_pix += (coef_pix - (int) coef_pix);
 			if ((int) render->impact == 0)
 			{
@@ -66,7 +66,6 @@ void	render_north(t_all *all, t_render *render, int x, int z)
 		}
 		if (lost_pix >= 1)
 		{
-			a++;
 			lost_pix -= 1;
 			yx_converter(all, color, y, x);
 			y++;
@@ -97,13 +96,13 @@ void	render_south(t_all *all, t_render *render, int x, int z)
 	text_to_put = (render->text_perc / 100) * all->texture->height_w;
 	coef_pix = to_draw / text_to_put;
 	start_on_texture = (all->texture->height_w - text_to_put) / 2;
-	int i = 0;
-	int a = 0;
+	z = (start_on_texture - (int) start_on_texture) * coef_pix;
+	color = yx_back_converter(all->texture->addr_w, (int) start_on_texture + (z /
+				(int) coef_pix), 100 - (int) render->impact);
 	while (y < render->draw_end)
 	{
 		if (z % (int)coef_pix == 0)
 		{
-			i++;
 			lost_pix += (coef_pix - (int) coef_pix);
 			if ((int) render->impact == 0)
 			{
@@ -116,7 +115,6 @@ void	render_south(t_all *all, t_render *render, int x, int z)
 		}
 		if (lost_pix >= 1)
 		{
-			a++;
 			lost_pix -= 1;
 			yx_converter(all, color, y, x);
 			y++;
@@ -147,19 +145,13 @@ void	render_west(t_all *all, t_render *render, int x, int z)
 	text_to_put = (render->text_perc / 100) * all->texture->height_s;
 	coef_pix = to_draw / text_to_put;
 	start_on_texture = (all->texture->height_s - text_to_put) / 2;
-	// printf("text_p : %f\n", render->text_perc);
-	// printf("start_on_texture : %f\n", start_on_texture);
-	// printf("render impact : %f\n", render->impact);
-	printf("start on text : %f\n", start_on_texture);
-	printf("coef_pix : %f\n", coef_pix);
-	int i = 0;
-	int a = 0;
+	z = (start_on_texture - (int) start_on_texture) * coef_pix;
+	color = yx_back_converter(all->texture->addr_s, (int) start_on_texture + (z /
+				(int) coef_pix), 100 - (int) render->impact);
 	while (y < render->draw_end)
 	{
 		if (z % (int)coef_pix == 0)
 		{
-			printf("z : %d\n", z);
-			i++;
 			lost_pix += (coef_pix - (int) coef_pix);
 			if ((int) render->impact == 0)
 			{
@@ -172,8 +164,6 @@ void	render_west(t_all *all, t_render *render, int x, int z)
 		}
 		if (lost_pix >= 1)
 		{
-			printf("lost pix\n");
-			a++;
 			lost_pix -= 1;
 			yx_converter(all, color, y, x);
 			y++;
@@ -204,13 +194,13 @@ void	render_east(t_all *all, t_render *render, int x, int z)
 	text_to_put = (render->text_perc / 100) * all->texture->height_n;
 	coef_pix = to_draw / text_to_put;
 	start_on_texture = (all->texture->height_n - text_to_put) / 2;
-	int i = 0;
-	int a = 0;
+	z = (start_on_texture - (int) start_on_texture) * coef_pix;
+	color = yx_back_converter(all->texture->addr_n, (int) start_on_texture + (z /
+				(int) coef_pix), 100 - (int) render->impact);
 	while (y < render->draw_end)
 	{
 		if (z % (int)coef_pix == 0)
 		{
-			i++;
 			lost_pix += (coef_pix - (int) coef_pix);
 			if ((int) render->impact == 0)
 			{
@@ -223,7 +213,6 @@ void	render_east(t_all *all, t_render *render, int x, int z)
 		}
 		if (lost_pix >= 1)
 		{
-			a++;
 			lost_pix -= 1;
 			yx_converter(all, color, y, x);
 			y++;
