@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 12:43:55 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/16 12:50:57 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/16 15:41:13 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ t_argb	change_pxl_north(t_all *all, t_render *render, float impact, int z)
 	return (color);
 }
 
-void	init_render_north_values(t_all *all, t_render *render)
+void	init_render_north_values(t_all *all, t_render *render,
+		int *z, t_argb *color)
 {
 	render->lost_pix = 0;
 	render->to_draw = render->draw_end - render->draw_start;
@@ -39,6 +40,11 @@ void	init_render_north_values(t_all *all, t_render *render)
 	render->coef_pix = render->to_draw / render->text_to_put;
 	render->start_on_texture = (all->texture->height_e
 			- render->text_to_put) / 2;
+	*z = (render->start_on_texture - (int) render->start_on_texture)
+		* render->coef_pix;
+	*color = yx_back_converter(all->texture->addr_e,
+			(int) render->start_on_texture
+			+ (*z / (int) render->coef_pix), 100 - (int) render->impact);
 }
 
 void	render_north(t_all *all, t_render *render, int x, int z)
@@ -51,7 +57,7 @@ void	render_north(t_all *all, t_render *render, int x, int z)
 	a = 0;
 	impact = 1;
 	z = 0;
-	init_render_north_values(all, render);
+	init_render_north_values(all, render, &z, &color);
 	y = render->draw_start;
 	while (y < render->draw_end)
 	{

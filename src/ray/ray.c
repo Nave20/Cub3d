@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:54:38 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/16 11:19:38 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/16 15:44:00 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ float	pre_dda(t_data *data, float ray)
 	// printf("dir_x: %.6f | dir_y: %.6f\n", data->ray->dir_x, data->ray->dir_y);
 	res = dda(data, data->ray->dir_x, data->ray->dir_y);
 	side_touched(data, data->ray->last_side,
-			data->ray->dir_x, data->ray->dir_y);
+		data->ray->dir_x, data->ray->dir_y);
 	// printf("→ distance: %.6f\n", res);
 	return (res);
 }
