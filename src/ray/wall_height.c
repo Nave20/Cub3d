@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_height.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 12:27:53 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/13 12:27:53 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/10/16 11:21:26 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ float	select_impact_side(t_data *data, t_side side)
 		return (100 - roundf(select_impact(data) * data->texture->width_w));
 }
 
-void	wall_height(t_data *data, float wall_dist, int col,float ray)
+void	wall_height(t_data *data, float wall_dist, int col, float ray)
 {
-	t_render *render;
+	t_render	*render;
 
 	render = data->render;
-	render->correct_dist = wall_dist * ft_trig(data, ray - data->player->radian, COS);
+	render->correct_dist = wall_dist
+		* ft_trig(data, ray - data->player->radian, COS);
 	render->wall_height = data->screen_height / render->correct_dist;
 	render->text_perc = render->wall_height / data->screen_height * 100;
 	if (render->text_perc > 100)
@@ -55,7 +56,8 @@ void	wall_height(t_data *data, float wall_dist, int col,float ray)
 	if (render->wall_height >= data->screen_height)
 		render->draw_start = 0;
 	else
-		render->draw_start = (int) (data->screen_height - render->wall_height) / 2;
+		render->draw_start = (int)(data->screen_height
+				- render->wall_height) / 2;
 	render->draw_end = data->screen_height - render->draw_start;
 	render->impact = select_impact_side(data, data->ray->side);
 	// printf("ray : %f\n", ray);

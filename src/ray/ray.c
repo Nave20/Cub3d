@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:54:38 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/07 14:54:38 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/10/16 11:19:38 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,10 @@ float	pre_dda(t_data *data, float ray)
 		ray = fmodf(ray, 2.0f);
 	data->ray->dir_x = -ft_trig(data, ray, SIN);
 	data->ray->dir_y = -ft_trig(data, ray, COS);
-
 	// printf("dir_x: %.6f | dir_y: %.6f\n", data->ray->dir_x, data->ray->dir_y);
-
 	res = dda(data, data->ray->dir_x, data->ray->dir_y);
-	side_touched(data, data->ray->last_side, data->ray->dir_x, data->ray->dir_y);
-
+	side_touched(data, data->ray->last_side,
+			data->ray->dir_x, data->ray->dir_y);
 	// printf("→ distance: %.6f\n", res);
 	return (res);
 }
@@ -114,7 +112,7 @@ void	ray_servo(t_data *data, int i)
 		wall_dist = pre_dda(data, ray_start);
 		// printf("wall_dist : %f\n", wall_dist);
 		get_ray_impact(data, wall_dist);
-		wall_height(data, wall_dist, i,ray_start);
+		wall_height(data, wall_dist, i, ray_start);
 		ray_start += incr;
 		i++;
 	}

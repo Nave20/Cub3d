@@ -6,13 +6,18 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:04:00 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/15 11:11:08 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/16 12:25:34 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3D.h"
 
-int	dispatcher(int fd, t_texture *texture, int error, char *line)
+// int	dispatcher(char *line, int fd, t_texture *texture, int error)
+// {
+
+// }
+
+int	dispatcher_loop(int fd, t_texture *texture, int error, char *line)
 {
 	line = get_next_line(fd, &error);
 	if (error)
@@ -88,7 +93,7 @@ int	parsing_servo(t_all *all, int fd)
 	texture_alloc(all);
 	if (!all->texture)
 		err_malloc(fd);
-	if (dispatcher(fd, all->texture, 0, NULL))
+	if (dispatcher_loop(fd, all->texture, 0, NULL))
 		return (1);
 	if (arg_validation(all->texture))
 		return (1);

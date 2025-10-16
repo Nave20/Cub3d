@@ -49,6 +49,10 @@ SRC_FILES       =	main.c			\
 					get_images.c	\
 
 RENDER_FILES	=	rendering.c		\
+					render_north.c	\
+					render_south.c	\
+					render_west.c	\
+					render_east.c	\
 
 SOURCES         = $(addprefix $(SRC_DIR), $(SRC_FILES)) \
                   $(addprefix $(PARS_DIR), $(PARS_FILES)) \

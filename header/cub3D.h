@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/15 15:41:17 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/16 12:57:27 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef enum    e_trig			t_trig;
 typedef union   s_argb			t_argb;
 typedef struct	s_render		t_render;
 typedef struct	s_addr			t_addr;
+typedef struct	s_pxl			t_pxl;
 
 enum			e_side
 {
@@ -184,6 +185,11 @@ struct					s_render
 	float				impact;
 	int					draw_start;
 	int					draw_end;
+	float				to_draw;
+	float				text_to_put;
+	float				coef_pix;
+	float				lost_pix;
+	float				start_on_texture;
 };
 
 struct					s_ray
@@ -221,6 +227,17 @@ struct					s_addr
 	int					bpp;
 	int					endian;
 };
+
+struct					s_pxl
+{
+	float				to_draw;
+	float				text_to_put;
+	float				coef_pix;
+	float				lost_pix;
+	float				start_on_texture;
+};
+
+
 
 //---------------------------------------------------------------------
 //-------------------------------PARSING-------------------------------
@@ -315,12 +332,21 @@ float	select_impact(t_data *data);
 void	get_ray_impact(t_data *data, float distance);
 void	fill_fc_image(t_all *all, int x, int y);
 
+//-------------------------------------------------------------------------
+//----------------------------------RENDER---------------------------------
+//-------------------------------------------------------------------------
 
+t_argb	yx_back_converter(t_addr *addr, int y, int x);
+void	yx_converter(t_all *all, t_argb color, int y, int x);
+void	rendering(t_all *all, t_render *render, int x);
+void	render_north(t_all *all, t_render *render, int x, int z);
+void	render_south(t_all *all, t_render *render, int x, int z);
+void	render_west(t_all *all, t_render *render, int x, int z);
+void	render_east(t_all *all, t_render *render, int x, int z);
 
 void	update(t_all *all);
 
 void	get_images(t_all *all, t_mlx *mlx);
 
-void	rendering(t_all *all, t_render *render, int x);
 
 #endif
