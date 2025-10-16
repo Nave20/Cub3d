@@ -30,7 +30,7 @@
 # define REVERSE "\033[7m"
 # define PI 3.14159265358979323846
 # define TWOPI 6.28318530717958647692
-# define TRIG_TABLE 1024
+# define TRIG_TABLE 2048
 # define SIZE 100
 # define STEP 0.2
 

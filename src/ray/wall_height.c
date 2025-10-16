@@ -33,11 +33,11 @@ float	select_impact_side(t_data *data, t_side side)
 	if (side == NORTH)
 		return (roundf(select_impact(data) * data->texture->width_n));
 	else if (side == SOUTH)
-		return (roundf(select_impact(data) * data->texture->width_s));
+		return (100 - roundf(select_impact(data) * data->texture->width_s));
 	else if (side == EAST)
 		return (roundf(select_impact(data) * data->texture->width_e));
 	else
-		return (roundf(select_impact(data) * data->texture->width_w));
+		return (100 - roundf(select_impact(data) * data->texture->width_w));
 }
 
 void	wall_height(t_data *data, float wall_dist, int col,float ray)
@@ -45,16 +45,7 @@ void	wall_height(t_data *data, float wall_dist, int col,float ray)
 	t_render *render;
 
 	render = data->render;
-	data->screen_height = 1080;
-	if (fabsf(data->player->radian * 1000) != fabsf(ray * 1000))
-	{
-		if (ray > data->player->radian)
-			render->correct_dist = wall_dist * ft_trig(data,(ray - data->player->radian), COS);
-		else
-			render->correct_dist = wall_dist * ft_trig(data,(data->player->radian - ray), COS);
-	}
-	else
-		render->correct_dist = wall_dist;
+	render->correct_dist = wall_dist * ft_trig(data, ray - data->player->radian, COS);
 	render->wall_height = data->screen_height / render->correct_dist;
 	render->text_perc = render->wall_height / data->screen_height * 100;
 	if (render->text_perc > 100)
