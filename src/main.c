@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/15 15:37:42 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/21 11:52:02 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,10 @@ void	open_game(t_all *all, t_mlx *mlx)
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr,
 			all->data->screen_width, all->data->screen_height, "cub3D");
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->fc_image, 0, 0);
-	mlx_key_hook(mlx->win_ptr, key_event, all);
 	mlx_hook(mlx->win_ptr, 17, 0, exit_game, all);
+	mlx_hook(mlx->win_ptr, 2, 1L << 0, key_press, all);
+	mlx_hook(mlx->win_ptr, 3, 1L << 1, key_release, all);
+	mlx_loop_hook(mlx->mlx_ptr, key_check, all);
 	mlx_loop(mlx->mlx_ptr);
 	free_map_tab(all->data->map);
 	free(all->data);
