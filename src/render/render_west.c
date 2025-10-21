@@ -52,10 +52,7 @@ void	render_west(t_all *all, t_render *render, int x, int z)
 	t_argb			color;
 	static float	impact;
 	int				y;
-	int				a;
 
-	a = 0;
-	impact = 1;
 	z = 0;
 	init_render_west_values(all, render, &z, &color);
 	y = render->draw_start;
@@ -65,7 +62,6 @@ void	render_west(t_all *all, t_render *render, int x, int z)
 			color = change_pxl_west(all, render, impact, z);
 		if (render->lost_pix >= 1)
 		{
-			a++;
 			render->lost_pix -= 1;
 			yx_converter(all, color, y, x);
 			y++;

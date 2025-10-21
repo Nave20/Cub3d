@@ -303,10 +303,10 @@ int		mov_servo(t_data *data);
 int		create_player(t_data *data);
 
 //--------------------------------WASD---------------------------------
-void	w_key(t_data *data);
-void	a_key(t_data *data);
-void	s_key(t_data *data);
-void	d_key(t_data *data);
+void	w_key(t_data *data, float new_x, float new_y);
+void	a_key(t_data *data, float new_x, float new_y);
+void	s_key(t_data *data, float new_x, float new_y);
+void	d_key(t_data *data, float new_x, float new_y);
 int		key_event(int keycode, t_all *all);
 
 //---------------------------------POV---------------------------------

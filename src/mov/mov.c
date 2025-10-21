@@ -28,16 +28,17 @@ int	mov_servo(t_data *data)
 
 int	key_event(int keycode, t_all *all)
 {
+	printf("rad : %f\n",all->data->player->radian);
 	if (keycode == XK_Escape)
 		exit_game(all);
 	if (keycode == XK_w)
-		w_key(all->data);
+		w_key(all->data, all->data->player->pos_x, all->data->player->pos_y);
 	if (keycode == XK_s)
-		s_key(all->data);
+		s_key(all->data, all->data->player->pos_x, all->data->player->pos_y);
 	if (keycode == XK_a)
-		a_key(all->data);
+		a_key(all->data, all->data->player->pos_x, all->data->player->pos_y);
 	if (keycode == XK_d)
-		d_key(all->data);
+		d_key(all->data, all->data->player->pos_x, all->data->player->pos_y);
 	if (keycode == 65361)
 		letf_arr(all->data);
 	if (keycode == 65363)
