@@ -32,7 +32,7 @@
 # define TWOPI 6.28318530717958647692
 # define TRIG_TABLE 2048
 # define SIZE 100
-# define STEP 0.2
+# define STEP 0.1
 
 //-------------------------------INCLUDE-------------------------------
 # include "../src/libft/libft.h"

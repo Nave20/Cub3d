@@ -14,7 +14,7 @@
 
 void	letf_arr(t_data *data)
 {
-	data->player->radian -= 0.125f;
+	data->player->radian -= 0.0625f;
 	if (data->player->radian < 0)
 		data->player->radian = 2.0f - fabsf(data->player->radian);
 	update(data->all);
@@ -22,7 +22,7 @@ void	letf_arr(t_data *data)
 
 void	right_arr(t_data *data)
 {
-	data->player->radian += 0.125f;
+	data->player->radian += 0.0625f;
 	if (data->player->radian < 0)
 		data->player->radian = 2.0f - fabsf(data->player->radian);
 	update(data->all);
