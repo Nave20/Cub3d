@@ -28,7 +28,6 @@ int	mov_servo(t_data *data)
 
 int	key_event(int keycode, t_all *all)
 {
-	printf("rad : %f\n",all->data->player->radian);
 	if (keycode == XK_Escape)
 		exit_game(all);
 	if (keycode == XK_w)
