@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/16 12:57:27 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/21 11:33:09 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ typedef union   s_argb			t_argb;
 typedef struct	s_render		t_render;
 typedef struct	s_addr			t_addr;
 typedef struct	s_pxl			t_pxl;
+typedef struct	s_key			t_key;
+
 
 enum			e_side
 {
@@ -82,6 +84,17 @@ enum			e_trig
 	SIN,
 	TAN,
 };
+
+struct			s_key
+{
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	left_arrow;
+	int	right_arrow;
+};
+
 
 union			s_argb
 {
@@ -105,6 +118,7 @@ struct			s_all
 	t_color		*color;
 	t_texture	*texture;
 	t_data		*data;
+	t_key		*key;
 };
 
 struct			s_mlx
@@ -308,6 +322,9 @@ void	a_key(t_data *data);
 void	s_key(t_data *data);
 void	d_key(t_data *data);
 int		key_event(int keycode, t_all *all);
+int		key_press(int keycode, t_all *all);
+int		key_release(int keycode, t_all *all);
+int		key_check(t_all *all);
 
 //---------------------------------POV---------------------------------
 void	letf_arr(t_data *data);

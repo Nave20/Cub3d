@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 12:16:45 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/15 15:40:50 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/21 11:09:36 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	fill_color_struct(t_all *all)
 
 void	display_game(t_all *all, t_mlx *mlx)
 {
+	all->key = ft_calloc(1, sizeof(t_key));
 	all->mlx->fc_image = mlx_new_image(mlx->mlx_ptr,
 			all->data->screen_width, all->data->screen_height);
 	fill_color_struct(all);

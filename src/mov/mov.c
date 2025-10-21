@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:54:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/16 15:44:46 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/21 11:51:24 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,61 @@ int	mov_servo(t_data *data)
 	return (0);
 }
 
-int	key_event(int keycode, t_all *all)
+int	key_check(t_all *all)
+{
+	static int	nb_frame;
+
+	nb_frame++;
+	if (nb_frame % 12500 == 0)
+	{
+		if (all->key->w)
+			w_key(all->data);
+		if (all->key->a)
+			a_key(all->data);
+		if (all->key->s)
+			s_key(all->data);
+		if (all->key->d)
+			d_key(all->data);
+		if (all->key->left_arrow)
+			letf_arr(all->data);
+		if (all->key->right_arrow)
+			right_arr(all->data);
+	}
+	return (0);
+}
+
+int	key_release(int keycode, t_all *all)
+{
+	if (keycode == XK_w)
+		all->key->w = 0;
+	if (keycode == XK_a)
+		all->key->a = 0;
+	if (keycode == XK_s)
+		all->key->s = 0;
+	if (keycode == XK_d)
+		all->key->d = 0;
+	if (keycode == 65361)
+		all->key->left_arrow = 0;
+	if (keycode == 65363)
+		all->key->right_arrow = 0;
+	return (0);
+}
+
+int	key_press(int keycode, t_all *all)
 {
 	if (keycode == XK_Escape)
 		exit_game(all);
 	if (keycode == XK_w)
-		w_key(all->data);
-	if (keycode == XK_s)
-		s_key(all->data);
+		all->key->w = 1;
 	if (keycode == XK_a)
-		a_key(all->data);
+		all->key->a = 1;
+	if (keycode == XK_s)
+		all->key->s = 1;
 	if (keycode == XK_d)
-		d_key(all->data);
+		all->key->d = 1;
 	if (keycode == 65361)
-		letf_arr(all->data);
+		all->key->left_arrow = 1;
 	if (keycode == 65363)
-		right_arr(all->data);
+		all->key->right_arrow = 1;
 	return (0);
 }
