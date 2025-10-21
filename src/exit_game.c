@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:22:13 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/15 15:34:22 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/21 12:33:36 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ int	exit_game(t_all *all)
 		free_mlx(all->mlx);
 	if (all->texture)
 		free_texture(all->texture);
+	if(all->key)
+		free(all->key);
 	free(all);
 	exit(0);
 	return (0);
