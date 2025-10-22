@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/21 11:33:09 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/21 16:07:09 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ typedef struct	s_render		t_render;
 typedef struct	s_addr			t_addr;
 typedef struct	s_pxl			t_pxl;
 typedef struct	s_key			t_key;
+typedef struct	s_mouse			t_mouse;
+
+
 
 
 enum			e_side
@@ -83,6 +86,14 @@ enum			e_trig
 	COS,
 	SIN,
 	TAN,
+};
+
+struct			s_mouse
+{
+	int	x;
+	int	y;
+	int	mid_x;
+	int	mid_y;
 };
 
 struct			s_key
@@ -119,6 +130,7 @@ struct			s_all
 	t_texture	*texture;
 	t_data		*data;
 	t_key		*key;
+	t_mouse		*mouse;
 };
 
 struct			s_mlx
@@ -325,6 +337,7 @@ int		key_event(int keycode, t_all *all);
 int		key_press(int keycode, t_all *all);
 int		key_release(int keycode, t_all *all);
 int		key_check(t_all *all);
+int		mouse_hook(int x, int y, t_all *all);
 
 //---------------------------------POV---------------------------------
 void	letf_arr(t_data *data);

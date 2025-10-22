@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/21 11:52:02 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/21 16:06:48 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,17 @@ void	open_game(t_all *all, t_mlx *mlx)
 {
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr,
 			all->data->screen_width, all->data->screen_height, "cub3D");
+	all->mouse = ft_calloc(1, sizeof(t_mouse));
+	all->mouse->mid_x = mlx->w_win / 2;
+	all->mouse->mid_y = mlx->h_win / 2;
+	all->mouse->x = all->mouse->mid_x;
+	all->mouse->y = all->mouse->mid_y;
+	mlx_mouse_hide(mlx->mlx_ptr, mlx->win_ptr);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->fc_image, 0, 0);
 	mlx_hook(mlx->win_ptr, 17, 0, exit_game, all);
 	mlx_hook(mlx->win_ptr, 2, 1L << 0, key_press, all);
 	mlx_hook(mlx->win_ptr, 3, 1L << 1, key_release, all);
+	mlx_hook(mlx->win_ptr, 6, 1L << 6, mouse_hook, all);
 	mlx_loop_hook(mlx->mlx_ptr, key_check, all);
 	mlx_loop(mlx->mlx_ptr);
 	free_map_tab(all->data->map);
