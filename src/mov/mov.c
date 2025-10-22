@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:54:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/21 17:50:54 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/22 13:55:29 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	mouse_hook(int x, int y, t_all *all)
 	int	dif;
 
 	dif = x - all->mouse->x;
-	if (dif > 100)
-		right_arr(all->data);
-	if (dif < -100)
-		letf_arr(all->data);
+	if (dif > 25)
+		right_arr_mouse(all->data);
+	if (dif < -25)
+		left_arr_mouse(all->data);
 	all->mouse->x = x;
 	all->mouse->y = y;
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/21 16:07:09 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/22 11:47:56 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@
 # include <unistd.h>
 # include <math.h>
 # include <X11/keysym.h>
+# include <X11/Xlib.h>
 
 //-------------------------------STRUCTS-------------------------------
 
@@ -342,6 +343,8 @@ int		mouse_hook(int x, int y, t_all *all);
 //---------------------------------POV---------------------------------
 void	letf_arr(t_data *data);
 void	right_arr(t_data *data);
+void	left_arr_mouse(t_data *data);
+void	right_arr_mouse(t_data *data);
 
 //--------------------------------UTILS--------------------------------
 void	print_pos(t_player *player);
