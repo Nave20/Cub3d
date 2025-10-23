@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:22:13 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/21 12:33:36 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/23 16:16:57 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,13 @@ int	exit_game(t_all *all)
 		free_texture(all->texture);
 	if(all->key)
 		free(all->key);
+	if (all->minimap)
+	{
+		free_map_tab(all->minimap->map);
+		free(all->minimap);
+	}
+	if (all->mouse)
+		free(all->mouse);
 	free(all);
 	exit(0);
 	return (0);

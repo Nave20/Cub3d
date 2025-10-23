@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/22 11:47:56 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/23 16:06:12 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ typedef struct	s_addr			t_addr;
 typedef struct	s_pxl			t_pxl;
 typedef struct	s_key			t_key;
 typedef struct	s_mouse			t_mouse;
+typedef struct	s_minimap		t_minimap;
+
+
 
 
 
@@ -88,6 +91,13 @@ enum			e_trig
 	SIN,
 	TAN,
 };
+
+struct			s_minimap
+{
+	char	**map;
+	void	*image;
+};
+
 
 struct			s_mouse
 {
@@ -132,6 +142,7 @@ struct			s_all
 	t_data		*data;
 	t_key		*key;
 	t_mouse		*mouse;
+	t_minimap	*minimap;
 };
 
 struct			s_mlx
@@ -318,6 +329,10 @@ void	check_file_ending(int fd, t_all *all, char *buffer, t_list *lst);
 
 void	display_game(t_all *all, t_mlx *mlx);
 int		exit_game(t_all *all);
+
+
+//-------------------------------MINIMAP-------------------------------
+void	get_minimap(t_all *all);
 
 //---------------------------------------------------------------------
 //-------------------------------MOVEMENT------------------------------
