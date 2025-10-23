@@ -30,9 +30,10 @@
 # define REVERSE "\033[7m"
 # define PI 3.14159265358979323846
 # define TWOPI 6.28318530717958647692
+# define POV_INCR 0.0625
 # define TRIG_TABLE 2048
 # define SIZE 100
-# define STEP 0.1
+# define STEP 0.15
 
 //-------------------------------INCLUDE-------------------------------
 # include "../src/libft/libft.h"
@@ -364,6 +365,10 @@ void	render_east(t_all *all, t_render *render, int x, int z);
 void	update(t_all *all);
 
 void	get_images(t_all *all, t_mlx *mlx);
+void	render_w(t_all *all, t_render *render, int x);
+
+void	draw_ceiling(t_all *all, int max, int z);
+void	draw_floor(t_all *all, int start, int z);
 
 
 #endif

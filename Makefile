@@ -49,6 +49,8 @@ SRC_FILES       =	main.c			\
 					get_images.c	\
 
 RENDER_FILES	=	rendering.c		\
+					texturing_west.c	\
+					floor_ceiling.c		\
 					render_north.c	\
 					render_south.c	\
 					render_west.c	\

@@ -95,6 +95,9 @@ void	free_data(t_data *data)
 
 int	exit_game(t_all *all)
 {
+	printf("ray : %f\n", all->data->player->radian);
+	printf("pos_x : %f\n", all->data->player->pos_x);
+	printf("pos_y : %f\n", all->data->player->pos_y);
 	if (all->data)
 		free_data(all->data);
 	if (all->mlx)

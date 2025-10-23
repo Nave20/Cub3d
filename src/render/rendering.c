@@ -37,7 +37,7 @@ void	rendering(t_all *all, t_render *render, int x)
 	else if (all->data->ray->side == SOUTH)
 		render_south(all, render, x, 0);
 	else if (all->data->ray->side == WEST)
-		render_west(all, render, x, 0);
+		render_w(all, render, x);
 	else if (all->data->ray->side == EAST)
 		render_east(all, render, x, 0);
 }

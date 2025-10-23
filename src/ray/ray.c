@@ -102,15 +102,12 @@ void	ray_servo(t_data *data, int i)
 	float	incr;
 	float	wall_dist;
 
-	// data->player->radian = 0.25f;
 	incr = 0.5f / (float) data->screen_width;
 	ray_start = data->player->radian - 0.25f;
 	ray_end = data->player->radian + 0.25f;
 	while (ray_start < ray_end)
 	{
-		// printf("rad : %f\n", ray_start);
 		wall_dist = pre_dda(data, ray_start);
-		// printf("wall_dist : %f\n", wall_dist);
 		get_ray_impact(data, wall_dist);
 		wall_height(data, wall_dist, i, ray_start);
 		ray_start += incr;

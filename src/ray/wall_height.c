@@ -12,32 +12,34 @@
 
 #include "../../header/cub3D.h"
 
+#define EPSILON 1e-6f
+#define ONE_MINUS_EPSILON (1.0f - EPSILON)
+
 float	select_impact(t_data *data)
 {
-	if ((data->ray->impact_x - (int) data->ray->impact_x) > 0)
-	{
-		return (data->ray->impact_x - (int) data->ray->impact_x);
-	}
-	else if ((data->ray->impact_y - (int) data->ray->impact_y) > 0)
-	{
-		return (data->ray->impact_y - (int) data->ray->impact_y);
-	}
+	float diff_x = data->ray->impact_x - (int)data->ray->impact_x;
+	float diff_y = data->ray->impact_y - (int)data->ray->impact_y;
+
+	if (fabsf(diff_x) > EPSILON && fabsf(diff_x) < ONE_MINUS_EPSILON)
+		return (diff_x);
+	else if (fabsf(diff_y) > EPSILON && fabsf(diff_y) < ONE_MINUS_EPSILON)
+		return (diff_y);
 	else
-	{
-		return (0);
-	}
+		return (0.0f);
 }
 
 float	select_impact_side(t_data *data, t_side side)
 {
 	if (side == NORTH)
-		return (roundf(select_impact(data) * data->texture->width_n));
-	else if (side == SOUTH)
-		return (100 - roundf(select_impact(data) * data->texture->width_s));
-	else if (side == EAST)
 		return (roundf(select_impact(data) * data->texture->width_e));
-	else
+	else if (side == SOUTH)
 		return (100 - roundf(select_impact(data) * data->texture->width_w));
+	else if (side == EAST)
+		return (roundf(select_impact(data) * data->texture->width_n));
+	else if (side == WEST)
+		return (100 - roundf(select_impact(data) * data->texture->width_s));
+	else
+		return (0);
 }
 
 void	wall_height(t_data *data, float wall_dist, int col, float ray)
@@ -61,6 +63,5 @@ void	wall_height(t_data *data, float wall_dist, int col, float ray)
 				- render->wall_height) / 2;
 	render->draw_end = data->screen_height - render->draw_start;
 	render->impact = select_impact_side(data, data->ray->side);
-	// printf("ray : %f\n", ray);
 	rendering(data->all, render, col);
 }
