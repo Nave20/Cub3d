@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/21 16:06:48 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/23 12:15:34 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	open_game(t_all *all, t_mlx *mlx)
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr,
 			all->data->screen_width, all->data->screen_height, "cub3D");
 	all->mouse = ft_calloc(1, sizeof(t_mouse));
-	all->mouse->mid_x = mlx->w_win / 2;
-	all->mouse->mid_y = mlx->h_win / 2;
+	all->mouse->mid_x = all->data->screen_width / 2;
+	all->mouse->mid_y = all->data->screen_height / 2;
 	all->mouse->x = all->mouse->mid_x;
 	all->mouse->y = all->mouse->mid_y;
 	mlx_mouse_hide(mlx->mlx_ptr, mlx->win_ptr);

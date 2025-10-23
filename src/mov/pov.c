@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 11:48:31 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/22 11:38:37 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/23 12:16:08 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	left_arr_mouse(t_data *data)
 {
-	data->player->radian -= 0.00625f;
+	data->player->radian -= 0.0125f;
 	if (data->player->radian < 0)
 		data->player->radian = 2.0f - fabsf(data->player->radian);
 	update(data->all);
@@ -22,7 +22,7 @@ void	left_arr_mouse(t_data *data)
 
 void	right_arr_mouse(t_data *data)
 {
-	data->player->radian += 0.00625f;
+	data->player->radian += 0.0125f;
 	if (data->player->radian < 0)
 		data->player->radian = 2.0f - fabsf(data->player->radian);
 	update(data->all);
@@ -30,7 +30,7 @@ void	right_arr_mouse(t_data *data)
 
 void	letf_arr(t_data *data)
 {
-	data->player->radian -= 0.0625f;
+	data->player->radian -= 0.0125f;
 	if (data->player->radian < 0)
 		data->player->radian = 2.0f - fabsf(data->player->radian);
 	update(data->all);
