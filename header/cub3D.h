@@ -31,7 +31,7 @@
 # define PI 3.14159265358979323846
 # define TWOPI 6.28318530717958647692
 # define POV_INCR 0.0625
-# define TRIG_TABLE (2048*8)
+# define TRIG_TABLE 8192
 # define SIZE 100
 # define STEP 0.15
 
