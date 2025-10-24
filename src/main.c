@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/24 10:36:11 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/24 14:46:57 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,6 @@ void	struct_init(t_all *all)
 	all->mouse = ft_calloc(1, sizeof(t_mouse));
 	if (!all->mouse)
 		error_exit("Error\nMalloc failure\n", all, NULL);
-	all->minimap = ft_calloc(1, sizeof(t_minimap));
-	if (!all->minimap)
-		error_exit("Error\nMalloc failure\n", all, NULL);
 }
 
 void	open_game(t_all *all, t_mlx *mlx)
@@ -108,6 +105,7 @@ int	main(int argc, char **argv)
 	create_player(all->data);
 	all->data->player->radian = 0.75f;
 	ray_servo(all->data, 0);
+	init_minimap(all);
 	get_minimap(all);
 	open_game(all, all->mlx);
 	return (0);
