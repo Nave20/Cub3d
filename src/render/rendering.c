@@ -33,11 +33,11 @@ t_argb	yx_back_converter(t_addr *addr, int y, int x)
 void	rendering(t_all *all, t_render *render, int x)
 {
 	if (all->data->ray->side == NORTH)
-		render_north(all, render, x, 0);
+		render_n(all, render, x);
 	else if (all->data->ray->side == SOUTH)
-		render_south(all, render, x, 0);
+		render_s(all, render, x);
 	else if (all->data->ray->side == WEST)
 		render_w(all, render, x);
 	else if (all->data->ray->side == EAST)
-		render_east(all, render, x, 0);
+		render_e(all, render, x);
 }

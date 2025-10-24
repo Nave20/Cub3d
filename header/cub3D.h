@@ -31,7 +31,7 @@
 # define PI 3.14159265358979323846
 # define TWOPI 6.28318530717958647692
 # define POV_INCR 0.0625
-# define TRIG_TABLE 2048
+# define TRIG_TABLE (2048*8)
 # define SIZE 100
 # define STEP 0.15
 
@@ -205,6 +205,8 @@ struct					s_render
 	float				coef_pix;
 	float				lost_pix;
 	float				start_on_texture;
+	int					tex_x;
+	int					tex_y;
 };
 
 struct					s_ray
@@ -366,6 +368,9 @@ void	update(t_all *all);
 
 void	get_images(t_all *all, t_mlx *mlx);
 void	render_w(t_all *all, t_render *render, int x);
+void	render_n(t_all *all, t_render *render, int x);
+void	render_e(t_all *all, t_render *render, int x);
+void	render_s(t_all *all, t_render *render, int x);
 
 void	draw_ceiling(t_all *all, int max, int z);
 void	draw_floor(t_all *all, int start, int z);

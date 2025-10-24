@@ -28,20 +28,6 @@ float	select_impact(t_data *data)
 		return (0.0f);
 }
 
-float	select_impact_side(t_data *data, t_side side)
-{
-	if (side == NORTH)
-		return (roundf(select_impact(data) * data->texture->width_e));
-	else if (side == SOUTH)
-		return (100 - roundf(select_impact(data) * data->texture->width_w));
-	else if (side == EAST)
-		return (roundf(select_impact(data) * data->texture->width_n));
-	else if (side == WEST)
-		return (100 - roundf(select_impact(data) * data->texture->width_s));
-	else
-		return (0);
-}
-
 void	wall_height(t_data *data, float wall_dist, int col, float ray)
 {
 	t_render	*render;
@@ -62,6 +48,5 @@ void	wall_height(t_data *data, float wall_dist, int col, float ray)
 		render->draw_start = (int)(data->screen_height
 				- render->wall_height) / 2;
 	render->draw_end = data->screen_height - render->draw_start;
-	render->impact = select_impact_side(data, data->ray->side);
 	rendering(data->all, render, col);
 }

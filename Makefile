@@ -50,11 +50,10 @@ SRC_FILES       =	main.c			\
 
 RENDER_FILES	=	rendering.c		\
 					texturing_west.c	\
+					texturing_north.c	\
+					texturing_south.c	\
+					texturing_east.c	\
 					floor_ceiling.c		\
-					render_north.c	\
-					render_south.c	\
-					render_west.c	\
-					render_east.c	\
 
 SOURCES         = $(addprefix $(SRC_DIR), $(SRC_FILES)) \
                   $(addprefix $(PARS_DIR), $(PARS_FILES)) \

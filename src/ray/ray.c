@@ -46,6 +46,8 @@ float	pre_dda(t_data *data, float ray)
 		ray = 2.0f - fabsf(ray);
 	if (ray > 2.0f)
 		ray = fmodf(ray, 2.0f);
+	// data->ray->dir_x = -sinf(ray * PI);//-ft_trig(data, ray, SIN);
+	// data->ray->dir_y = -cosf(ray * PI);//-ft_trig(data, ray, COS);
 	data->ray->dir_x = -ft_trig(data, ray, SIN);
 	data->ray->dir_y = -ft_trig(data, ray, COS);
 	// printf("dir_x: %.6f | dir_y: %.6f\n", data->ray->dir_x, data->ray->dir_y);
