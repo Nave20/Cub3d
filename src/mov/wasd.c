@@ -12,7 +12,7 @@
 
 #include "../../header/cub3D.h"
 
-void	w_key(t_data *data, float new_x, float new_y)
+void	s_key(t_data *data, float new_x, float new_y)
 {
 	t_player	*player;
 
@@ -57,7 +57,7 @@ void	a_key(t_data *data, float new_x, float new_y)
 	update(data->all);
 }
 
-void	s_key(t_data *data, float new_x, float new_y)
+void	w_key(t_data *data, float new_x, float new_y)
 {
 	t_player	*player;
 

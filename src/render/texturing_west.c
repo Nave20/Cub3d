@@ -22,13 +22,13 @@ void	init_render_w(t_all *all, t_render *render)
         render->start_on_texture = 0.0f;
         return;
     }
-	render->coef_pix = all->data->texture->height_s / render->wall_height;
+	render->coef_pix = all->data->texture->height_w / render->wall_height;
 	render->start_on_texture =
           (render->draw_start - (float)all->data->screen_height / 2.0f
           	+ render->wall_height / 2.0f) * render->coef_pix;
 	render->to_draw = render->draw_end - render->draw_start;
 	render->impact = select_impact(all->data)
-		* all->data->texture->width_s;
+		* all->data->texture->width_w;
 }
 
 void	pixel_loop_w(t_all *all,t_render *render, float texpos, int x)
@@ -40,11 +40,11 @@ void	pixel_loop_w(t_all *all,t_render *render, float texpos, int x)
 	while (i < render->draw_end)
 	{
 		render->tex_y = ((int)texpos);
-		render->tex_y = render->tex_y % all->data->texture->height_s;
+		render->tex_y = render->tex_y % all->data->texture->height_w;
 		if (render->tex_y < 0)
-			render->tex_y += all->data->texture->height_s;
+			render->tex_y += all->data->texture->height_w;
 		texpos += render->coef_pix;
-		color = yx_back_converter(all->texture->addr_s, render->tex_y, render->tex_x);
+		color = yx_back_converter(all->texture->addr_w, render->tex_y, render->tex_x);
 		yx_converter(all, color, i, x);
 		i++;
 	}
@@ -64,8 +64,8 @@ void	render_w(t_all *all, t_render *render, int x)
 		return;
 	}
 	draw_ceiling(all, render->draw_start, x);
-	if (render->tex_x >= all->data->texture->width_s)
-		render->tex_x = all->data->texture->width_s - 1;
+	if (render->tex_x >= all->data->texture->width_w)
+		render->tex_x = all->data->texture->width_w - 1;
 	if (render->tex_x < 0)
         render->tex_x = 0;
 	pixel_loop_w(all, render, texpos, x);

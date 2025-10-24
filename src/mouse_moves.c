@@ -14,7 +14,7 @@
 
 void	left_arr_mouse(t_data *data)
 {
-	data->player->radian -= 0.0115f;
+	data->player->radian += 0.0115f;
 	if (data->player->radian < 0)
 		data->player->radian = 2.0f - fabsf(data->player->radian);
 	update(data->all);
@@ -22,7 +22,7 @@ void	left_arr_mouse(t_data *data)
 
 void	right_arr_mouse(t_data *data)
 {
-	data->player->radian += 0.0115f;
+	data->player->radian -= 0.0115f;
 	if (data->player->radian < 0)
 		data->player->radian = 2.0f - fabsf(data->player->radian);
 	update(data->all);

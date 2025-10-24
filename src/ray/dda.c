@@ -56,15 +56,6 @@ void	ray_values(t_data *data, float dir_x, float dir_y)
 	ray = data->ray;
 	ray->map_x = data->player->grid_x;
 	ray->map_y = data->player->grid_y;
-	// if (fabsf(dir_x) < EPSILON)
-	// 	ray->delta_x = HUGE;
-	// else
-	// 	ray->delta_x = fabsf(1.0f / dir_x);
-	//
-	// if (fabsf(dir_y) < EPSILON)
-	// 	ray->delta_y = HUGE;
-	// else
-	// 	ray->delta_y = fabsf(1.0f / dir_y);
 	ray->delta_x = fabsf(1.0f / dir_x);
 	ray->delta_y = fabsf(1.0f / dir_y);
 	ray->side_x = side_x(data, dir_x, ray->delta_x);

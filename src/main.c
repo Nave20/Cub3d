@@ -106,9 +106,6 @@ int	main(int argc, char **argv)
 	display_game(all, all->mlx);
 	fast_trig(all->data);
 	create_player(all->data);
-
-	all->data->player->pos_x = 3.75f;
-	all->data->player->pos_y = 4.5f;
 	ray_servo(all->data, 0);
 	get_minimap(all);
 	open_game(all, all->mlx);
