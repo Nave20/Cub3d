@@ -14,7 +14,10 @@
 
 void	update(t_all *all)
 {
-	fill_fc_image(all, 0, 0);
+	// fill_fc_image(all, 0, 0);
+	all->addr = mlx_get_data_addr(all->mlx->fc_image,
+		&all->bpp, &all->line_length, &all->endian);
+	all->bpp /= 8;
 	ray_servo(all->data, 0);
 	mlx_put_image_to_window(all->mlx->mlx_ptr,
 		all->mlx->win_ptr, all->mlx->fc_image, 0, 0);
@@ -31,7 +34,7 @@ int	key_check(t_all *all)
 	static int	nb_frame;
 
 	nb_frame++;
-	if (nb_frame % 12500 == 0)
+	if (nb_frame % 5000 == 0)
 	{
 		if (all->key->w)
 			w_key(all->data, all->data->player->pos_x, all->data->player->pos_y);

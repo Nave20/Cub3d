@@ -13,7 +13,7 @@ push_swap
 pipex
 42_pipex_tester
 outfile
-test.cub
+assets/map/test.cub
 so_long
 minishell
 42_minishell_tester
