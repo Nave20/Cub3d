@@ -33,7 +33,6 @@ void	wall_height(t_data *data, float wall_dist, int col, float ray)
 	t_render	*render;
 
 	render = data->render;
-	// (void) ray;
 	render->correct_dist = wall_dist
 		* ft_trig(data, ray - data->player->radian, COS);
 	render->wall_height = data->screen_height / render->correct_dist;
