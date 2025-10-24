@@ -12,49 +12,19 @@
 
 #include "../../header/cub3D.h"
 
-// void	print_ray_touch(t_data *data, int x, int y)
-// {
-// 	int	i;
-// 	int	j;
-//
-// 	i = 0;
-// 	j = 0;
-// 	while (data->map[i])
-// 	{
-// 		j = 0;
-// 		while (data->map[i][j])
-// 		{
-// 			if (i == x && j == y)
-// 				printf(RED"%c"RESET, data->map[i][j]);
-// 			else
-// 				printf("%c", data->map[i][j]);
-// 			j++;
-// 		}
-// 		printf("\n");
-// 		i++;
-// 	}
-// }
-
 float	pre_dda(t_data *data, float ray)
 {
 	float	res;
 
-	// printf("\nRay info:\n");
-	// printf("angle factor: %.2fπ\n", ray);
-	// ray += 1;
 	if (ray < 0)
 		ray = 2.0f - fabsf(ray);
 	if (ray > 2.0f)
 		ray = fmodf(ray, 2.0f);
-	// data->ray->dir_x = -sinf(ray * PI);//-ft_trig(data, ray, SIN);
-	// data->ray->dir_y = -cosf(ray * PI);//-ft_trig(data, ray, COS);
 	data->ray->dir_x = ft_trig(data, ray, SIN);
 	data->ray->dir_y = ft_trig(data, ray, COS);
-	// printf("dir_x: %.6f | dir_y: %.6f\n", data->ray->dir_x, data->ray->dir_y);
 	res = dda(data, data->ray->dir_x, data->ray->dir_y);
 	side_touched(data, data->ray->last_side,
 		data->ray->dir_x, data->ray->dir_y);
-	// printf("→ distance: %.6f\n", res);
 	return (res);
 }
 
@@ -104,9 +74,9 @@ void	ray_servo(t_data *data, int i)
 	float	incr;
 	float	wall_dist;
 
-	incr = 0.5f / (float) data->screen_width;
-	ray_start = data->player->radian - 0.25f;
-	ray_end = data->player->radian + 0.25f;
+	incr = (0.5f) / (float) data->screen_width;
+	ray_start = data->player->radian - (0.25f);
+	ray_end = data->player->radian + (0.25f);
 	while (ray_start < ray_end)
 	{
 		wall_dist = pre_dda(data, ray_start);
