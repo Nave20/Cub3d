@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/21 11:33:09 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/24 10:47:39 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@
 # include <unistd.h>
 # include <math.h>
 # include <X11/keysym.h>
+# include <X11/Xlib.h>
 
 //-------------------------------STRUCTS-------------------------------
 
@@ -69,6 +70,12 @@ typedef struct	s_render		t_render;
 typedef struct	s_addr			t_addr;
 typedef struct	s_pxl			t_pxl;
 typedef struct	s_key			t_key;
+typedef struct	s_mouse			t_mouse;
+typedef struct	s_minimap		t_minimap;
+
+
+
+
 
 
 enum			e_side
@@ -84,6 +91,24 @@ enum			e_trig
 	COS,
 	SIN,
 	TAN,
+};
+
+struct			s_minimap
+{
+	char	**map;
+	void	*image;
+	t_argb	*p_color;
+	t_argb	*w_color;
+	t_argb	*f_color;
+};
+
+
+struct			s_mouse
+{
+	int	x;
+	int	y;
+	int	mid_x;
+	int	mid_y;
 };
 
 struct			s_key
@@ -120,6 +145,8 @@ struct			s_all
 	t_texture	*texture;
 	t_data		*data;
 	t_key		*key;
+	t_mouse		*mouse;
+	t_minimap	*minimap;
 };
 
 struct			s_mlx
@@ -309,6 +336,10 @@ void	check_file_ending(int fd, t_all *all, char *buffer, t_list *lst);
 void	display_game(t_all *all, t_mlx *mlx);
 int		exit_game(t_all *all);
 
+
+//-------------------------------MINIMAP-------------------------------
+void	get_minimap(t_all *all);
+
 //---------------------------------------------------------------------
 //-------------------------------MOVEMENT------------------------------
 //---------------------------------------------------------------------
@@ -328,10 +359,13 @@ int		key_event(int keycode, t_all *all);
 int		key_press(int keycode, t_all *all);
 int		key_release(int keycode, t_all *all);
 int		key_check(t_all *all);
+int		mouse_hook(int x, int y, t_all *all);
 
 //---------------------------------POV---------------------------------
 void	letf_arr(t_data *data);
 void	right_arr(t_data *data);
+void	left_arr_mouse(t_data *data);
+void	right_arr_mouse(t_data *data);
 
 //--------------------------------UTILS--------------------------------
 void	print_pos(t_player *player);

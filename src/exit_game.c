@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:22:13 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/15 15:34:22 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/24 10:30:52 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,21 @@ int	exit_game(t_all *all)
 	printf("pos_y : %f\n", all->data->player->pos_y);
 	if (all->data)
 		free_data(all->data);
+	if (all->minimap)
+	{
+		free_map_tab(all->minimap->map);
+		if (all->minimap->image)
+			mlx_destroy_image(all->mlx->mlx_ptr, all->minimap->image);
+		free(all->minimap);
+	}
 	if (all->mlx)
 		free_mlx(all->mlx);
 	if (all->texture)
 		free_texture(all->texture);
+	if(all->key)
+		free(all->key);
+	if (all->mouse)
+		free(all->mouse);
 	free(all);
 	exit(0);
 	return (0);

@@ -47,6 +47,8 @@ SRC_FILES       =	main.c			\
 					mlx_init.c		\
 					exit_game.c		\
 					get_images.c	\
+					mini_map.c		\
+					mouse_moves.c	\
 
 RENDER_FILES	=	rendering.c		\
 					texturing_west.c	\
