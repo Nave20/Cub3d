@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/23 16:06:12 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/24 10:47:39 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,9 @@ struct			s_minimap
 {
 	char	**map;
 	void	*image;
+	t_argb	*p_color;
+	t_argb	*w_color;
+	t_argb	*f_color;
 };
 
 
