@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:54:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/24 17:27:54 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/27 16:04:02 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	update(t_all *all)
 	mlx_put_image_to_window(all->mlx->mlx_ptr,
 		all->mlx->win_ptr, all->mlx->fc_image, 0, 0);
 	get_minimap(all);
-	// pre_scam(all->data, all->data->player->radian);
+	pre_scam(all->data, all->data->player->radian);
 	mlx_put_image_to_window(all->mlx->mlx_ptr,
 							all->mlx->win_ptr, all->minimap->image, 0, 0);
-	// if (all->data->ray->door == true)
-	// 	mlx_string_put(all->mlx->mlx_ptr, all->mlx->win_ptr,all->data->screen_width / 2, all->data->screen_height / 2, all->string_color.argb, "Press f to pay respect");
+	if (all->data->ray->door == true)
+		mlx_string_put(all->mlx->mlx_ptr, all->mlx->win_ptr,all->data->screen_width / 2, all->data->screen_height / 2, all->string_color.argb, "Press f to pay respect");
 }
 
 int	mov_servo(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:07:44 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/24 17:36:46 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/27 16:22:34 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	fill_line(t_data *data, char *line, int i, int j)
 		j++;
 	}
 	data->map[i][j] = ' ';
+	data->map[i][j] = ' ';
 }
 
 void	cpy_lst_to_tab(t_list *lst, t_all *all)
@@ -39,18 +40,19 @@ void	cpy_lst_to_tab(t_list *lst, t_all *all)
 
 	find_cols_nb_map(all->data, lst);
 	all->data->lines = ft_lstsize(lst);
-	i = 1;
+	i = 2;
 	j = 0;
 	ptr = lst;
-	all->data->map = ft_calloc(all->data->lines + 3, sizeof(char *));
+	all->data->map = ft_calloc(all->data->lines + 5, sizeof(char *));
 	if (!all->data->map)
 		error_exit("Error\nMalloc failure", all, lst);
 	add_fist_border_to_tab(lst, all);
 	while (ptr != NULL)
 	{
-		all->data->map[i] = ft_calloc(all->data->cols + 3, sizeof(char));
+		all->data->map[i] = ft_calloc(all->data->cols + 5, sizeof(char));
 		if (!all->data->map[i])
 			error_exit("Error\nMalloc failure", all, lst);
+		all->data->map[i][j++] = ' ';
 		all->data->map[i][j++] = ' ';
 		fill_line(all->data, ptr->content, i, j);
 		i++;

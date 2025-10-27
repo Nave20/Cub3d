@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/24 14:26:42 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/27 16:12:43 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 
 //-------------------------------INCLUDE-------------------------------
 # include "../src/libft/libft.h"
-# include "../minilibx-linux/mlx.h"
+# include "../../minilibx-linux/mlx.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <readline/history.h>
