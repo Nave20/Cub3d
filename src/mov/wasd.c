@@ -17,19 +17,6 @@ void	s_key(t_data *data, float new_x, float new_y)
 	t_player	*player;
 
 	player = data->player;
-	if (data->player->radian == 0.0f)
-	{
-		new_y -= STEP * ft_trig(data, player->radian + 0.5f, SIN);
-		if (data->map[(int)new_y][(int)player->pos_x] != '1')
-			data->player->pos_y = new_y;
-		new_x -= STEP * ft_trig(data, player->radian + 0.5f, COS);
-		if (data->map[(int)player->pos_y][(int)new_x] != '1')
-			data->player->pos_x = new_x;
-		player->grid_y = (int) player->pos_y;
-		player->grid_x = (int) player->pos_x;
-		update(data->all);
-		return ;
-	}
 	new_y -= STEP * ft_trig(data, player->radian, COS);
 	if (data->map[(int)new_y][(int)player->pos_x] != '1')
 		data->player->pos_y = new_y;
