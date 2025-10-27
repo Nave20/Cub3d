@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:22:13 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/24 15:09:31 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/27 11:14:01 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,15 +98,15 @@ void	free_minimap(t_all *all)
 	free_map_tab(all->minimap->map);
 	if (all->minimap->image)
 		mlx_destroy_image(all->mlx->mlx_ptr, all->minimap->image);
-	if(all->minimap->addr)
+	if (all->minimap->addr)
 		free(all->minimap->addr);
-	if(all->minimap->f_color)
+	if (all->minimap->f_color)
 		free(all->minimap->f_color);
-	if(all->minimap->p_color)
+	if (all->minimap->p_color)
 		free(all->minimap->p_color);
-	if(all->minimap->w_color)
+	if (all->minimap->w_color)
 		free(all->minimap->w_color);
-	if(all->minimap->n_color)
+	if (all->minimap->n_color)
 		free(all->minimap->n_color);
 	free(all->minimap);
 }
@@ -124,7 +124,7 @@ int	exit_game(t_all *all)
 		free_mlx(all->mlx);
 	if (all->texture)
 		free_texture(all->texture);
-	if(all->key)
+	if (all->key)
 		free(all->key);
 	if (all->mouse)
 		free(all->mouse);

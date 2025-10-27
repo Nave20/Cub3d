@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 12:25:37 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/24 15:02:10 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/27 11:16:27 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,72 +16,57 @@ void	fill_mini_map(t_all *all, char **map)
 {
 	int	i;
 	int	j;
+	int	i_m;
+	int	j_m;
 
-	i = all->data->player->grid_y;
-	j = all->data->player->grid_x;
-	map[0][0] = all->data->map[i - 2][j - 2];
-	map[0][1] = all->data->map[i - 2][j - 1];
-	map[0][2] = all->data->map[i - 2][j];
-	map[0][3] = all->data->map[i - 2][j + 1];
-	map[0][4] = all->data->map[i - 2][j + 2];
-	map[1][0] = all->data->map[i - 1][j - 2];
-	map[1][1] = all->data->map[i - 1][j - 1];
-	map[1][2] = all->data->map[i - 1][j];
-	map[1][3] = all->data->map[i - 1][j + 1];
-	map[1][4] = all->data->map[i - 1][j + 2];
-	map[2][0] = all->data->map[i][j - 2];
-	map[2][1] = all->data->map[i][j - 1];
-	map[2][2] = all->data->map[i][j];
-	map[2][3] = all->data->map[i][j + 1];
-	map[2][4] = all->data->map[i][j + 2];
-	map[3][0] = all->data->map[i + 1][j - 2];
-	map[3][1] = all->data->map[i + 1][j - 1];
-	map[3][2] = all->data->map[i + 1][j];
-	map[3][3] = all->data->map[i + 1][j + 1];
-	map[3][4] = all->data->map[i + 1][j + 2];
-	map[4][0] = all->data->map[i + 2][j - 2];
-	map[4][1] = all->data->map[i + 2][j - 1];
-	map[4][2] = all->data->map[i + 2][j];
-	map[4][3] = all->data->map[i + 2][j + 1];
-	map[4][4] = all->data->map[i + 2][j + 2];
+	i = all->data->player->grid_y - 2;
+	i_m = 0;
+	while (i_m < 5)
+	{
+		j_m = 0;
+		j = all->data->player->grid_x - 2;
+		while (j_m < 5)
+		{
+			map[i_m][j_m] = all->data->map[i][j];
+			j_m++;
+			j++;
+		}
+		i++;
+		i_m++;
+	}
 	all->minimap->map = map;
 }
 
 void	get_map_image(t_all *all)
 {
-	int	x;
-	int	y;
-	int	line;
-	int	col;
+	int		x;
+	int		y;
+	float	line;
+	float	col;
 
 	x = 0;
 	y = 0;
 	while (y < 200)
 	{
-		line = y / 40;
+		line = ((y - 100.0) / 40.0) + all->data->player->pos_y;
 		while (x < 200)
 		{
-			col = x  / 40;
-			if(all->minimap->map[line][col] == '1')
+			col = ((x - 100.0) / 40.0) + all->data->player->pos_x;
+			if (all->data->map[(int)line][(int)col] == '1')
 			{
-				while(x % 40 != 0)
-				{
-					*(uint32_t *)(all->minimap->addr->addr + (y * all->minimap->addr->line_length
-						+ x * (all->minimap->addr->bpp))) = all->minimap->w_color->argb;
-					x++;
-				}
+				*(uint32_t *)(all->minimap->addr->addr
+						+ (y * all->minimap->addr->line_length
+							+ x * (all->minimap->addr->bpp)))
+						= all->minimap->w_color->argb;
 			}
-			else if(x >= 95 && x <= 105 && y >= 95 && y <= 105)
-				*(uint32_t *)(all->minimap->addr->addr + (y * all->minimap->addr->line_length
-						+ x * (all->minimap->addr->bpp))) = all->minimap->p_color->argb;
-			else if(all->minimap->map[line][col] == ' ')
+			else if (x >= 95 && x <= 105 && y >= 95 && y <= 105)
+				*(uint32_t *)(all->minimap->addr->addr
+						+ (y * all->minimap->addr->line_length
+							+ x * (all->minimap->addr->bpp))) = all->minimap->p_color->argb;
+			else if (all->data->map[(int)line][(int)col] == ' ')
 			{
-				while(x % 40 != 0)
-				{
-					*(uint32_t *)(all->minimap->addr->addr + (y * all->minimap->addr->line_length
-						+ x * (all->minimap->addr->bpp))) = all->minimap->n_color->argb;
-					x++;
-				}
+				*(uint32_t *)(all->minimap->addr->addr + (y * all->minimap->addr->line_length
+					+ x * (all->minimap->addr->bpp))) = all->minimap->n_color->argb;
 			}
 			else
 			{
@@ -127,10 +112,20 @@ void	init_minimap(t_all *all)
 	if (!all->minimap)
 		error_exit("Error\nMalloc failure\n", all, NULL);
 	all->minimap->p_color = ft_calloc(1, sizeof(t_argb));
+	if (!all->minimap->p_color)
+		error_exit("Error\nMalloc failure\n", all, NULL);
 	all->minimap->f_color = ft_calloc(1, sizeof(t_argb));
+	if (!all->minimap->f_color)
+		error_exit("Error\nMalloc failure\n", all, NULL);
 	all->minimap->w_color = ft_calloc(1, sizeof(t_argb));
+	if (!all->minimap->w_color)
+		error_exit("Error\nMalloc failure\n", all, NULL);
 	all->minimap->n_color = ft_calloc(1, sizeof(t_argb));
+	if (!all->minimap->n_color)
+		error_exit("Error\nMalloc failure\n", all, NULL);
 	all->minimap->addr = ft_calloc(1, sizeof(t_addr));
+	if (!all->minimap->addr)
+		error_exit("Error\nMalloc failure\n", all, NULL);
 	all->minimap->image = mlx_new_image(all->mlx->mlx_ptr,
 			200, 200);
 	all->minimap->addr->addr = mlx_get_data_addr(all->minimap->image,
@@ -140,18 +135,18 @@ void	init_minimap(t_all *all)
 
 void	get_minimap(t_all *all)
 {
-	int	i;
+	int		i;
 	char	**map;
 
 	i = 0;
 	fill_minimap_colors(all->minimap);
 	map = ft_calloc (6, sizeof(char *));
-	while(i < 5)
+	while (i < 5)
 	{
 		map[i] = ft_calloc (6, sizeof(char));
 		i++;
 	}
 	fill_mini_map(all, map);
-	print_map(all->minimap->map);
+	// print_map(all->minimap->map);
 	get_map_image(all);
 }

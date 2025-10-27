@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/24 14:46:57 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/24 15:16:15 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	main(int argc, char **argv)
 	display_game(all, all->mlx);
 	fast_trig(all->data);
 	create_player(all->data);
-	all->data->player->radian = 0.75f;
+	// all->data->player->radian = 0.75f;
 	ray_servo(all->data, 0);
 	init_minimap(all);
 	get_minimap(all);
