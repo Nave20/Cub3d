@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:04:00 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/27 15:18:14 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/10/27 16:38:40 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,3 @@ int	parsing_servo(t_all *all, int fd)
 		return (1);
 	return (0);
 }
-

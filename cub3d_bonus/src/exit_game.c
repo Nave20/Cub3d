@@ -6,41 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:22:13 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/27 16:05:41 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/27 17:12:09 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3D.h"
-
-void	destroy_images(t_mlx *mlx)
-{
-	if (mlx->e_texture)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->e_texture);
-	if (mlx->w_texture)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->w_texture);
-	if (mlx->s_texture)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->s_texture);
-	if (mlx->n_texture)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->n_texture);
-	if (mlx->fc_image)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->fc_image);
-}
-
-void	free_mlx(t_mlx *mlx)
-{
-	destroy_images(mlx);
-	if (mlx->win_ptr)
-		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
-	mlx->win_ptr = NULL;
-	if (mlx->mlx_ptr)
-	{
-		mlx_loop_end(mlx->mlx_ptr);
-		mlx_destroy_display(mlx->mlx_ptr);
-		free(mlx->mlx_ptr);
-		mlx->mlx_ptr = NULL;
-	}
-	free(mlx);
-}
 
 void	free_addr(t_texture *texture)
 {
@@ -52,6 +22,8 @@ void	free_addr(t_texture *texture)
 		free(texture->addr_s);
 	if (texture->addr_w)
 		free(texture->addr_w);
+	if (texture->addr_d)
+		free(texture->addr_d);
 }
 
 void	free_texture(t_texture *texture)
@@ -64,6 +36,8 @@ void	free_texture(t_texture *texture)
 		free(texture->south_texture);
 	if (texture->west_texture)
 		free(texture->west_texture);
+	if (texture->door_texture)
+		free(texture->door_texture);
 	if (texture->floor_color)
 	{
 		if (texture->floor_color->color)
@@ -95,7 +69,6 @@ void	free_data(t_data *data)
 
 void	free_minimap(t_all *all)
 {
-	free_map_tab(all->minimap->map);
 	if (all->minimap->image)
 		mlx_destroy_image(all->mlx->mlx_ptr, all->minimap->image);
 	if (all->minimap->addr)
@@ -108,6 +81,8 @@ void	free_minimap(t_all *all)
 		free(all->minimap->w_color);
 	if (all->minimap->n_color)
 		free(all->minimap->n_color);
+	if (all->minimap->c_color)
+		free(all->minimap->c_color);
 	free(all->minimap);
 }
 

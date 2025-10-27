@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:07:44 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/27 16:22:33 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/27 17:40:31 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,12 @@ void	fill_line(t_data *data, char *line, int i, int j)
 	data->map[i][j] = ' ';
 }
 
-void	cpy_lst_to_tab(t_list *lst, t_all *all)
+void	cpy_lst_to_tab(t_list *lst, t_all *all, int i, int j)
 {
 	t_list	*ptr;
-	int		i;
-	int		j;
 
 	find_cols_nb_map(all->data, lst);
 	all->data->lines = ft_lstsize(lst);
-	i = 2;
-	j = 0;
 	ptr = lst;
 	all->data->map = ft_calloc(all->data->lines + 5, sizeof(char *));
 	if (!all->data->map)
@@ -91,7 +87,7 @@ void	map_handling(char *buffer, int fd, t_all *all, t_list *lst)
 	if (buffer && is_map_line(buffer))
 	{
 		lst = cpy_map_to_lst(all, buffer, fd, error);
-		cpy_lst_to_tab(lst, all);
+		cpy_lst_to_tab(lst, all, 2, 0);
 		free_lst(lst);
 		print_map(all->data->map);
 		return ;

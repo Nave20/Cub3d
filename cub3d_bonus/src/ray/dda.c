@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 11:39:38 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/16 11:17:11 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/27 17:44:33 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,6 @@
 
 #define EPSILON 1e-6f
 #define HUGE 1e30f
-
-float	side_x(t_data *data, float dir_x, float delta_x)
-{
-	t_ray	*ray;
-
-	ray = data->ray;
-	if (dir_x < 0.0f)
-	{
-		ray->step_x = -1;
-		return ((data->player->pos_x - ray->map_x) * delta_x);
-	}
-	else
-	{
-		ray->step_x = 1;
-		return ((ray->map_x + 1.0f - data->player->pos_x) * delta_x);
-	}
-}
-
-float	side_y(t_data *data, float dir_y, float delta_y)
-{
-	t_ray	*ray;
-
-	ray = data->ray;
-	if (dir_y < 0.0f)
-	{
-		ray->step_y = -1;
-		return ((data->player->pos_y - ray->map_y) * delta_y);
-	}
-	else
-	{
-		ray->step_y = 1;
-		return ((ray->map_y + 1.0f - data->player->pos_y) * delta_y);
-	}
-}
 
 void	ray_values(t_data *data, float dir_x, float dir_y)
 {
@@ -82,6 +48,25 @@ float	dda_return(t_data *data, float dir_x, float dir_y)
 	return (fabsf(wall_dist));
 }
 
+void	dda_loop(t_data *data, t_ray *ray, bool *hit)
+{
+	if (ray->side_x < ray->side_y)
+	{
+		ray->side_x += ray->delta_x;
+		ray->map_x += ray->step_x;
+		ray->last_side = 0;
+	}
+	else
+	{
+		ray->side_y += ray->delta_y;
+		ray->map_y += ray->step_y;
+		ray->last_side = 1;
+	}
+	if (data->map[ray->map_y][ray->map_x] == '1'
+		|| data->map[ray->map_y][ray->map_x] == 'C')
+		*hit = true;
+}
+
 float	dda(t_data *data, float dir_x, float dir_y)
 {
 	t_ray	*ray;
@@ -91,22 +76,7 @@ float	dda(t_data *data, float dir_x, float dir_y)
 	hit = false;
 	ray_values(data, dir_x, dir_y);
 	while (!hit)
-	{
-		if (ray->side_x < ray->side_y)
-		{
-			ray->side_x += ray->delta_x;
-			ray->map_x += ray->step_x;
-			ray->last_side = 0;
-		}
-		else
-		{
-			ray->side_y += ray->delta_y;
-			ray->map_y += ray->step_y;
-			ray->last_side = 1;
-		}
-		if (data->map[ray->map_y][ray->map_x] == '1' || data->map[ray->map_y][ray->map_x] == 'C')
-			hit = true;
-	}
+		dda_loop(data, ray, &hit);
 	if (data->map[ray->map_y][ray->map_x] == 'C')
 	{
 		ray->door = true;

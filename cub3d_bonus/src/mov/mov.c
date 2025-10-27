@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:54:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/27 16:04:02 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/27 16:36:23 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 void	update(t_all *all)
 {
-
 	ray_servo(all->data, 0);
 	mlx_put_image_to_window(all->mlx->mlx_ptr,
 		all->mlx->win_ptr, all->mlx->fc_image, 0, 0);
 	get_minimap(all);
 	pre_scam(all->data, all->data->player->radian);
 	mlx_put_image_to_window(all->mlx->mlx_ptr,
-							all->mlx->win_ptr, all->minimap->image, 0, 0);
+		all->mlx->win_ptr, all->minimap->image, 0, 0);
 	if (all->data->ray->door == true)
-		mlx_string_put(all->mlx->mlx_ptr, all->mlx->win_ptr,all->data->screen_width / 2, all->data->screen_height / 2, all->string_color.argb, "Press f to pay respect");
+		mlx_string_put(all->mlx->mlx_ptr,
+			all->mlx->win_ptr, all->data->screen_width / 2,
+			all->data->screen_height / 2, all->string_color.argb,
+			"Press f to pay respect");
 }
 
 int	mov_servo(t_data *data)
@@ -42,13 +44,17 @@ int	key_check(t_all *all)
 		if (all->key->f)
 			f_key(all);
 		if (all->key->w)
-			w_key(all->data, all->data->player->pos_x, all->data->player->pos_y);
+			w_key(all->data, all->data->player->pos_x,
+				all->data->player->pos_y);
 		if (all->key->a)
-			a_key(all->data, all->data->player->pos_x, all->data->player->pos_y);
+			a_key(all->data, all->data->player->pos_x,
+				all->data->player->pos_y);
 		if (all->key->s)
-			s_key(all->data, all->data->player->pos_x, all->data->player->pos_y);
+			s_key(all->data, all->data->player->pos_x,
+				all->data->player->pos_y);
 		if (all->key->d)
-			d_key(all->data, all->data->player->pos_x, all->data->player->pos_y);
+			d_key(all->data, all->data->player->pos_x,
+				all->data->player->pos_y);
 		if (all->key->left_arrow)
 			letf_arr(all->data);
 		if (all->key->right_arrow)

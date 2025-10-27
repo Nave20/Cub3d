@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:59:30 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/15 15:43:55 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/27 16:38:25 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	char_check(t_all *all)
 
 bool	is_invalid_char(char c)
 {
-	if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == 'O' || c == 'C')
+	if (c == '0' || c == 'N' || c == 'S' || c == 'E'
+		|| c == 'W' || c == 'O' || c == 'C')
 		return (1);
 	else
 		return (0);

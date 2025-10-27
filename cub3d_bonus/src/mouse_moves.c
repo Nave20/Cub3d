@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:50:08 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/27 11:13:37 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/27 16:31:08 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ int	mouse_hook(int x, int y, t_all *all)
 	if (dif < -5)
 		left_arr_mouse(all->data);
 	mlx_mouse_move(all->mlx->mlx_ptr, all->mlx->win_ptr,
-			all->mouse->mid_x, all->mouse->mid_y);
+		all->mouse->mid_x, all->mouse->mid_y);
 	return (0);
 }
