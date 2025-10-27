@@ -33,7 +33,9 @@ t_argb	yx_back_converter(t_addr *addr, int y, int x)
 void	rendering(t_all *all, t_render *render, int x)
 {
 	x = all->data->screen_width - x;
-	if (all->data->ray->side == NORTH)
+	if (all->data->ray->door == 1)
+		render_d(all, render, x);
+	else if (all->data->ray->side == NORTH)
 		render_s(all, render, x);
 	else if (all->data->ray->side == SOUTH)
 		render_n(all, render, x);

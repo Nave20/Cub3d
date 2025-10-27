@@ -90,5 +90,8 @@ void	display_game(t_all *all, t_mlx *mlx)
 	all->texture->addr_w = malloc(sizeof(t_addr));
 	if (!all->texture->addr_w)
 		error_exit("Error\nMalloc failure\n", all, NULL);
+	all->texture->addr_d = malloc(sizeof(t_addr));
+	if (!all->texture->addr_d)
+		error_exit("Error\nMalloc failure\n", all, NULL);
 	get_images(all, all->mlx);
 }

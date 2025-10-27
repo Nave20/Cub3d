@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:04:00 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/21 11:26:28 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/27 15:18:14 by vpirotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,16 @@ int	dispatcher_loop(int fd, t_texture *texture, int error, char *line)
 		else if (ft_strnstr(line, "EA ", ft_strlen(line)) != NULL
 			&& texture->valid_east == false)
 			get_ea(fd, texture, line);
+		else if (ft_strnstr(line, "DO ", ft_strlen(line)) != NULL
+			&& texture->valid_door == false)
+			get_do(fd, texture, line);
 		else if (ft_strnstr(line, "F ", ft_strlen(line)) != NULL
 			&& texture->valid_floor == false)
 			get_f(fd, texture, line);
 		else if (ft_strnstr(line, "C ", ft_strlen(line)) != NULL
 			&& texture->valid_ceiling == false)
 			get_c(fd, texture, line);
-		else if (texture->valid_north == true && texture->valid_south == true && texture->valid_west == true && texture->valid_east == true && texture->valid_floor == true && texture->valid_ceiling == true)
+		else if (texture->valid_north == true && texture->valid_south == true && texture->valid_west == true && texture->valid_east == true && texture->valid_floor == true && texture->valid_ceiling == true && texture->valid_door == true)
 		{
 			free(line);
 			return (0);
@@ -75,6 +78,8 @@ void	texture_init(t_texture *texture)
 	texture->valid_south = false;
 	texture->valid_west = false;
 	texture->valid_east = false;
+	texture->door_texture = false;
+	texture->valid_door = false;
 }
 
 void	texture_alloc(t_all *all)

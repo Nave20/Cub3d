@@ -37,7 +37,7 @@ void	char_check(t_all *all)
 
 bool	is_invalid_char(char c)
 {
-	if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == 'O' || c == 'C')
 		return (1);
 	else
 		return (0);

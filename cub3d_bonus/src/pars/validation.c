@@ -120,6 +120,8 @@ int	arg_validation(t_texture *texture)
 		return (wrong_format());
 	if (valid_xpm(texture->east_texture))
 		return (wrong_format());
+	if (valid_xpm(texture->door_texture))
+		return (wrong_format());
 	if (valid_color(texture->floor_color, 0, NULL))
 		return (1);
 	if (valid_color(texture->ceiling_color, 0, NULL))

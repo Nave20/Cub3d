@@ -37,6 +37,7 @@ MOV_FILES		=	mov.c			\
 					player.c		\
 					pov.c			\
 					wasd.c			\
+					door.c			\
 
 RAY_FILES		=	ray.c			\
 					dda.c			\
@@ -55,6 +56,7 @@ RENDER_FILES	=	rendering.c		\
 					texturing_north.c	\
 					texturing_south.c	\
 					texturing_east.c	\
+					texturing_door.c	\
 					floor_ceiling.c		\
 
 SOURCES         = $(addprefix $(SRC_DIR), $(SRC_FILES)) \

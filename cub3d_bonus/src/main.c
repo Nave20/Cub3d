@@ -57,6 +57,10 @@ void	struct_init(t_all *all)
 	all->mouse = ft_calloc(1, sizeof(t_mouse));
 	if (!all->mouse)
 		error_exit("Error\nMalloc failure\n", all, NULL);
+	all->string_color.a = 255;
+	all->string_color.r = 0;
+	all->string_color.g = 255;
+	all->string_color.b = 0;
 }
 
 void	open_game(t_all *all, t_mlx *mlx)

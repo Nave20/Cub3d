@@ -84,10 +84,29 @@ void	get_n_image(t_all *all, t_mlx *mlx, int w, int h)
 	addr_n->bpp /= 8;
 }
 
+void	get_d_image(t_all *all, t_mlx *mlx, int w, int h)
+{
+	t_addr	*addr_d;
+
+	mlx->d_texture = mlx_xpm_file_to_image(all->mlx->mlx_ptr,
+			all->texture->door_texture, &w, &h);
+	if (!mlx->d_texture)
+		error_exit("Error\nXPM to image failure\n", all, NULL);
+	if (w <= 0 || h <= 0)
+		error_exit("Error\nBad image dimensions\n", all, NULL);
+	all->texture->width_d = w;
+	all->texture->height_d = h;
+	addr_d = all->texture->addr_d;
+	addr_d->addr = mlx_get_data_addr(all->mlx->d_texture,
+			&addr_d->bpp, &addr_d->line_length, &addr_d->endian);
+	addr_d->bpp /= 8;
+}
+
 void	get_images(t_all *all, t_mlx *mlx)
 {
 	get_n_image(all, mlx, 0, 0);
 	get_s_image(all, mlx, 0, 0);
 	get_e_image(all, mlx, 0, 0);
 	get_w_image(all, mlx, 0, 0);
+	get_d_image(all, mlx, 0, 0);
 }

@@ -14,12 +14,16 @@
 
 void	update(t_all *all)
 {
+
 	ray_servo(all->data, 0);
 	mlx_put_image_to_window(all->mlx->mlx_ptr,
 		all->mlx->win_ptr, all->mlx->fc_image, 0, 0);
 	get_minimap(all);
+	// pre_scam(all->data, all->data->player->radian);
 	mlx_put_image_to_window(all->mlx->mlx_ptr,
-		all->mlx->win_ptr, all->minimap->image, 0, 0);
+							all->mlx->win_ptr, all->minimap->image, 0, 0);
+	// if (all->data->ray->door == true)
+	// 	mlx_string_put(all->mlx->mlx_ptr, all->mlx->win_ptr,all->data->screen_width / 2, all->data->screen_height / 2, all->string_color.argb, "Press f to pay respect");
 }
 
 int	mov_servo(t_data *data)
@@ -35,6 +39,8 @@ int	key_check(t_all *all)
 	nb_frame++;
 	if (nb_frame % 5000 == 0)
 	{
+		if (all->key->f)
+			f_key(all);
 		if (all->key->w)
 			w_key(all->data, all->data->player->pos_x, all->data->player->pos_y);
 		if (all->key->a)
@@ -53,6 +59,8 @@ int	key_check(t_all *all)
 
 int	key_release(int keycode, t_all *all)
 {
+	if (keycode == XK_f)
+		all->key->f = 0;
 	if (keycode == XK_w)
 		all->key->w = 0;
 	if (keycode == XK_a)
@@ -72,6 +80,8 @@ int	key_press(int keycode, t_all *all)
 {
 	if (keycode == XK_Escape)
 		exit_game(all);
+	if (keycode == XK_f)
+		all->key->f = 1;
 	if (keycode == XK_w)
 		all->key->w = 1;
 	if (keycode == XK_a)

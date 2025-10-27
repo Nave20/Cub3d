@@ -119,3 +119,31 @@ int	get_ea(int fd, t_texture *texture, char *line)
 	}
 	return (1);
 }
+
+int	get_do(int fd, t_texture *texture, char *line)
+{
+	int	i;
+	int	error;
+
+	error = 0;
+	while (line && ft_strnstr(line, "DO ", ft_strlen(line)) == NULL)
+	{
+		line = get_next_line(fd, &error);
+		if (error)
+			return (err_gnl());
+	}
+	if (line)
+	{
+		i = strnstr_int(line, "DO ", ft_strlen(line));
+		i += 3;
+		while (line[i] == ' ' || line[i] == '\t')
+			i++;
+		texture->valid_door = true;
+		texture->door_texture = ft_strdup(&line[i]);
+		dprintf(2, "%s\n", texture->door_texture);
+		if (!texture->door_texture)
+			return (err_strdup());
+		return (0);
+	}
+	return (1);
+}

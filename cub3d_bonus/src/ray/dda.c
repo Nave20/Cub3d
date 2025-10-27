@@ -54,6 +54,7 @@ void	ray_values(t_data *data, float dir_x, float dir_y)
 	t_ray	*ray;
 
 	ray = data->ray;
+	ray->door = false;
 	ray->map_x = data->player->grid_x;
 	ray->map_y = data->player->grid_y;
 	ray->delta_x = fabsf(1.0f / dir_x);
@@ -103,8 +104,12 @@ float	dda(t_data *data, float dir_x, float dir_y)
 			ray->map_y += ray->step_y;
 			ray->last_side = 1;
 		}
-		if (data->map[ray->map_y][ray->map_x] == '1')
+		if (data->map[ray->map_y][ray->map_x] == '1' || data->map[ray->map_y][ray->map_x] == 'C')
 			hit = true;
+	}
+	if (data->map[ray->map_y][ray->map_x] == 'C')
+	{
+		ray->door = true;
 	}
 	return (dda_return(data, dir_x, dir_y));
 }

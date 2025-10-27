@@ -120,6 +120,7 @@ struct			s_key
 	int	a;
 	int	s;
 	int	d;
+	int f;
 	int	left_arrow;
 	int	right_arrow;
 };
@@ -143,6 +144,7 @@ struct			s_all
 	int			bpp;
 	int			line_length;
 	int			endian;
+	t_argb		string_color;
 	t_mlx		*mlx;
 	t_color		*color;
 	t_texture	*texture;
@@ -162,6 +164,7 @@ struct			s_mlx
 	void	*s_texture;
 	void	*e_texture;
 	void	*w_texture;
+	void	*d_texture;
 	void	*fc_image;
 	char	**img_tab;
 	t_argb	f_color;
@@ -184,6 +187,11 @@ struct			s_texture
 	int				width_n;
 	int				height_n;
 	t_addr			*addr_n;
+	char			*door_texture;
+	bool			valid_door;
+	int				width_d;
+	int				height_d;
+	t_addr			*addr_d;
 	char			*south_texture;
 	bool			valid_south;
 	int				width_s;
@@ -254,6 +262,7 @@ struct					s_ray
 	float				impact_x;
 	float				impact_y;
 	bool				last_side;
+	bool				door;
 	t_side				side;
 };
 
@@ -411,6 +420,15 @@ void	render_s(t_all *all, t_render *render, int x);
 
 void	draw_ceiling(t_all *all, int max, int z);
 void	draw_floor(t_all *all, int start, int z);
+
+void	ray_values(t_data *data, float dir_x, float dir_y);
+float	dda_return(t_data *data, float dir_x, float dir_y);
+
+void	f_key(t_all *all);
+int		get_do(int fd, t_texture *texture, char *line);
+void	render_d(t_all *all, t_render *render, int x);
+float	pre_scam(t_data *data, float ray);
+
 
 
 #endif
