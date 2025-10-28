@@ -15,7 +15,7 @@ RENDER_DIR        = $(SRC_DIR)render/
 RENDER_OBJDIR     = $(OBJ_DIR)render/
 
 LIB            = $(SRC_DIR)/libft/libft.a
-MLXPATH        = ../minilibx-linux
+MLXPATH        = ./minilibx-linux
 MLX            =$(MLX_PATH)/libmlx.a
 
 PARS_FILES      =	get_texture.c	\

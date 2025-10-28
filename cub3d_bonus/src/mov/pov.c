@@ -19,7 +19,7 @@ void	letf_arr(t_data *data)
 		data->player->radian = 2.0f - fabsf(data->player->radian);
 	if (floorf(data->player->radian * 1000) == 2000)
 		data->player->radian = 0.0f;
-	update(data->all);
+	// update(data->all);
 }
 
 void	right_arr(t_data *data)
@@ -29,5 +29,5 @@ void	right_arr(t_data *data)
 		data->player->radian = 2.0f - fabsf(data->player->radian);
 	if (floorf(data->player->radian * 1000) == 2000)
 		data->player->radian = 0.0f;
-	update(data->all);
+	// update(data->all);
 }

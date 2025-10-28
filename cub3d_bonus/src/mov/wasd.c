@@ -25,7 +25,7 @@ void	s_key(t_data *data, float new_x, float new_y)
 		data->player->pos_x = new_x;
 	player->grid_y = (int) player->pos_y;
 	player->grid_x = (int) player->pos_x;
-	update(data->all);
+	// update(data->all);
 }
 
 void	a_key(t_data *data, float new_x, float new_y)
@@ -41,7 +41,7 @@ void	a_key(t_data *data, float new_x, float new_y)
 		data->player->pos_x = new_x;
 	player->grid_y = (int) player->pos_y;
 	player->grid_x = (int) player->pos_x;
-	update(data->all);
+	// update(data->all);
 }
 
 void	w_key(t_data *data, float new_x, float new_y)
@@ -59,7 +59,7 @@ void	w_key(t_data *data, float new_x, float new_y)
 			data->player->pos_x = new_x;
 		player->grid_y = (int) player->pos_y;
 		player->grid_x = (int) player->pos_x;
-		update(data->all);
+		// update(data->all);
 		return ;
 	}
 	new_y -= STEP * ft_trig(data, player->radian + 1.0f, COS);
@@ -70,7 +70,7 @@ void	w_key(t_data *data, float new_x, float new_y)
 		data->player->pos_x = new_x;
 	player->grid_y = (int) player->pos_y;
 	player->grid_x = (int) player->pos_x;
-	update(data->all);
+	// update(data->all);
 }
 
 void	d_key(t_data *data, float new_x, float new_y)
@@ -88,7 +88,7 @@ void	d_key(t_data *data, float new_x, float new_y)
 			data->player->pos_x = new_x;
 		player->grid_y = (int) player->pos_y;
 		player->grid_x = (int) player->pos_x;
-		update(data->all);
+		// update(data->all);
 		return ;
 	}
 	new_y -= STEP * ft_trig(data, player->radian + 0.5f, COS);
@@ -99,5 +99,5 @@ void	d_key(t_data *data, float new_x, float new_y)
 		data->player->pos_x = new_x;
 	player->grid_y = (int) player->pos_y;
 	player->grid_x = (int) player->pos_x;
-	update(data->all);
+	// update(data->all);
 }

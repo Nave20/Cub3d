@@ -38,7 +38,7 @@
 
 //-------------------------------INCLUDE-------------------------------
 # include "../src/libft/libft.h"
-# include "../../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <readline/history.h>
@@ -427,7 +427,7 @@ float	dda_return(t_data *data, float dir_x, float dir_y);
 void	f_key(t_all *all);
 int		get_do(int fd, t_texture *texture, char *line);
 void	render_d(t_all *all, t_render *render, int x);
-float	pre_scam(t_data *data, float ray);
+float	door_detect(t_data *data, float ray);
 
 
 

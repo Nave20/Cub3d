@@ -12,7 +12,7 @@
 
 #include "../../header/cub3D.h"
 
-float	scam_dda(t_data *data, float dir_x, float dir_y)
+float	door_dda(t_data *data, float dir_x, float dir_y)
 {
 	t_ray	*ray;
 	bool	hit;
@@ -44,7 +44,7 @@ float	scam_dda(t_data *data, float dir_x, float dir_y)
 	return (dda_return(data, dir_x, dir_y));
 }
 
-float	pre_scam(t_data *data, float ray)
+float	door_detect(t_data *data, float ray)
 {
 	float	res;
 
@@ -54,7 +54,7 @@ float	pre_scam(t_data *data, float ray)
 		ray = fmodf(ray, 2.0f);
 	data->ray->dir_x = ft_trig(data, ray, SIN);
 	data->ray->dir_y = ft_trig(data, ray, COS);
-	res = scam_dda(data, data->ray->dir_x, data->ray->dir_y);
+	res = door_dda(data, data->ray->dir_x, data->ray->dir_y);
 	side_touched(data, data->ray->last_side,
 		data->ray->dir_x, data->ray->dir_y);
 	return (res);
@@ -65,7 +65,7 @@ void	f_key(t_all *all)
 	int	x;
 	int	y;
 
-	pre_scam(all->data, all->data->player->radian);
+	door_detect(all->data, all->data->player->radian);
 	if (all->data->ray->door != true)
 		return ;
 	x = all->data->player->pos_x;
@@ -98,5 +98,5 @@ void	f_key(t_all *all)
 		else
 			all->data->map[y][x - 1] = 'C';
 	}
-	update(all);
+	// update(all);
 }
