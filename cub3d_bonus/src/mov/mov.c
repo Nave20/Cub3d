@@ -50,13 +50,17 @@ int	key_check(t_all *all)
 	if (nb_frame % 5000 == 0)
 	{
 		if (all->key->w)
-			w_key(all->data, all->data->player->pos_x, all->data->player->pos_y);
+			w_key(all->data, all->data->player->pos_x,
+				all->data->player->pos_y);
 		if (all->key->a)
-			a_key(all->data, all->data->player->pos_x, all->data->player->pos_y);
+			a_key(all->data, all->data->player->pos_x,
+				all->data->player->pos_y);
 		if (all->key->s)
-			s_key(all->data, all->data->player->pos_x, all->data->player->pos_y);
+			s_key(all->data, all->data->player->pos_x,
+				all->data->player->pos_y);
 		if (all->key->d)
-			d_key(all->data, all->data->player->pos_x, all->data->player->pos_y);
+			d_key(all->data, all->data->player->pos_x,
+				all->data->player->pos_y);
 		if (all->key->left_arrow)
 			letf_arr(all->data);
 		if (all->key->right_arrow)

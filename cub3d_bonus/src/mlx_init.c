@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 12:16:45 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/24 13:07:14 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/27 16:33:07 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,10 @@ void	display_game(t_all *all, t_mlx *mlx)
 	all->key = ft_calloc(1, sizeof(t_key));
 	all->mlx->fc_image = mlx_new_image(mlx->mlx_ptr,
 			all->data->screen_width, all->data->screen_height);
-			fill_color_struct(all);
+	fill_color_struct(all);
 	all->addr = mlx_get_data_addr(all->mlx->fc_image,
-		&all->bpp, &all->line_length, &all->endian);
+			&all->bpp, &all->line_length, &all->endian);
 	all->bpp /= 8;
-	// fill_fc_image(all, 0, 0);
 	all->texture->addr_n = malloc(sizeof(t_addr));
 	if (!all->texture->addr_n)
 		error_exit("Error\nMalloc failure\n", all, NULL);

@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/24 15:16:15 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/27 17:13:59 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	open_game(t_all *all, t_mlx *mlx)
 	all->mouse->y = all->mouse->mid_y;
 	mlx_mouse_hide(mlx->mlx_ptr, mlx->win_ptr);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->fc_image, 0, 0);
-	mlx_put_image_to_window(all->mlx->mlx_ptr, all->mlx->win_ptr, all->minimap->image, 0, 0);
+	mlx_put_image_to_window(all->mlx->mlx_ptr, all->mlx->win_ptr,
+		all->minimap->image, 0, 0);
 	mlx_hook(mlx->win_ptr, 17, 0, exit_game, all);
 	mlx_hook(mlx->win_ptr, 2, 1L << 0, key_press, all);
 	mlx_hook(mlx->win_ptr, 3, 1L << 1, key_release, all);
@@ -107,9 +108,9 @@ int	main(int argc, char **argv)
 	display_game(all, all->mlx);
 	fast_trig(all->data);
 	create_player(all->data);
-	printf("screen h : %d, screen w : %d\n", all->data->screen_height, all->data->screen_width);
+	printf("screen h : %d, screen w : %d\n", all->data->screen_height,
+		all->data->screen_width);
 	ray_servo(all->data, 0);
-	init_minimap(all);
 	get_minimap(all);
 	open_game(all, all->mlx);
 	return (0);

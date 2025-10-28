@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/27 15:56:44 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/27 17:45:13 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ struct			s_minimap
 	t_argb	*w_color;
 	t_argb	*f_color;
 	t_argb	*n_color;
+	t_argb	*c_color;
 	t_addr	*addr;
 };
 
@@ -329,6 +330,9 @@ int		err_split(void);
 int		err_strdup(void);
 int		wrong_format(void);
 void	err_malloc(int fd);
+void	free_mlx(t_mlx *mlx);
+void	destroy_images(t_mlx *mlx);
+int		exit_game(t_all *all);
 
 //---------------------------------MAP---------------------------------
 void	print_lst(t_list *lst);
@@ -346,12 +350,12 @@ void	map_parsing(t_data *data, t_all *all);
 void	check_file_ending(int fd, t_all *all, char *buffer, t_list *lst);
 
 void	display_game(t_all *all, t_mlx *mlx);
-int		exit_game(t_all *all);
 
 
 //-------------------------------MINIMAP-------------------------------
 void	get_minimap(t_all *all);
 void	init_minimap(t_all *all);
+void	fill_minimap_image(t_all *all);
 //---------------------------------------------------------------------
 //-------------------------------MOVEMENT------------------------------
 //---------------------------------------------------------------------
@@ -397,6 +401,8 @@ void	wall_height(t_data *data, float wall_dist, int col,float ray);
 float	select_impact(t_data *data);
 void	get_ray_impact(t_data *data, float distance);
 void	fill_fc_image(t_all *all, int x, int y);
+float	side_y(t_data *data, float dir_y, float delta_y);
+float	side_x(t_data *data, float dir_x, float delta_x);
 
 //-------------------------------------------------------------------------
 //----------------------------------RENDER---------------------------------
