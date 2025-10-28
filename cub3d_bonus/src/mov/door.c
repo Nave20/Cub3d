@@ -65,7 +65,7 @@ void	f_key(t_all *all)
 	int	x;
 	int	y;
 
-	pre_scam(all->data, all->data->player->radian);
+	door_detect(all->data, all->data->player->radian);
 	if (all->data->ray->door != true)
 		return ;
 	x = all->data->player->pos_x;
