@@ -6,11 +6,22 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 12:16:45 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/27 16:33:07 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/28 17:37:33 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3D.h"
+
+void	get_screen_size(t_all *all)
+{
+	int	x;
+	int	y;
+
+	all->mlx->mlx_ptr = mlx_init();
+	mlx_get_screen_size(all->mlx->mlx_ptr, &x, &y);
+	all->data->screen_height = y - 200; ///modif
+	all->data->screen_width = x - 400; ///modif
+}
 
 char	*dup_img_line(t_all *all, char *img, int start, int end)
 {
@@ -92,5 +103,8 @@ void	display_game(t_all *all, t_mlx *mlx)
 	all->texture->addr_d = malloc(sizeof(t_addr));
 	if (!all->texture->addr_d)
 		error_exit("Error\nMalloc failure\n", all, NULL);
+	// all->texture->addr_txt = malloc(sizeof(t_addr));
+	// if (!all->texture->addr_txt)
+	// 	error_exit("Error\nMalloc failure\n", all, NULL);
 	get_images(all, all->mlx);
 }

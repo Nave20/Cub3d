@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:22:13 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/27 17:12:09 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/28 15:17:29 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,6 @@ void	free_minimap(t_all *all)
 
 int	exit_game(t_all *all)
 {
-	// printf("ray : %f\n", all->data->player->radian);
-	// printf("pos_x : %f\n", all->data->player->pos_x);
-	// printf("pos_y : %f\n", all->data->player->pos_y);
 	if (all->data)
 		free_data(all->data);
 	if (all->minimap)

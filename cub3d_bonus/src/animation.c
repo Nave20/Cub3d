@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 11:39:25 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/28 11:39:25 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/10/28 15:23:41 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3D.h"
-
 
 void	load_x_anim(t_all *all, int x, int h, int w)
 {
@@ -21,28 +20,26 @@ void	load_x_anim(t_all *all, int x, int h, int w)
 
 	anim = all->anim;
 	tmp = ft_itoa(x + 1);
-	{
-		//secure
-	}
+	if (!tmp)
+		error_exit("Error\nMalloc failure\n", all, NULL);
 	name = "./assets/animation/rainbow_";
 	name = ft_strjoin(name, tmp);
-	{
-		//secure
-	}
 	free(tmp);
+	if (!name)
+		error_exit("Error\nMalloc failure\n", all, NULL);
 	name = ft_strjoin(name, ".xpm");
+	if (!name)
+		error_exit("Error\nMalloc failure\n", all, NULL);
 	anim->anim_void[x] = mlx_xpm_file_to_image(all->mlx->mlx_ptr, name,
-		&w, &h);
+			&w, &h);
 	if (!anim->anim_void[x])
-	{
-		//error message
-	}
+		error_exit("Error\nXpm to image failure\n", all, NULL);
 	free(name);
-	anim->addr[x]->addr = mlx_get_data_addr(anim->anim_void[x], &anim->addr[x]->bpp, &anim->addr[x]->line_length, &anim->addr[x]->endian);
+	anim->addr[x]->addr = mlx_get_data_addr(anim->anim_void[x],
+			&anim->addr[x]->bpp, &anim->addr[x]->line_length,
+			&anim->addr[x]->endian);
 	if (!anim->addr[x]->addr)
-	{
-		//err
-	}
+		error_exit("Error\nGet data addr failure\n", all, NULL);
 	anim->addr[x]->bpp = anim->addr[x]->bpp / 8;
 	anim->frame_height[x] = h;
 	anim->frame_width[x] = w;

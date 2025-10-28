@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:54:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/27 16:04:02 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/28 17:26:36 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,39 @@ void	update(t_all *all)
 		all->mlx->win_ptr, all->mlx->fc_image, 0, 0);
 	get_minimap(all);
 	mlx_put_image_to_window(all->mlx->mlx_ptr,
-							all->mlx->win_ptr, all->minimap->image, 0, 0);
+		all->mlx->win_ptr, all->minimap->image, 0, 0);
 	door_detect(all->data, all->data->player->radian);
 	if (all->data->ray->door == true && (all->data->map[x + 1][y] == 'C'
 		|| all->data->map[x][y + 1] == 'C' || all->data->map[x - 1][y] == 'C'
 		|| all->data->map[x][y - 1] == 'C' || all->data->map[x + 1][y] == 'O'
 		|| all->data->map[x][y + 1] == 'O' || all->data->map[x - 1][y] == 'O'
 		|| all->data->map[x][y - 1] == 'O'))
-		mlx_string_put(all->mlx->mlx_ptr, all->mlx->win_ptr,all->data->screen_width / 2,
+	{
+		mlx_string_put(all->mlx->mlx_ptr, all->mlx->win_ptr,
+			all->data->screen_width / 2,
 			all->data->screen_height / 2, all->string_color.argb,
 			"Press f to pay respect");
+	}
 }
 
-int	mov_servo(t_data *data)
+void	key_dispatcher(t_all *all)
 {
-	create_player(data);
-	return (0);
+	if (all->key->w)
+		w_key(all->data, all->data->player->pos_x,
+			all->data->player->pos_y);
+	if (all->key->a)
+		a_key(all->data, all->data->player->pos_x,
+			all->data->player->pos_y);
+	if (all->key->s)
+		s_key(all->data, all->data->player->pos_x,
+			all->data->player->pos_y);
+	if (all->key->d)
+		d_key(all->data, all->data->player->pos_x,
+			all->data->player->pos_y);
+	if (all->key->left_arrow)
+		letf_arr(all->data);
+	if (all->key->right_arrow)
+		right_arr(all->data);
 }
 
 int	key_check(t_all *all)
@@ -47,25 +64,9 @@ int	key_check(t_all *all)
 	static int	nb_frame;
 
 	nb_frame++;
-	if (nb_frame % 5000 == 0)
+	if (nb_frame % 1000 == 0)
 	{
-		if (all->key->w)
-			w_key(all->data, all->data->player->pos_x,
-				all->data->player->pos_y);
-		if (all->key->a)
-			a_key(all->data, all->data->player->pos_x,
-				all->data->player->pos_y);
-		if (all->key->s)
-			s_key(all->data, all->data->player->pos_x,
-				all->data->player->pos_y);
-		if (all->key->d)
-			d_key(all->data, all->data->player->pos_x,
-				all->data->player->pos_y);
-		if (all->key->left_arrow)
-			letf_arr(all->data);
-		if (all->key->right_arrow)
-			right_arr(all->data);
-		// change_anim(all, all->anim_sprite);
+		key_dispatcher(all);
 		update(all);
 		all->anim->anim_frame++;
 		if (all->anim->anim_frame >= 7)

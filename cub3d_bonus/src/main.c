@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/27 17:13:59 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/28 17:40:44 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,6 @@ void	arg_nbr_and_extension_check(t_all *all, int argc, char **argv)
 	nb = ft_strlen(argv[1]);
 	if (ft_strncmp(".cub", argv[1] + ft_strlen(argv[1]) - 4, 5) != 0)
 		error_exit("Error\nWrong file extension\n", all, NULL);
-}
-
-void	get_screen_size(t_all *all)
-{
-	int	x;
-	int	y;
-
-	all->mlx->mlx_ptr = mlx_init();
-	mlx_get_screen_size(all->mlx->mlx_ptr, &x, &y);
-	all->data->screen_height = y - 200; ///modif
-	all->data->screen_width = x - 400; ///modif
 }
 
 void	struct_init(t_all *all)
@@ -86,6 +75,23 @@ void	open_game(t_all *all, t_mlx *mlx)
 	free(all->data);
 }
 
+void	main_dispatcher(t_all *all, int fd)
+{
+	struct_init(all);
+	parsing_servo(all, fd);
+	find_map(fd, all);
+	map_parsing(all->data, all);
+	get_screen_size(all);
+	display_game(all, all->mlx);
+	fast_trig(all->data);
+	create_player(all->data);
+	printf("screen h : %d, screen w : %d\n", all->data->screen_height,
+		all->data->screen_width);
+	// ray_servo(all->data, 0);
+	get_minimap(all);
+	open_game(all, all->mlx);
+}
+
 int	main(int argc, char **argv)
 {
 	t_all	*all;
@@ -101,18 +107,6 @@ int	main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		error_exit("Error\nFile opening failure\n", all, NULL);
-	struct_init(all);
-	parsing_servo(all, fd);
-	find_map(fd, all);
-	map_parsing(all->data, all);
-	get_screen_size(all);
-	display_game(all, all->mlx);
-	fast_trig(all->data);
-	create_player(all->data);
-	printf("screen h : %d, screen w : %d\n", all->data->screen_height,
-		all->data->screen_width);
-	// ray_servo(all->data, 0);
-	get_minimap(all);
-	open_game(all, all->mlx);
+	main_dispatcher(all, fd);
 	return (0);
 }

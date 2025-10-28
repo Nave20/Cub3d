@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/27 17:45:13 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/28 17:39:34 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ enum			e_trig
 
 struct			s_minimap
 {
-	char	**map;
 	void	*image;
 	t_argb	*p_color;
 	t_argb	*w_color;
@@ -172,6 +171,7 @@ struct			s_mlx
 	void	*e_texture;
 	void	*w_texture;
 	void	*d_texture;
+	void	*txt_texture;
 	void	*fc_image;
 	char	**img_tab;
 	t_argb	f_color;
@@ -218,6 +218,9 @@ struct			s_texture
 	bool			valid_floor;
 	t_color			*ceiling_color;
 	bool			valid_ceiling;
+	int				width_txt;
+	int				height_txt;
+	t_addr			*addr_txt;
 };
 
 struct					s_data
@@ -308,6 +311,7 @@ struct					s_pxl
 
 //--------------------------------SERVO--------------------------------
 int		parsing_servo(t_all *all, int fd);
+int		dispatcher_loop(int fd, t_texture *texture, int error, char *line);
 
 //-----------------------------GET_TEXTURE-----------------------------
 int		get_no(int fd, t_texture *texture, char *line);
@@ -355,7 +359,10 @@ void	add_last_border_to_tab(t_list *lst, t_all *all, int i);
 void	map_parsing(t_data *data, t_all *all);
 void	check_file_ending(int fd, t_all *all, char *buffer, t_list *lst);
 
+//-------------------------------MLX----------------------------------
 void	display_game(t_all *all, t_mlx *mlx);
+void	get_screen_size(t_all *all);
+
 
 
 //-------------------------------MINIMAP-------------------------------
@@ -365,9 +372,6 @@ void	fill_minimap_image(t_all *all);
 //---------------------------------------------------------------------
 //-------------------------------MOVEMENT------------------------------
 //---------------------------------------------------------------------
-
-//--------------------------------SERVO--------------------------------
-int		mov_servo(t_data *data);
 
 //-------------------------------PLAYER--------------------------------
 int		create_player(t_data *data);
@@ -437,6 +441,7 @@ void	ray_values(t_data *data, float dir_x, float dir_y);
 float	dda_return(t_data *data, float dir_x, float dir_y);
 
 void	f_key(t_all *all);
+float	door_dda(t_data *data, float dir_x, float dir_y);
 int		get_do(int fd, t_texture *texture, char *line);
 void	render_d(t_all *all, t_render *render, int x);
 float	door_detect(t_data *data, float ray);
