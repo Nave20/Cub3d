@@ -73,11 +73,7 @@ typedef struct	s_pxl			t_pxl;
 typedef struct	s_key			t_key;
 typedef struct	s_mouse			t_mouse;
 typedef struct	s_minimap		t_minimap;
-
-
-
-
-
+typedef struct	s_anim			t_anim;
 
 enum			e_side
 {
@@ -139,12 +135,22 @@ union			s_argb
 	};
 };
 
+struct			s_anim
+{
+	int			anim_frame;
+	void		*anim_void[7];
+	int			*frame_height;
+	int			*frame_width;
+	t_addr		**addr;
+};
+
 struct			s_all
 {
 	char		*addr;
 	int			bpp;
 	int			line_length;
 	int			endian;
+	t_anim		*anim;
 	t_argb		string_color;
 	t_mlx		*mlx;
 	t_color		*color;
@@ -434,7 +440,8 @@ void	f_key(t_all *all);
 int		get_do(int fd, t_texture *texture, char *line);
 void	render_d(t_all *all, t_render *render, int x);
 float	door_detect(t_data *data, float ray);
-
+void	change_anim(t_all *all, int x);
+void	load_anim(t_all *all);
 
 
 #endif

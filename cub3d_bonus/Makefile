@@ -53,6 +53,7 @@ SRC_FILES       =	main.c				\
 					mouse_moves.c		\
 					free_mlx.c			\
 					fill_minimap_img.c	\
+					animation.c			\
 
 RENDER_FILES	=	rendering.c			\
 					texturing_west.c	\

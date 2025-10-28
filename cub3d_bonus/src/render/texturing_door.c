@@ -22,13 +22,13 @@ void	init_render_d(t_all *all, t_render *render)
 		render->start_on_texture = 0.0f;
 		return ;
 	}
-	render->coef_pix = all->data->texture->height_d / render->wall_height;
+	render->coef_pix = 100 / render->wall_height;
 	render->start_on_texture = (render->draw_start
 			- (float)all->data->screen_height / 2.0f
 			+ render->wall_height / 2.0f) * render->coef_pix;
 	render->to_draw = render->draw_end - render->draw_start;
-	render->impact = all->data->texture->width_d - select_impact(all->data)
-		* all->data->texture->width_d;
+	render->impact = 100 - select_impact(all->data)
+		* 100;
 }
 
 void	pixel_loop_d(t_all *all, t_render *render, float texpos, int x)
@@ -40,11 +40,11 @@ void	pixel_loop_d(t_all *all, t_render *render, float texpos, int x)
 	while (i < render->draw_end)
 	{
 		render->tex_y = ((int)texpos);
-		render->tex_y = render->tex_y % all->data->texture->height_d;
+		render->tex_y = render->tex_y % 100;
 		if (render->tex_y < 0)
-			render->tex_y += all->data->texture->height_d;
+			render->tex_y += 100;
 		texpos += render->coef_pix;
-		color = yx_back_converter(all->texture->addr_d,
+		color = yx_back_converter(all->anim->addr[all->anim->anim_frame],
 				render->tex_y, render->tex_x);
 		yx_converter(all, color, i, x);
 		i++;
@@ -65,8 +65,8 @@ void	render_d(t_all *all, t_render *render, int x)
 		return ;
 	}
 	draw_ceiling(all, render->draw_start, x);
-	if (render->tex_x >= all->data->texture->width_d)
-		render->tex_x = all->data->texture->width_d - 1;
+	if (render->tex_x >= 100)
+		render->tex_x = 100 - 1;
 	if (render->tex_x < 0)
 		render->tex_x = 0;
 	pixel_loop_d(all, render, texpos, x);

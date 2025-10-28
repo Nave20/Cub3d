@@ -65,7 +65,11 @@ int	key_check(t_all *all)
 			letf_arr(all->data);
 		if (all->key->right_arrow)
 			right_arr(all->data);
+		// change_anim(all, all->anim_sprite);
 		update(all);
+		all->anim->anim_frame++;
+		if (all->anim->anim_frame >= 7)
+			all->anim->anim_frame = 0;
 	}
 	return (0);
 }

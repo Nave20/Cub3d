@@ -71,6 +71,7 @@ void	open_game(t_all *all, t_mlx *mlx)
 	all->mouse->mid_y = all->data->screen_height / 2;
 	all->mouse->x = all->mouse->mid_x;
 	all->mouse->y = all->mouse->mid_y;
+	load_anim(all);
 	mlx_mouse_hide(mlx->mlx_ptr, mlx->win_ptr);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->fc_image, 0, 0);
 	mlx_put_image_to_window(all->mlx->mlx_ptr, all->mlx->win_ptr,
@@ -110,7 +111,7 @@ int	main(int argc, char **argv)
 	create_player(all->data);
 	printf("screen h : %d, screen w : %d\n", all->data->screen_height,
 		all->data->screen_width);
-	ray_servo(all->data, 0);
+	// ray_servo(all->data, 0);
 	get_minimap(all);
 	open_game(all, all->mlx);
 	return (0);
