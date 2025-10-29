@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:22:13 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/29 12:38:59 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 13:02:28 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ int	exit_game(t_all *all)
 	if (all->mlx)
 		free_mlx(all->mlx);
 	free(all);
-	exit(0);
+	exit(errno);
 	return (0);
 }

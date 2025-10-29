@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:07:44 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/27 17:40:31 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 13:30:10 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ void	map_handling(char *buffer, int fd, t_all *all, t_list *lst)
 	}
 	else
 	{
-		printf("%s\n", buffer);
 		free(buffer);
 		error_exit("Error\nThere are no requested characters for the map\n ",
 			all, lst);

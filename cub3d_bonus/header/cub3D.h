@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 12:31:32 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 14:01:16 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -311,20 +311,20 @@ struct					s_pxl
 
 //--------------------------------SERVO--------------------------------
 int		parsing_servo(t_all *all, int fd);
-int		dispatcher_loop(int fd, t_texture *texture, int error, char *line);
+int		dispatcher_loop(int fd, t_all *all, int error, char *line);
 
 //-----------------------------GET_TEXTURE-----------------------------
-int		get_no(int fd, t_texture *texture, char *line);
-int		get_so(int fd, t_texture *texture, char *line);
-int		get_we(int fd, t_texture *texture, char *line);
-int		get_ea(int fd, t_texture *texture, char *line);
+int		get_no(int fd, t_all *all, char *line);
+int		get_so(int fd, t_all *all, char *line);
+int		get_we(int fd, t_all *all, char *line);
+int		get_ea(int fd, t_all *all, char *line);
 
 //------------------------------GET_COLOR------------------------------
-int		get_f(int fd, t_texture *texture, char *line);
-int		get_c(int fd, t_texture *texture, char *line);
+int		get_f(int fd, t_all *all, char *line);
+int		get_c(int fd, t_all *all, char *line);
 
 //------------------------------VALIDATION-----------------------------
-int		arg_validation(t_texture *texture);
+int		arg_validation(t_all *all, t_texture *texture);
 
 //--------------------------------UTILS--------------------------------
 int		strnstr_int(const char *src, const char *tofind, size_t size);
@@ -335,11 +335,11 @@ int		free_textures(t_texture *texture, char *line);
 int		free_double_tab(char **tab);
 
 //-----------------------------ERR_MESSAGE-----------------------------
-int		err_gnl(void);
-int		err_split(void);
-int		err_strdup(void);
-int		wrong_format(void);
-void	err_malloc(int fd);
+int		err_gnl(t_all *all);
+int		err_split(t_all *all);
+int		err_strdup(t_all *all);
+int		wrong_format(t_all *all);
+void	err_malloc(t_all *all, int fd);
 void	free_mlx(t_mlx *mlx);
 void	destroy_images(t_mlx *mlx);
 int		exit_game(t_all *all);
@@ -377,7 +377,7 @@ void	fill_minimap_image(t_all *all);
 //---------------------------------------------------------------------
 
 //-------------------------------PLAYER--------------------------------
-int		create_player(t_data *data);
+int		create_player(t_all *all);
 
 //--------------------------------WASD---------------------------------
 void	w_key(t_data *data, float new_x, float new_y);
@@ -445,11 +445,12 @@ float	dda_return(t_data *data, float dir_x, float dir_y);
 
 void	f_key(t_all *all);
 float	door_dda(t_data *data, float dir_x, float dir_y);
-int		get_do(int fd, t_texture *texture, char *line);
+int		get_do(int fd, t_all *all, char *line);
 void	render_d(t_all *all, t_render *render, int x);
 float	door_detect(t_data *data, float ray);
 void	change_anim(t_all *all, int x);
 void	load_anim(t_all *all);
+void	anim_void_error(t_all *all, int end);
 
 
 #endif

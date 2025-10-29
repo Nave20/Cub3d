@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 12:23:52 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 13:57:28 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ void	open_game(t_all *all, t_mlx *mlx)
 	mlx_hook(mlx->win_ptr, 6, 1L << 6, mouse_hook, all);
 	mlx_loop_hook(mlx->mlx_ptr, key_check, all);
 	mlx_loop(mlx->mlx_ptr);
-	free_map_tab(all->data->map);
-	free(all->data);
 }
 
 void	main_dispatcher(t_all *all, int fd)
@@ -86,7 +84,7 @@ void	main_dispatcher(t_all *all, int fd)
 	get_screen_size(all);
 	display_game(all, all->mlx);
 	fast_trig(all->data);
-	create_player(all->data);
+	create_player(all);
 	printf("screen h : %d, screen w : %d\n", all->data->screen_height,
 		all->data->screen_width);
 	// ray_servo(all->data, 0);

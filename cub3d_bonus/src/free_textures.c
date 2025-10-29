@@ -6,11 +6,24 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 12:27:00 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/29 12:40:00 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 14:08:14 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3D.h"
+
+void	anim_void_error(t_all *all, int end)
+{
+	int	i;
+
+	i = 0;
+	while(i < end)
+	{
+		mlx_destroy_image(all->mlx->mlx_ptr, all->anim->anim_void[i]);
+		all->anim->anim_void[i] = NULL;
+		i++;
+	}
+}
 
 void	free_anim(t_all *all)
 {
@@ -23,7 +36,7 @@ void	free_anim(t_all *all)
 		free(all->anim->frame_width);
 	if(all->anim->addr)
 	{
-		while(i < 7)
+		while(all->anim->addr[i])
 		{
 			free(all->anim->addr[i]);
 			i++;
@@ -31,8 +44,11 @@ void	free_anim(t_all *all)
 		free(all->anim->addr);
 	}
 	i = 0;
-	while(i < 7)
-		mlx_destroy_image(all->mlx->mlx_ptr, all->anim->anim_void[i++]);
+	if(all->anim->anim_void[0])
+	{
+		while(i < 7)
+			mlx_destroy_image(all->mlx->mlx_ptr, all->anim->anim_void[i++]);
+	}
 	free(all->anim);
 }
 
