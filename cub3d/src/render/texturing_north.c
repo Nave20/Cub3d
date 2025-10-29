@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texturing_north.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 10:03:32 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/24 10:03:32 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/10/29 12:03:15 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ void	init_render_n(t_all *all, t_render *render)
 	{
 		render->coef_pix = 0.0f;
 		render->start_on_texture = 0.0f;
-		return;
+		return ;
 	}
 	render->coef_pix = all->data->texture->height_n / render->wall_height;
-	render->start_on_texture =
-		  (render->draw_start - (float)all->data->screen_height / 2.0f
-			  + render->wall_height / 2.0f) * render->coef_pix;
+	render->start_on_texture = (render->draw_start
+			- (float)all->data->screen_height / 2.0f
+			+ render->wall_height / 2.0f) * render->coef_pix;
 	render->to_draw = render->draw_end - render->draw_start;
 	render->impact = all->data->texture->width_n - select_impact(all->data)
 		* all->data->texture->width_n;
 }
 
-void	pixel_loop_n(t_all *all,t_render *render, float texpos, int x)
+void	pixel_loop_n(t_all *all, t_render *render, float texpos, int x)
 {
 	t_argb	color;
 	int		i;
@@ -44,7 +44,8 @@ void	pixel_loop_n(t_all *all,t_render *render, float texpos, int x)
 		if (render->tex_y < 0)
 			render->tex_y += all->data->texture->height_n;
 		texpos += render->coef_pix;
-		color = yx_back_converter(all->texture->addr_n, render->tex_y, render->tex_x);
+		color = yx_back_converter(all->texture->addr_n,
+				render->tex_y, render->tex_x);
 		yx_converter(all, color, i, x);
 		i++;
 	}
@@ -61,7 +62,7 @@ void	render_n(t_all *all, t_render *render, int x)
 	{
 		draw_ceiling(all, all->data->screen_height, x);
 		draw_floor(all, 0, x);
-		return;
+		return ;
 	}
 	draw_ceiling(all, render->draw_start, x);
 	if (render->tex_x >= all->data->texture->width_n)

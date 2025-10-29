@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/27 16:12:43 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 11:56:19 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,26 +92,6 @@ enum			e_trig
 	COS,
 	SIN,
 	TAN,
-};
-
-struct			s_minimap
-{
-	char	**map;
-	void	*image;
-	t_argb	*p_color;
-	t_argb	*w_color;
-	t_argb	*f_color;
-	t_argb	*n_color;
-	t_addr	*addr;
-};
-
-
-struct			s_mouse
-{
-	int	x;
-	int	y;
-	int	mid_x;
-	int	mid_y;
 };
 
 struct			s_key
@@ -292,6 +272,7 @@ struct					s_pxl
 
 //--------------------------------SERVO--------------------------------
 int		parsing_servo(t_all *all, int fd);
+int	dispatcher_loop(int fd, t_texture *texture, int error, char *line);
 
 //-----------------------------GET_TEXTURE-----------------------------
 int		get_no(int fd, t_texture *texture, char *line);
@@ -338,6 +319,7 @@ void	check_file_ending(int fd, t_all *all, char *buffer, t_list *lst);
 
 void	display_game(t_all *all, t_mlx *mlx);
 int		exit_game(t_all *all);
+void	free_mlx(t_mlx *mlx);
 
 
 //-------------------------------MINIMAP-------------------------------

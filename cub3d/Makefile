@@ -18,19 +18,20 @@ LIB            = $(SRC_DIR)/libft/libft.a
 MLXPATH        = ../minilibx-linux
 MLX            =$(MLX_PATH)/libmlx.a
 
-PARS_FILES      =	get_texture.c	\
-					get_color.c		\
-					parsing_servo.c	\
-					pars_utils.c	\
-					error_messages.c\
-					pars_free.c		\
-					validation.c	\
-					get_map.c		\
-					error.c			\
-					print_utils.c	\
-					is_something.c	\
-					copy_utils.c	\
-					map_parsing.c	\
+PARS_FILES      =	get_texture.c		\
+					get_color.c			\
+					parsing_servo.c		\
+					pars_utils.c		\
+					error_messages.c	\
+					pars_free.c			\
+					validation.c		\
+					get_map.c			\
+					error.c				\
+					print_utils.c		\
+					is_something.c		\
+					copy_utils.c		\
+					map_parsing.c		\
+					texture_dispatcher.c\
 
 MOV_FILES		=	mov.c			\
 					mov_utils.c		\
@@ -47,8 +48,7 @@ SRC_FILES       =	main.c			\
 					mlx_init.c		\
 					exit_game.c		\
 					get_images.c	\
-					mini_map.c		\
-					mouse_moves.c	\
+					free_mlx.c		\
 
 RENDER_FILES	=	rendering.c		\
 					texturing_west.c	\

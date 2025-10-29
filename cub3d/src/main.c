@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/24 15:16:15 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 11:04:35 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,30 +54,35 @@ void	struct_init(t_all *all)
 	all->data->render = malloc(sizeof(t_render));
 	if (!all->data->render)
 		error_exit("Error\nMalloc failure\n", all, NULL);
-	all->mouse = ft_calloc(1, sizeof(t_mouse));
-	if (!all->mouse)
-		error_exit("Error\nMalloc failure\n", all, NULL);
 }
 
 void	open_game(t_all *all, t_mlx *mlx)
 {
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr,
 			all->data->screen_width, all->data->screen_height, "cub3D");
-	all->mouse->mid_x = all->data->screen_width / 2;
-	all->mouse->mid_y = all->data->screen_height / 2;
-	all->mouse->x = all->mouse->mid_x;
-	all->mouse->y = all->mouse->mid_y;
 	mlx_mouse_hide(mlx->mlx_ptr, mlx->win_ptr);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->fc_image, 0, 0);
-	mlx_put_image_to_window(all->mlx->mlx_ptr, all->mlx->win_ptr, all->minimap->image, 0, 0);
 	mlx_hook(mlx->win_ptr, 17, 0, exit_game, all);
 	mlx_hook(mlx->win_ptr, 2, 1L << 0, key_press, all);
 	mlx_hook(mlx->win_ptr, 3, 1L << 1, key_release, all);
-	mlx_hook(mlx->win_ptr, 6, 1L << 6, mouse_hook, all);
 	mlx_loop_hook(mlx->mlx_ptr, key_check, all);
 	mlx_loop(mlx->mlx_ptr);
 	free_map_tab(all->data->map);
 	free(all->data);
+}
+
+void	main_dispatcher(t_all *all, int fd)
+{
+	struct_init(all);
+	parsing_servo(all, fd);
+	find_map(fd, all);
+	map_parsing(all->data, all);
+	get_screen_size(all);
+	display_game(all, all->mlx);
+	fast_trig(all->data);
+	create_player(all->data);
+	ray_servo(all->data, 0);
+	open_game(all, all->mlx);
 }
 
 int	main(int argc, char **argv)
@@ -95,18 +100,6 @@ int	main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		error_exit("Error\nFile opening failure\n", all, NULL);
-	struct_init(all);
-	parsing_servo(all, fd);
-	find_map(fd, all);
-	map_parsing(all->data, all);
-	get_screen_size(all);
-	display_game(all, all->mlx);
-	fast_trig(all->data);
-	create_player(all->data);
-	printf("screen h : %d, screen w : %d\n", all->data->screen_height, all->data->screen_width);
-	ray_servo(all->data, 0);
-	init_minimap(all);
-	get_minimap(all);
-	open_game(all, all->mlx);
+	main_dispatcher(all, fd);
 	return (0);
 }
