@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wasd.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 09:51:46 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/09 09:51:46 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:57:34 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	a_key(t_data *data, float new_x, float new_y)
 	player->grid_x = (int) player->pos_x;
 }
 
-void	aaa(t_data *data, float ray, float new_x, float new_y)
+void	key_correc(t_data *data, float ray, float new_x, float new_y)
 {
 	t_player	*player;
 
@@ -69,7 +69,7 @@ void	w_key(t_data *data, float new_x, float new_y)
 
 	player = data->player;
 	if (data->player->radian == 1.0f)
-		return (aaa(data, 1.0f, new_x, new_y));
+		return (key_correc(data, 1.0f, new_x, new_y));
 	new_y -= STEP * ft_trig(data, player->radian + 1.0f, COS);
 	if (data->map[(int)new_y][(int)player->pos_x] != '1'
 	&& data->map[(int)new_y][(int)player->pos_x] != 'C')
@@ -88,7 +88,7 @@ void	d_key(t_data *data, float new_x, float new_y)
 
 	player = data->player;
 	if (data->player->radian == 1.5f)
-		return (aaa(data, 0.5f, new_x, new_y));
+		return (key_correc(data, 0.5f, new_x, new_y));
 	new_y -= STEP * ft_trig(data, player->radian + 0.5f, COS);
 	if (data->map[(int)new_y][(int)player->pos_x] != '1'
 	&& data->map[(int)new_y][(int)player->pos_x] != 'C')

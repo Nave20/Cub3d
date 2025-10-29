@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:04:00 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 11:57:48 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 17:17:26 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,9 @@ int	parsing_servo(t_all *all, int fd)
 {
 	texture_alloc(all);
 	if (!all->texture)
-		err_malloc(fd);
-	if (dispatcher_loop(fd, all->texture, 0, NULL))
+		err_malloc(all, fd);
+	if (dispatcher_loop(fd, all, 0, NULL))
 		return (1);
-	if (arg_validation(all->texture))
-		return (1);
+	arg_validation(all, all->texture);
 	return (0);
 }

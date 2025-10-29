@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 16:28:12 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 17:38:29 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	main_dispatcher(t_all *all, int fd)
 	find_map(fd, all);
 	map_parsing(all->data, all);
 	get_screen_size(all);
-	display_game(all, all->mlx);
+	init_mlx(all, all->mlx);
 	fast_trig(all->data);
 	create_player(all);
 	printf("screen h : %d, screen w : %d\n", all->data->screen_height,

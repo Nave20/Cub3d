@@ -3,43 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   error_messages.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 16:11:51 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/06 16:11:51 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/10/29 17:39:36 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3D.h"
 
-void	err_malloc(int fd)
+void	err_malloc(t_all *all, int fd)
 {
 	if (fd != -1)
 		close(fd);
 	perror(RED"Error\n -> allocating memory"RESET);
-	exit(errno);
+	exit_game(all);
 }
 
-int	err_gnl(void)
+void	err_gnl(t_all *all)
 {
 	perror(RED"Error\n -> get_next_line"RESET);
-	return (1);
+	exit_game(all);
 }
 
-int	err_strdup(void)
+void	err_strdup(t_all *all)
 {
 	perror(RED"Error\n -> ft_strdup"RESET);
-	return (1);
+	exit_game(all);
 }
 
-int	wrong_format(void)
+void	wrong_format(t_all *all)
 {
 	perror(RED"Error\n -> all texture files must be terminated by .xpm"RESET);
-	return (1);
+	exit_game(all);
 }
 
-int	err_split(void)
+void	err_split(t_all *all)
 {
 	perror(RED"Error\n -> ft_split"RESET);
-	return (1);
+	exit_game(all);
 }

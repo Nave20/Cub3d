@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:56:53 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/06 13:56:53 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/10/29 17:26:54 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3D.h"
 
-int	get_no(int fd, t_texture *texture, char *line)
+void	get_no(int fd, t_all *all, char *line)
 {
 	int	i;
 	int	error;
@@ -22,7 +22,7 @@ int	get_no(int fd, t_texture *texture, char *line)
 	{
 		line = get_next_line(fd, &error);
 		if (error)
-			return (err_gnl());
+			return (err_gnl(all));
 	}
 	if (line)
 	{
@@ -30,16 +30,17 @@ int	get_no(int fd, t_texture *texture, char *line)
 		i += 3;
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
-		texture->valid_north = true;
-		texture->north_texture = ft_strdup(&line[i]);
-		if (!texture->north_texture)
-			return (err_strdup());
-		return (0);
+		all->texture->valid_north = true;
+		all->texture->north_texture = ft_strdup(&line[i]);
+		if (!all->texture->north_texture)
+		{
+			free(line);
+			return (err_strdup(all));
+		}
 	}
-	return (1);
 }
 
-int	get_so(int fd, t_texture *texture, char *line)
+void	get_so(int fd, t_all *all, char *line)
 {
 	int	i;
 	int	error;
@@ -49,7 +50,7 @@ int	get_so(int fd, t_texture *texture, char *line)
 	{
 		line = get_next_line(fd, &error);
 		if (error)
-			return (err_gnl());
+			return (err_gnl(all));
 	}
 	if (line)
 	{
@@ -57,16 +58,17 @@ int	get_so(int fd, t_texture *texture, char *line)
 		i += 3;
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
-		texture->valid_south = true;
-		texture->south_texture = ft_strdup(&line[i]);
-		if (!texture->south_texture)
-			return (err_strdup());
-		return (0);
+		all->texture->valid_south = true;
+		all->texture->south_texture = ft_strdup(&line[i]);
+		if (!all->texture->south_texture)
+		{
+			free(line);
+			return (err_strdup(all));
+		}
 	}
-	return (1);
 }
 
-int	get_we(int fd, t_texture *texture, char *line)
+void	get_we(int fd, t_all *all, char *line)
 {
 	int	i;
 	int	error;
@@ -76,7 +78,7 @@ int	get_we(int fd, t_texture *texture, char *line)
 	{
 		line = get_next_line(fd, &error);
 		if (error)
-			return (err_gnl());
+			return (err_gnl(all));
 	}
 	if (line)
 	{
@@ -84,16 +86,17 @@ int	get_we(int fd, t_texture *texture, char *line)
 		i += 3;
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
-		texture->valid_west = true;
-		texture->west_texture = ft_strdup(&line[i]);
-		if (!texture->west_texture)
-			return (err_strdup());
-		return (0);
+		all->texture->valid_west = true;
+		all->texture->west_texture = ft_strdup(&line[i]);
+		if (!all->texture->west_texture)
+		{
+			free(line);
+			return (err_strdup(all));
+		}
 	}
-	return (1);
 }
 
-int	get_ea(int fd, t_texture *texture, char *line)
+void	get_ea(int fd, t_all *all, char *line)
 {
 	int	i;
 	int	error;
@@ -103,7 +106,7 @@ int	get_ea(int fd, t_texture *texture, char *line)
 	{
 		line = get_next_line(fd, &error);
 		if (error)
-			return (err_gnl());
+			return (err_gnl(all));
 	}
 	if (line)
 	{
@@ -111,11 +114,12 @@ int	get_ea(int fd, t_texture *texture, char *line)
 		i += 3;
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
-		texture->valid_east = true;
-		texture->east_texture = ft_strdup(&line[i]);
-		if (!texture->east_texture)
-			return (err_strdup());
-		return (0);
+		all->texture->valid_east = true;
+		all->texture->east_texture = ft_strdup(&line[i]);
+		if (!all->texture->east_texture)
+		{
+			free(line);
+			return (err_strdup(all));
+		}
 	}
-	return (1);
 }

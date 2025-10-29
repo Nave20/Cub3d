@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:54:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 11:07:10 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:53:13 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,6 @@ void	update(t_all *all)
 	ray_servo(all->data, 0);
 	mlx_put_image_to_window(all->mlx->mlx_ptr,
 		all->mlx->win_ptr, all->mlx->fc_image, 0, 0);
-}
-
-int	mov_servo(t_data *data)
-{
-	create_player(data);
-	return (0);
 }
 
 int	key_check(t_all *all)

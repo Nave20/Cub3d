@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:22:13 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/29 11:03:27 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 17:21:39 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,6 @@ void	free_data(t_data *data)
 
 int	exit_game(t_all *all)
 {
-	printf("ray : %f\n", all->data->player->radian);
-	printf("pos_x : %f\n", all->data->player->pos_x);
-	printf("pos_y : %f\n", all->data->player->pos_y);
 	if (all->data)
 		free_data(all->data);
 	if (all->mlx)

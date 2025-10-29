@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 11:04:35 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 17:38:13 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,6 @@ void	arg_nbr_and_extension_check(t_all *all, int argc, char **argv)
 	nb = ft_strlen(argv[1]);
 	if (ft_strncmp(".cub", argv[1] + ft_strlen(argv[1]) - 4, 5) != 0)
 		error_exit("Error\nWrong file extension\n", all, NULL);
-}
-
-void	get_screen_size(t_all *all)
-{
-	int	x;
-	int	y;
-
-	all->mlx->mlx_ptr = mlx_init();
-	mlx_get_screen_size(all->mlx->mlx_ptr, &x, &y);
-	all->data->screen_height = y - 200; ///modif
-	all->data->screen_width = x - 400; ///modif
 }
 
 void	struct_init(t_all *all)
@@ -67,8 +56,6 @@ void	open_game(t_all *all, t_mlx *mlx)
 	mlx_hook(mlx->win_ptr, 3, 1L << 1, key_release, all);
 	mlx_loop_hook(mlx->mlx_ptr, key_check, all);
 	mlx_loop(mlx->mlx_ptr);
-	free_map_tab(all->data->map);
-	free(all->data);
 }
 
 void	main_dispatcher(t_all *all, int fd)
@@ -78,9 +65,9 @@ void	main_dispatcher(t_all *all, int fd)
 	find_map(fd, all);
 	map_parsing(all->data, all);
 	get_screen_size(all);
-	display_game(all, all->mlx);
+	init_mlx(all, all->mlx);
 	fast_trig(all->data);
-	create_player(all->data);
+	create_player(all);
 	ray_servo(all->data, 0);
 	open_game(all, all->mlx);
 }

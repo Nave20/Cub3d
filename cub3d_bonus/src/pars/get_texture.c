@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:56:53 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 14:47:23 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 17:26:59 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	get_no(int fd, t_all *all, char *line)
 			free(line);
 			return (err_strdup(all));
 		}
-		return ;
 	}
 }
 
@@ -66,7 +65,6 @@ void	get_so(int fd, t_all *all, char *line)
 			free(line);
 			return (err_strdup(all));
 		}
-		return ;
 	}
 }
 
@@ -95,7 +93,6 @@ void	get_we(int fd, t_all *all, char *line)
 			free(line);
 			return (err_strdup(all));
 		}
-		return ;
 	}
 }
 
@@ -124,7 +121,6 @@ void	get_ea(int fd, t_all *all, char *line)
 			free(line);
 			return (err_strdup(all));
 		}
-		return ;
 	}
 }
 
@@ -153,6 +149,5 @@ void	get_do(int fd, t_all *all, char *line)
 			free(line);
 			return (err_strdup(all));
 		}
-		return ;
 	}
 }

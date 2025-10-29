@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 11:56:19 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 17:44:32 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,20 +272,20 @@ struct					s_pxl
 
 //--------------------------------SERVO--------------------------------
 int		parsing_servo(t_all *all, int fd);
-int	dispatcher_loop(int fd, t_texture *texture, int error, char *line);
+int		dispatcher_loop(int fd, t_all *all, int error, char *line);
 
 //-----------------------------GET_TEXTURE-----------------------------
-int		get_no(int fd, t_texture *texture, char *line);
-int		get_so(int fd, t_texture *texture, char *line);
-int		get_we(int fd, t_texture *texture, char *line);
-int		get_ea(int fd, t_texture *texture, char *line);
+void	get_no(int fd, t_all *all, char *line);
+void	get_so(int fd, t_all *all, char *line);
+void	get_we(int fd, t_all *all, char *line);
+void	get_ea(int fd, t_all *all, char *line);
 
 //------------------------------GET_COLOR------------------------------
-int		get_f(int fd, t_texture *texture, char *line);
-int		get_c(int fd, t_texture *texture, char *line);
+void	get_f(int fd, t_all *all, char *line);
+void	get_c(int fd, t_all *all, char *line);
 
 //------------------------------VALIDATION-----------------------------
-int		arg_validation(t_texture *texture);
+void	arg_validation(t_all *all, t_texture *texture);
 
 //--------------------------------UTILS--------------------------------
 int		strnstr_int(const char *src, const char *tofind, size_t size);
@@ -296,11 +296,11 @@ int		free_textures(t_texture *texture, char *line);
 int		free_double_tab(char **tab);
 
 //-----------------------------ERR_MESSAGE-----------------------------
-int		err_gnl(void);
-int		err_split(void);
-int		err_strdup(void);
-int		wrong_format(void);
-void	err_malloc(int fd);
+void	err_gnl(t_all *all);
+void	err_split(t_all *all);
+void	err_strdup(t_all *all);
+void	wrong_format(t_all *all);
+void	err_malloc(t_all *all, int fd);
 
 //---------------------------------MAP---------------------------------
 void	print_lst(t_list *lst);
@@ -317,23 +317,17 @@ void	add_last_border_to_tab(t_list *lst, t_all *all, int i);
 void	map_parsing(t_data *data, t_all *all);
 void	check_file_ending(int fd, t_all *all, char *buffer, t_list *lst);
 
-void	display_game(t_all *all, t_mlx *mlx);
+void	init_mlx(t_all *all, t_mlx *mlx);
+void	get_screen_size(t_all *all);
 int		exit_game(t_all *all);
 void	free_mlx(t_mlx *mlx);
 
-
-//-------------------------------MINIMAP-------------------------------
-void	get_minimap(t_all *all);
-void	init_minimap(t_all *all);
 //---------------------------------------------------------------------
 //-------------------------------MOVEMENT------------------------------
 //---------------------------------------------------------------------
 
-//--------------------------------SERVO--------------------------------
-int		mov_servo(t_data *data);
-
 //-------------------------------PLAYER--------------------------------
-int		create_player(t_data *data);
+int		create_player(t_all *all);
 
 //--------------------------------WASD---------------------------------
 void	w_key(t_data *data, float new_x, float new_y);
@@ -369,7 +363,6 @@ void	print_ray_touch(t_data *data, int x, int y);
 void	wall_height(t_data *data, float wall_dist, int col,float ray);
 float	select_impact(t_data *data);
 void	get_ray_impact(t_data *data, float distance);
-void	fill_fc_image(t_all *all, int x, int y);
 
 //-------------------------------------------------------------------------
 //----------------------------------RENDER---------------------------------

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 09:47:19 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/09 09:47:31 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:55:24 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,12 @@ void	find_player(t_data *data, int i, int j)
 	}
 }
 
-int	create_player(t_data *data)
+int	create_player(t_all *all)
 {
-	data->player = malloc(sizeof(t_player));
-	if (!data->player)
-	{
-		perror(RED"Error\n -> allocating memory"RESET);
-		return (1);
-	}
-	data->player->data = data;
-	find_player(data, 0, 0);
+	all->data->player = malloc(sizeof(t_player));
+	if (!all->data->player)
+		error_exit("Error\nMalloc failure\n", all, NULL);
+	all->data->player->data = all->data;
+	find_player(all->data, 0, 0);
 	return (0);
 }

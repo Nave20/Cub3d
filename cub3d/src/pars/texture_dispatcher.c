@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 11:55:07 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/29 11:57:10 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 17:11:41 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,64 +22,64 @@ bool	all_textures_valid(t_texture *texture)
 		return (0);
 }
 
-int	wall_dispatcher(char *line, t_texture *texture, int fd)
+int	wall_dispatcher(char *line, t_all *all, int fd)
 {
 	if (ft_strnstr(line, "NO ", ft_strlen(line)) != NULL
-		&& texture->valid_north == false)
+		&& all->texture->valid_north == false)
 	{
-		get_no(fd, texture, line);
+		get_no(fd, all, line);
 		return (1);
 	}
 	else if (ft_strnstr(line, "SO ", ft_strlen(line)) != NULL
-		&& texture->valid_south == false)
+		&& all->texture->valid_south == false)
 	{
-		get_so(fd, texture, line);
+		get_so(fd, all, line);
 		return (1);
 	}
 	else if (ft_strnstr(line, "WE ", ft_strlen(line)) != NULL
-		&& texture->valid_west == false)
+		&& all->texture->valid_west == false)
 	{
-		get_we(fd, texture, line);
+		get_we(fd, all, line);
 		return (1);
 	}
 	else if (ft_strnstr(line, "EA ", ft_strlen(line)) != NULL
-		&& texture->valid_east == false)
+		&& all->texture->valid_east == false)
 	{
-		get_ea(fd, texture, line);
+		get_ea(fd, all, line);
 		return (1);
 	}
 	return (0);
 }
 
-int	floor_ceiling_dispatcher(char *line, t_texture *texture, int fd)
+int	floor_ceiling_dispatcher(char *line, t_all *all, int fd)
 {
 	if (ft_strnstr(line, "F ", ft_strlen(line)) != NULL
-		&& texture->valid_floor == false)
+		&& all->texture->valid_floor == false)
 	{
-		get_f(fd, texture, line);
+		get_f(fd, all, line);
 		return (1);
 	}
 	else if (ft_strnstr(line, "C ", ft_strlen(line)) != NULL
-		&& texture->valid_ceiling == false)
+		&& all->texture->valid_ceiling == false)
 	{
-		get_c(fd, texture, line);
+		get_c(fd, all, line);
 		return (1);
 	}
 	return (0);
 }
 
-int	dispatcher_loop(int fd, t_texture *texture, int error, char *line)
+int	dispatcher_loop(int fd, t_all *all, int error, char *line)
 {
 	line = get_next_line(fd, &error);
 	if (error)
 		return (1);
 	while (line)
 	{
-		if (wall_dispatcher(line, texture, fd) == 1)
+		if (wall_dispatcher(line, all, fd) == 1)
 			;
-		else if (floor_ceiling_dispatcher(line, texture, fd) == 1)
+		else if (floor_ceiling_dispatcher(line, all, fd) == 1)
 			;
-		else if (all_textures_valid(texture))
+		else if (all_textures_valid(all->texture))
 		{
 			free(line);
 			return (0);

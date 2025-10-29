@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:07:44 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/29 11:58:36 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 17:03:04 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,10 @@ t_list	*cpy_map_to_lst(t_all *all, char *buffer, int fd, int error)
 	{
 		ptr = ft_lstnew(buffer);
 		if (!ptr)
+		{
+			free(buffer);
 			error_exit("Error\nft_lstnew failure\n", all, lst);
+		}
 		ft_lstadd_back(&lst, ptr);
 		buffer = get_next_line(fd, &error);
 		if (error != 0)
@@ -94,7 +97,6 @@ void	map_handling(char *buffer, int fd, t_all *all, t_list *lst)
 	}
 	else
 	{
-		printf("%s\n", buffer);
 		free(buffer);
 		error_exit("Error\nThere are no requested characters for the map\n ",
 			all, lst);

@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 12:25:37 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/29 12:25:08 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 17:41:15 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,13 @@ void	init_minimap(t_all *all)
 		error_exit("Error\nMalloc failure\n", all, NULL);
 	all->minimap->image = mlx_new_image(all->mlx->mlx_ptr,
 			200, 200);
+	if (!all->minimap->image)
+		error_exit("Error\nMLX new image failure\n", all, NULL);
 	all->minimap->addr->addr = mlx_get_data_addr(all->minimap->image,
 			&all->minimap->addr->bpp, &all->minimap->addr->line_length,
 			&all->minimap->addr->endian);
+	if (!all->minimap->addr->addr)
+		error_exit("Error\nGet data addr failure\n", all, NULL);
 	all->minimap->addr->bpp /= 8;
 	fill_minimap_colors(all->minimap);
 }

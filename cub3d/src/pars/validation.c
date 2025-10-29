@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 12:36:20 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/07 12:36:20 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/10/29 17:28:28 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,15 @@ int	valid_xpm(char *line)
 	return (0);
 }
 
-int	color_components(char **line, int i, int j)
+int	color_components(t_all *all, char **line, int i, int j)
 {
 	while (line[i])
 		i++;
 	if (i != 3)
 	{
+		free_double_tab(line);
 		perror(RED"Error\n -> too many color components"RESET);
-		return (1);
+		exit_game(all);
 	}
 	i = 0;
 	while (line[i])
@@ -52,8 +53,9 @@ int	color_components(char **line, int i, int j)
 		{
 			if (line[i][j] < '0' || line[i][j] > '9')
 			{
+				free_double_tab(line);
 				perror(RED"Error\n -> color components must be numeric"RESET);
-				return (1);
+				exit_game(all);
 			}
 			j++;
 		}
@@ -62,27 +64,27 @@ int	color_components(char **line, int i, int j)
 	return (0);
 }
 
-int	color_range(t_color *color)
+int	color_range(t_all *all, t_color *color)
 {
 	if (color->r < 0 || color->r > 255)
 	{
 		perror(RED"Error\n -> color must be in range of [0 - 255]"RESET);
-		return (1);
+		exit_game(all);
 	}
 	if (color->g < 0 || color->g > 255)
 	{
 		perror(RED"Error\n -> color must be in range of [0 - 255]"RESET);
-		return (1);
+		exit_game(all);
 	}
 	if (color->b < 0 || color->b > 255)
 	{
 		perror(RED"Error\n -> color must be in range of [0 - 255]"RESET);
-		return (1);
+		exit_game(all);
 	}
 	return (0);
 }
 
-int	valid_color(t_color *color, int i, char **tmp)
+void	valid_color(t_all *all, t_color *color, int i, char **tmp)
 {
 	while (color->color[i])
 	{
@@ -98,31 +100,25 @@ int	valid_color(t_color *color, int i, char **tmp)
 	free(color->color);
 	color->color = NULL;
 	if (!tmp)
-		return (err_split());
-	if (color_components(tmp, 0, 0))
-		return (free_double_tab(tmp));
+		err_split(all);
+	color_components(all, tmp, 0, 0);
 	color->r = ft_atoi(tmp[0]);
 	color->g = ft_atoi(tmp[1]);
 	color->b = ft_atoi(tmp[2]);
 	free_double_tab(tmp);
-	if (color_range(color))
-		return (1);
-	return (0);
+	color_range(all, color);
 }
 
-int	arg_validation(t_texture *texture)
+void	arg_validation(t_all *all, t_texture *texture)
 {
 	if (valid_xpm(texture->north_texture))
-		return (wrong_format());
+		return (wrong_format(all));
 	if (valid_xpm(texture->south_texture))
-		return (wrong_format());
+		return (wrong_format(all));
 	if (valid_xpm(texture->west_texture))
-		return (wrong_format());
+		return (wrong_format(all));
 	if (valid_xpm(texture->east_texture))
-		return (wrong_format());
-	if (valid_color(texture->floor_color, 0, NULL))
-		return (1);
-	if (valid_color(texture->ceiling_color, 0, NULL))
-		return (1);
-	return (0);
+		return (wrong_format(all));
+	valid_color(all, texture->floor_color, 0, NULL);
+	valid_color(all, texture->ceiling_color, 0, NULL);
 }

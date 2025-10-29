@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 12:16:45 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/28 17:37:33 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 17:43:30 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,50 +23,6 @@ void	get_screen_size(t_all *all)
 	all->data->screen_width = x - 400; ///modif
 }
 
-char	*dup_img_line(t_all *all, char *img, int start, int end)
-{
-	char	*cpy;
-	int		i;
-
-	i = 0;
-	cpy = ft_calloc(end - start + 1, sizeof(char));
-	if (!cpy)
-		error_exit("Error\nmalloc failure\n", all, NULL);
-	while (start < end)
-	{
-		cpy[i] = img[start];
-		i++;
-		start++;
-	}
-	return (cpy);
-}
-
-void	fill_fc_image(t_all *all, int x, int y)
-{
-	int		half_height;
-	t_argb	color;
-
-	all->addr = mlx_get_data_addr(all->mlx->fc_image,
-			&all->bpp, &all->line_length, &all->endian);
-	all->bpp /= 8;
-	half_height = all->data->screen_height / 2;
-	while (y < all->data->screen_height)
-	{
-		while (x < all->data->screen_width)
-		{
-			if (y < half_height)
-				color = all->mlx->c_color;
-			else
-				color = all->mlx->f_color;
-			*(uint32_t *)(all->addr + (y * all->line_length
-						+ x * (all->bpp))) = color.argb;
-			x++;
-		}
-		x = 0;
-		y++;
-	}
-}
-
 void	fill_color_struct(t_all *all)
 {
 	all->mlx->c_color.a = 255;
@@ -79,15 +35,8 @@ void	fill_color_struct(t_all *all)
 	all->mlx->f_color.b = all->texture->floor_color->b;
 }
 
-void	display_game(t_all *all, t_mlx *mlx)
+void	init_texture_addr(t_all *all)
 {
-	all->key = ft_calloc(1, sizeof(t_key));
-	all->mlx->fc_image = mlx_new_image(mlx->mlx_ptr,
-			all->data->screen_width, all->data->screen_height);
-	fill_color_struct(all);
-	all->addr = mlx_get_data_addr(all->mlx->fc_image,
-			&all->bpp, &all->line_length, &all->endian);
-	all->bpp /= 8;
 	all->texture->addr_n = malloc(sizeof(t_addr));
 	if (!all->texture->addr_n)
 		error_exit("Error\nMalloc failure\n", all, NULL);
@@ -106,5 +55,23 @@ void	display_game(t_all *all, t_mlx *mlx)
 	// all->texture->addr_txt = malloc(sizeof(t_addr));
 	// if (!all->texture->addr_txt)
 	// 	error_exit("Error\nMalloc failure\n", all, NULL);
+}
+
+void	init_mlx(t_all *all, t_mlx *mlx)
+{
+	all->key = ft_calloc(1, sizeof(t_key));
+	if (!all->key)
+		error_exit("Error\nMalloc failure\n", all, NULL);
+	all->mlx->fc_image = mlx_new_image(mlx->mlx_ptr,
+			all->data->screen_width, all->data->screen_height);
+	if (!all->mlx->fc_image)
+		error_exit("Error\nMLX new image failure\n", all, NULL);
+	fill_color_struct(all);
+	all->addr = mlx_get_data_addr(all->mlx->fc_image,
+			&all->bpp, &all->line_length, &all->endian);
+	if (!all->addr)
+		error_exit("Error\nGet data addr failure\n", all, NULL);
+	all->bpp /= 8;
+	init_texture_addr(all);
 	get_images(all, all->mlx);
 }
