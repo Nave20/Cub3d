@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/28 17:39:34 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 12:31:32 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -343,6 +343,9 @@ void	err_malloc(int fd);
 void	free_mlx(t_mlx *mlx);
 void	destroy_images(t_mlx *mlx);
 int		exit_game(t_all *all);
+void	free_texture(t_texture *texture);
+void	free_anim(t_all *all);
+void	free_addr(t_texture *texture);
 
 //---------------------------------MAP---------------------------------
 void	print_lst(t_list *lst);

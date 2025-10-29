@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:22:13 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/28 15:17:29 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 12:38:59 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,34 +24,6 @@ void	free_addr(t_texture *texture)
 		free(texture->addr_w);
 	if (texture->addr_d)
 		free(texture->addr_d);
-}
-
-void	free_texture(t_texture *texture)
-{
-	if (texture->east_texture)
-		free(texture->east_texture);
-	if (texture->north_texture)
-		free(texture->north_texture);
-	if (texture->south_texture)
-		free(texture->south_texture);
-	if (texture->west_texture)
-		free(texture->west_texture);
-	if (texture->door_texture)
-		free(texture->door_texture);
-	if (texture->floor_color)
-	{
-		if (texture->floor_color->color)
-			free(texture->floor_color->color);
-		free(texture->floor_color);
-	}
-	if (texture->ceiling_color)
-	{
-		if (texture->ceiling_color->color)
-			free(texture->ceiling_color->color);
-		free(texture->ceiling_color);
-	}
-	free_addr(texture);
-	free(texture);
 }
 
 void	free_data(t_data *data)
@@ -92,14 +64,16 @@ int	exit_game(t_all *all)
 		free_data(all->data);
 	if (all->minimap)
 		free_minimap(all);
-	if (all->mlx)
-		free_mlx(all->mlx);
 	if (all->texture)
 		free_texture(all->texture);
 	if (all->key)
 		free(all->key);
 	if (all->mouse)
 		free(all->mouse);
+	if (all->anim)
+		free_anim(all);
+	if (all->mlx)
+		free_mlx(all->mlx);
 	free(all);
 	exit(0);
 	return (0);

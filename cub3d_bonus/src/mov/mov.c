@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:54:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/28 17:26:36 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 12:24:16 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	update(t_all *all)
 	ray_servo(all->data, 0);
 	mlx_put_image_to_window(all->mlx->mlx_ptr,
 		all->mlx->win_ptr, all->mlx->fc_image, 0, 0);
-	get_minimap(all);
+	fill_minimap_image(all);
 	mlx_put_image_to_window(all->mlx->mlx_ptr,
 		all->mlx->win_ptr, all->minimap->image, 0, 0);
 	door_detect(all->data, all->data->player->radian);

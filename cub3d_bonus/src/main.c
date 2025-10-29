@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/28 17:40:44 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 12:23:52 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	open_game(t_all *all, t_mlx *mlx)
 	all->mouse->x = all->mouse->mid_x;
 	all->mouse->y = all->mouse->mid_y;
 	load_anim(all);
+	init_minimap(all);
+	fill_minimap_image(all);
 	mlx_mouse_hide(mlx->mlx_ptr, mlx->win_ptr);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->fc_image, 0, 0);
 	mlx_put_image_to_window(all->mlx->mlx_ptr, all->mlx->win_ptr,
@@ -88,7 +90,6 @@ void	main_dispatcher(t_all *all, int fd)
 	printf("screen h : %d, screen w : %d\n", all->data->screen_height,
 		all->data->screen_width);
 	// ray_servo(all->data, 0);
-	get_minimap(all);
 	open_game(all, all->mlx);
 }
 

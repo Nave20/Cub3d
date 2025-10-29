@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 12:25:37 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/27 17:20:27 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 12:25:08 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,5 @@ void	init_minimap(t_all *all)
 			&all->minimap->addr->bpp, &all->minimap->addr->line_length,
 			&all->minimap->addr->endian);
 	all->minimap->addr->bpp /= 8;
-}
-
-void	get_minimap(t_all *all)
-{
-	init_minimap(all);
 	fill_minimap_colors(all->minimap);
-	fill_minimap_image(all);
 }
