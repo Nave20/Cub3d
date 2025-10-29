@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:04:00 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 14:00:08 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 14:51:39 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	texture_init(t_texture *texture)
 
 void	texture_alloc(t_all *all)
 {
-	all->texture->floor_color = malloc(sizeof(t_color));
+	all->texture->floor_color = ft_calloc(1, sizeof(t_color));
 	if (all->texture->floor_color == NULL)
 		error_exit("Error\nMalloc failure\n", all, NULL);
-	all->texture->ceiling_color = malloc(sizeof(t_color));
+	all->texture->ceiling_color = ft_calloc(1, sizeof(t_color));
 	if (all->texture->ceiling_color == NULL)
 		error_exit("Error\nMalloc failure\n", all, NULL);
 	texture_init(all->texture);
@@ -49,7 +49,6 @@ int	parsing_servo(t_all *all, int fd)
 		err_malloc(all, fd);
 	if (dispatcher_loop(fd, all, 0, NULL))
 		return (1);
-	if (arg_validation(all, all->texture))
-		return (1);
+	arg_validation(all, all->texture);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 11:39:25 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 14:07:25 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:30:15 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	load_x_anim(t_all *all, int x, int h, int w)
 			&w, &h);
 	if (!anim->anim_void[x])
 	{
+		free(name);
 		anim_void_error(all, x);
 		error_exit("Error\nXpm to image failure\n", all, NULL);
 	}
@@ -51,10 +52,30 @@ void	load_x_anim(t_all *all, int x, int h, int w)
 			&anim->addr[x]->bpp, &anim->addr[x]->line_length,
 			&anim->addr[x]->endian);
 	if (!anim->addr[x]->addr)
+	{
+		anim_void_error(all, x + 1);
 		error_exit("Error\nGet data addr failure\n", all, NULL);
+	}
 	anim->addr[x]->bpp = anim->addr[x]->bpp / 8;
 	anim->frame_height[x] = h;
 	anim->frame_width[x] = w;
+}
+
+void	init_anim_struct(t_all *all)
+{
+	all->anim = ft_calloc(1, sizeof(t_anim));
+	if (!all->anim)
+		error_exit("Error\nMalloc failure\n", all, NULL);
+	all->anim->addr = ft_calloc(8, sizeof(t_addr *));
+	if (!all->anim->addr)
+		error_exit("Error\nMalloc failure\n", all, NULL);
+	all->anim->frame_height = malloc(7 * sizeof(int));
+	if (!all->anim->frame_height)
+		error_exit("Error\nMalloc failure\n", all, NULL);
+	all->anim->frame_width = malloc(7 * sizeof(int));
+	if (!all->anim->frame_width)
+		error_exit("Error\nMalloc failure\n", all, NULL);
+	all->anim->anim_frame = 0;
 }
 
 void	load_anim(t_all *all)
@@ -62,24 +83,16 @@ void	load_anim(t_all *all)
 	int	i;
 
 	i = 0;
-	all->anim = ft_calloc(1, sizeof(t_anim));
-	if(!all->anim)
-		error_exit("Error\nMalloc failure\n", all, NULL);
-	all->anim->addr = ft_calloc(8, sizeof(t_addr *));
-	if(!all->anim->addr)
-		error_exit("Error\nMalloc failure\n", all, NULL);
-	all->anim->frame_height = malloc(7 * sizeof(int));
-	if(!all->anim->frame_height)
-		error_exit("Error\nMalloc failure\n", all, NULL);
-	all->anim->frame_width = malloc(7 * sizeof(int));
-	if(!all->anim->frame_width)
-		error_exit("Error\nMalloc failure\n", all, NULL);
+	init_anim_struct(all);
 	all->anim->anim_frame = 0;
 	while (i < 7)
 	{
 		all->anim->addr[i] = malloc(sizeof(t_addr));
-		if(!all->anim->addr[i])
+		if (!all->anim->addr[i])
+		{
+			anim_void_error(all, i);
 			error_exit("Error\nMalloc failure\n", all, NULL);
+		}
 		load_x_anim(all, i, 0, 0);
 		i++;
 	}

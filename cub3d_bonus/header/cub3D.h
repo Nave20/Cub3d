@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 14:01:16 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 14:28:10 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -314,17 +314,17 @@ int		parsing_servo(t_all *all, int fd);
 int		dispatcher_loop(int fd, t_all *all, int error, char *line);
 
 //-----------------------------GET_TEXTURE-----------------------------
-int		get_no(int fd, t_all *all, char *line);
-int		get_so(int fd, t_all *all, char *line);
-int		get_we(int fd, t_all *all, char *line);
-int		get_ea(int fd, t_all *all, char *line);
+void		get_no(int fd, t_all *all, char *line);
+void		get_so(int fd, t_all *all, char *line);
+void		get_we(int fd, t_all *all, char *line);
+void		get_ea(int fd, t_all *all, char *line);
 
 //------------------------------GET_COLOR------------------------------
-int		get_f(int fd, t_all *all, char *line);
-int		get_c(int fd, t_all *all, char *line);
+void		get_f(int fd, t_all *all, char *line);
+void		get_c(int fd, t_all *all, char *line);
 
 //------------------------------VALIDATION-----------------------------
-int		arg_validation(t_all *all, t_texture *texture);
+void		arg_validation(t_all *all, t_texture *texture);
 
 //--------------------------------UTILS--------------------------------
 int		strnstr_int(const char *src, const char *tofind, size_t size);
@@ -335,10 +335,10 @@ int		free_textures(t_texture *texture, char *line);
 int		free_double_tab(char **tab);
 
 //-----------------------------ERR_MESSAGE-----------------------------
-int		err_gnl(t_all *all);
-int		err_split(t_all *all);
-int		err_strdup(t_all *all);
-int		wrong_format(t_all *all);
+void	err_gnl(t_all *all);
+void	err_split(t_all *all);
+void	err_strdup(t_all *all);
+void	wrong_format(t_all *all);
 void	err_malloc(t_all *all, int fd);
 void	free_mlx(t_mlx *mlx);
 void	destroy_images(t_mlx *mlx);
@@ -445,7 +445,7 @@ float	dda_return(t_data *data, float dir_x, float dir_y);
 
 void	f_key(t_all *all);
 float	door_dda(t_data *data, float dir_x, float dir_y);
-int		get_do(int fd, t_all *all, char *line);
+void	get_do(int fd, t_all *all, char *line);
 void	render_d(t_all *all, t_render *render, int x);
 float	door_detect(t_data *data, float ray);
 void	change_anim(t_all *all, int x);

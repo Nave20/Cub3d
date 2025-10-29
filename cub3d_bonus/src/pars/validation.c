@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 12:36:20 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 13:45:21 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 14:54:01 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	color_range(t_all *all, t_color *color)
 	return (0);
 }
 
-int	valid_color(t_all *all, t_color *color, int i, char **tmp)
+void	valid_color(t_all *all, t_color *color, int i, char **tmp)
 {
 	while (color->color[i])
 	{
@@ -100,17 +100,16 @@ int	valid_color(t_all *all, t_color *color, int i, char **tmp)
 	free(color->color);
 	color->color = NULL;
 	if (!tmp)
-		return (err_split(all));
+		err_split(all);
 	color_components(all, tmp, 0, 0);
 	color->r = ft_atoi(tmp[0]);
 	color->g = ft_atoi(tmp[1]);
 	color->b = ft_atoi(tmp[2]);
 	free_double_tab(tmp);
 	color_range(all, color);
-	return (0);
 }
 
-int	arg_validation(t_all *all, t_texture *texture)
+void	arg_validation(t_all *all, t_texture *texture)
 {
 	if (valid_xpm(texture->north_texture))
 		return (wrong_format(all));
@@ -122,9 +121,6 @@ int	arg_validation(t_all *all, t_texture *texture)
 		return (wrong_format(all));
 	if (valid_xpm(texture->door_texture))
 		return (wrong_format(all));
-	if (valid_color(all, texture->floor_color, 0, NULL))
-		return (1);
-	if (valid_color(all, texture->ceiling_color, 0, NULL))
-		return (1);
-	return (0);
+	valid_color(all, texture->floor_color, 0, NULL);
+	valid_color(all, texture->ceiling_color, 0, NULL);
 }

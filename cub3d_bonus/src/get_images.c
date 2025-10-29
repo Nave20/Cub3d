@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:01:43 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/29 13:56:26 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:25:59 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	get_w_image(t_all *all, t_mlx *mlx, int w, int h)
 	addr_w = all->texture->addr_w;
 	addr_w->addr = mlx_get_data_addr(all->mlx->w_texture,
 			&addr_w->bpp, &addr_w->line_length, &addr_w->endian);
-	if(!addr_w->addr)
+	if (!addr_w->addr)
 		error_exit("Error\nGet data addr failure\n", all, NULL);
 	addr_w->bpp /= 8;
 }
@@ -47,7 +47,7 @@ void	get_e_image(t_all *all, t_mlx *mlx, int w, int h)
 	addr_e = all->texture->addr_e;
 	addr_e->addr = mlx_get_data_addr(all->mlx->e_texture,
 			&addr_e->bpp, &addr_e->line_length, &addr_e->endian);
-	if(!addr_e->addr)
+	if (!addr_e->addr)
 		error_exit("Error\nGet data addr failure\n", all, NULL);
 	addr_e->bpp /= 8;
 }
@@ -67,7 +67,7 @@ void	get_s_image(t_all *all, t_mlx *mlx, int w, int h)
 	addr_s = all->texture->addr_s;
 	addr_s->addr = mlx_get_data_addr(all->mlx->s_texture,
 			&addr_s->bpp, &addr_s->line_length, &addr_s->endian);
-	if(!addr_s->addr)
+	if (!addr_s->addr)
 		error_exit("Error\nGet data addr failure\n", all, NULL);
 	addr_s->bpp /= 8;
 }
@@ -87,7 +87,7 @@ void	get_n_image(t_all *all, t_mlx *mlx, int w, int h)
 	addr_n = all->texture->addr_n;
 	addr_n->addr = mlx_get_data_addr(all->mlx->n_texture,
 			&addr_n->bpp, &addr_n->line_length, &addr_n->endian);
-	if(!addr_n->addr)
+	if (!addr_n->addr)
 		error_exit("Error\nGet data addr failure\n", all, NULL);
 	addr_n->bpp /= 8;
 }
@@ -107,7 +107,7 @@ void	get_d_image(t_all *all, t_mlx *mlx, int w, int h)
 	addr_d = all->texture->addr_d;
 	addr_d->addr = mlx_get_data_addr(all->mlx->d_texture,
 			&addr_d->bpp, &addr_d->line_length, &addr_d->endian);
-	if(!addr_d->addr)
+	if (!addr_d->addr)
 		error_exit("Error\nGet data addr failure\n", all, NULL);
 	addr_d->bpp /= 8;
 }
@@ -127,7 +127,7 @@ void	get_txt_image(t_all *all, t_mlx *mlx, int w, int h)
 	addr_txt = all->texture->addr_txt;
 	addr_txt->addr = mlx_get_data_addr(all->mlx->txt_texture,
 			&addr_txt->bpp, &addr_txt->line_length, &addr_txt->endian);
-	if(!addr_txt->addr)
+	if (!addr_txt->addr)
 		error_exit("Error\nGet data addr failure\n", all, NULL);
 	addr_txt->bpp /= 8;
 }

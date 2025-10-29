@@ -6,13 +6,13 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 17:50:16 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 13:25:25 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 14:31:55 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3D.h"
 
-int	get_f(int fd, t_all *all, char *line)
+void	get_f(int fd, t_all *all, char *line)
 {
 	int	i;
 	int	error;
@@ -33,13 +33,15 @@ int	get_f(int fd, t_all *all, char *line)
 		all->texture->valid_floor = true;
 		all->texture->floor_color->color = ft_strdup(&line[i]);
 		if (!all->texture->floor_color->color)
+		{
+			free(line);
 			return (err_strdup(all));
-		return (0);
+		}
+		return ;
 	}
-	return (1);
 }
 
-int	get_c(int fd, t_all *all, char *line)
+void	get_c(int fd, t_all *all, char *line)
 {
 	int	i;
 	int	error;
@@ -60,8 +62,10 @@ int	get_c(int fd, t_all *all, char *line)
 		all->texture->valid_ceiling = true;
 		all->texture->ceiling_color->color = ft_strdup(&line[i]);
 		if (!all->texture->ceiling_color->color)
+		{
+			free(line);
 			return (err_strdup(all));
-		return (0);
+		}
+		return ;
 	}
-	return (1);
 }

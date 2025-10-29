@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 12:27:00 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/29 14:08:14 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:29:44 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	anim_void_error(t_all *all, int end)
 	int	i;
 
 	i = 0;
-	while(i < end)
+	while (i < end)
 	{
 		mlx_destroy_image(all->mlx->mlx_ptr, all->anim->anim_void[i]);
 		all->anim->anim_void[i] = NULL;
@@ -34,9 +34,9 @@ void	free_anim(t_all *all)
 		free(all->anim->frame_height);
 	if (all->anim->frame_width)
 		free(all->anim->frame_width);
-	if(all->anim->addr)
+	if (all->anim->addr)
 	{
-		while(all->anim->addr[i])
+		while (all->anim->addr[i])
 		{
 			free(all->anim->addr[i]);
 			i++;
@@ -44,9 +44,9 @@ void	free_anim(t_all *all)
 		free(all->anim->addr);
 	}
 	i = 0;
-	if(all->anim->anim_void[0])
+	if (all->anim->anim_void[0])
 	{
-		while(i < 7)
+		while (i < 7)
 			mlx_destroy_image(all->mlx->mlx_ptr, all->anim->anim_void[i++]);
 	}
 	free(all->anim);

@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:07:44 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/29 13:30:10 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 14:42:21 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	cpy_lst_to_tab(t_list *lst, t_all *all, int i, int j)
 	ptr = lst;
 	all->data->map = ft_calloc(all->data->lines + 5, sizeof(char *));
 	if (!all->data->map)
-		error_exit("Error\nMalloc failure", all, lst);
+		error_exit("Error\nMalloc failure\n", all, lst);
 	add_fist_border_to_tab(lst, all);
 	while (ptr != NULL)
 	{
 		all->data->map[i] = ft_calloc(all->data->cols + 5, sizeof(char));
 		if (!all->data->map[i])
-			error_exit("Error\nMalloc failure", all, lst);
+			error_exit("Error\nMalloc failure\n", all, lst);
 		all->data->map[i][j++] = ' ';
 		all->data->map[i][j++] = ' ';
 		fill_line(all->data, ptr->content, i, j);
@@ -68,7 +68,10 @@ t_list	*cpy_map_to_lst(t_all *all, char *buffer, int fd, int error)
 	{
 		ptr = ft_lstnew(buffer);
 		if (!ptr)
+		{
+			free(buffer);
 			error_exit("Error\nft_lstnew failure\n", all, lst);
+		}
 		ft_lstadd_back(&lst, ptr);
 		buffer = get_next_line(fd, &error);
 		if (error != 0)

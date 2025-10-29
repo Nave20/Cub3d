@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 13:57:28 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:28:12 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ void	struct_init(t_all *all)
 
 void	open_game(t_all *all, t_mlx *mlx)
 {
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr,
-			all->data->screen_width, all->data->screen_height, "cub3D");
 	all->mouse->mid_x = all->data->screen_width / 2;
 	all->mouse->mid_y = all->data->screen_height / 2;
 	all->mouse->x = all->mouse->mid_x;
@@ -63,6 +61,8 @@ void	open_game(t_all *all, t_mlx *mlx)
 	load_anim(all);
 	init_minimap(all);
 	fill_minimap_image(all);
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr,
+			all->data->screen_width, all->data->screen_height, "cub3D");
 	mlx_mouse_hide(mlx->mlx_ptr, mlx->win_ptr);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->fc_image, 0, 0);
 	mlx_put_image_to_window(all->mlx->mlx_ptr, all->mlx->win_ptr,
