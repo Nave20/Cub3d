@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:22:13 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/29 13:02:28 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/30 17:27:26 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	free_addr(t_texture *texture)
 		free(texture->addr_w);
 	if (texture->addr_d)
 		free(texture->addr_d);
+	if (texture->addr_txt)
+		free(texture->addr_txt);
 }
 
 void	free_data(t_data *data)

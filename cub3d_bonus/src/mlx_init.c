@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 12:16:45 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/29 17:43:30 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/30 17:11:00 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	init_texture_addr(t_all *all)
 	all->texture->addr_d = malloc(sizeof(t_addr));
 	if (!all->texture->addr_d)
 		error_exit("Error\nMalloc failure\n", all, NULL);
-	// all->texture->addr_txt = malloc(sizeof(t_addr));
-	// if (!all->texture->addr_txt)
-	// 	error_exit("Error\nMalloc failure\n", all, NULL);
+	all->texture->addr_txt = malloc(sizeof(t_addr));
+	if (!all->texture->addr_txt)
+		error_exit("Error\nMalloc failure\n", all, NULL);
 }
 
 void	init_mlx(t_all *all, t_mlx *mlx)

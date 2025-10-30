@@ -57,6 +57,7 @@ SRC_FILES       =	main.c				\
 					fill_minimap_img.c	\
 					animation.c			\
 					free_textures.c		\
+					door_images.c		\
 
 RENDER_FILES	=	rendering.c			\
 					texturing_west.c	\

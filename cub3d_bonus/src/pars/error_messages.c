@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 16:11:51 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 14:31:20 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/30 17:20:31 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	err_strdup(t_all *all)
 	exit_game(all);
 }
 
-void	wrong_format(t_all* all)
+void	wrong_format(t_all *all)
 {
 	perror(RED"Error\n -> all texture files must be terminated by .xpm"RESET);
 	exit_game(all);

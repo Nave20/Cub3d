@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 17:44:41 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/30 17:22:45 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -450,6 +450,10 @@ float	door_detect(t_data *data, float ray);
 void	change_anim(t_all *all, int x);
 void	load_anim(t_all *all);
 void	anim_void_error(t_all *all, int end);
+
+void	put_txt_to_window(t_all *all, t_addr *addr, int height, int width);
+void	get_d_image(t_all *all, t_mlx *mlx, int w, int h);
+void	get_txt_image(t_all *all, t_mlx *mlx, int w, int h);
 
 
 #endif

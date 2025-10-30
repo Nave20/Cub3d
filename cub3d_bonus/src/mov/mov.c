@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:54:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 12:24:16 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/30 17:10:57 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,19 @@ void	update(t_all *all)
 	x = all->data->player->pos_x;
 	y = all->data->player->pos_y;
 	ray_servo(all->data, 0);
+	door_detect(all->data, all->data->player->radian);
+	if (all->data->ray->door == true && (all->data->map[y][x + 1] == 'C'
+		|| all->data->map[y + 1][x] == 'C' || all->data->map[y][x - 1] == 'C'
+		|| all->data->map[y - 1][x] == 'C' || all->data->map[y][x + 1] == 'O'
+		|| all->data->map[y + 1][x] == 'O' || all->data->map[y][x - 1] == 'O'
+		|| all->data->map[y - 1][x] == 'O'))
+		put_txt_to_window(all, all->texture->addr_txt,
+			all->texture->height_txt, all->texture->width_txt);
 	mlx_put_image_to_window(all->mlx->mlx_ptr,
 		all->mlx->win_ptr, all->mlx->fc_image, 0, 0);
 	fill_minimap_image(all);
 	mlx_put_image_to_window(all->mlx->mlx_ptr,
 		all->mlx->win_ptr, all->minimap->image, 0, 0);
-	door_detect(all->data, all->data->player->radian);
-	if (all->data->ray->door == true && (all->data->map[x + 1][y] == 'C'
-		|| all->data->map[x][y + 1] == 'C' || all->data->map[x - 1][y] == 'C'
-		|| all->data->map[x][y - 1] == 'C' || all->data->map[x + 1][y] == 'O'
-		|| all->data->map[x][y + 1] == 'O' || all->data->map[x - 1][y] == 'O'
-		|| all->data->map[x][y - 1] == 'O'))
-	{
-		mlx_string_put(all->mlx->mlx_ptr, all->mlx->win_ptr,
-			all->data->screen_width / 2,
-			all->data->screen_height / 2, all->string_color.argb,
-			"Press f to pay respect");
-	}
 }
 
 void	key_dispatcher(t_all *all)

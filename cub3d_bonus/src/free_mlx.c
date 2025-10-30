@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 16:49:12 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/27 17:15:57 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/10/30 17:27:16 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	destroy_images(t_mlx *mlx)
 		mlx_destroy_image(mlx->mlx_ptr, mlx->d_texture);
 	if (mlx->fc_image)
 		mlx_destroy_image(mlx->mlx_ptr, mlx->fc_image);
+	if (mlx->txt_texture)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->txt_texture);
 }
 
 void	free_mlx(t_mlx *mlx)
