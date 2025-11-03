@@ -35,7 +35,7 @@ PARS_FILES      =	get_texture.c		\
 					error.c				\
 					print_utils.c		\
 					is_something.c		\
-					copy_utils.c		\
+					get_map_utils.c		\
 					map_parsing.c		\
 					texture_dispatcher.c\
 
