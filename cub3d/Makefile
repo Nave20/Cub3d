@@ -22,7 +22,7 @@ MLX_INIT_OBJDIR     = $(OBJ_DIR)mlx_init/
 
 LIB            = $(SRC_DIR)/libft/libft.a
 MLXPATH        = ../minilibx-linux
-MLX            =$(MLX_PATH)/libmlx.a
+MLX            =$(MLXPATH)/libmlx.a
 
 PARS_FILES      =	get_texture.c		\
 					get_color.c			\
@@ -87,7 +87,7 @@ NAME            = cub3D
 CC              = cc
 FLAGS           = -Wall -Wextra -Werror -g3 -I$(INC_DIR)
 
-all: $(OBJ_DIR) $(PARS_OBJDIR) $(MOV_OBJDIR) $(RAY_OBJDIR) $(RENDER_OBJDIR) $(EXIT_OBJDIR) $(MLX_INIT_OBJDIR) $(MLX) $(NAME)
+all: $(OBJ_DIR) $(PARS_OBJDIR) $(MOV_OBJDIR) $(RAY_OBJDIR) $(RENDER_OBJDIR) $(EXIT_OBJDIR) $(MLX_INIT_OBJDIR) makelibft makemlx $(NAME)
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
@@ -144,13 +144,18 @@ $(NAME): $(OBJS) $(LIB) $(HEADER) Makefile
 $(MLX) :
 	make -C $(MLXPATH) all
 
-$(LIB): FORCE
+$(LIB):
 	make bonus -C $(SRC_DIR)libft
 
-FORCE:
+makelibft :
+	make -C $(SRC_DIR)libft all
+
+makemlx :
+	make -C $(MLXPATH) all
 
 clean:
-	make clean -C $(SRC_DIR)libft/
+	make -C $(SRC_DIR)libft/ clean
+	make -C $(MLXPATH) clean
 	rm -rf $(OBJ_DIR)
 
 fclean: clean

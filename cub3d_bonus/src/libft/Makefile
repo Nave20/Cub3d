@@ -1,6 +1,6 @@
 NAME    =  libft.a
 CC      =  cc
-AR      =  ar -rc
+AR      =  ar -rcs
 FLAGS   =  -Wall -Wextra -Werror -g3 -fPIE
 HEADER  =  libft.h
 
@@ -45,9 +45,7 @@ SOURCES = \
     ft_putnbr_base.c\
     ft_printf.c \
     get_next_line.c \
-    get_next_line_utils.c
-
-BONUS = \
+    get_next_line_utils.c \
     ft_lstnew_bonus.c     \
     ft_lstadd_front_bonus.c    \
     ft_lstsize_bonus.c    \
@@ -59,7 +57,6 @@ BONUS = \
     ft_lstmap_bonus.c
 
 OBJS    =  $(addprefix $(OBJS_DIR), ${SOURCES:.c=.o})
-B_OBJS  =  $(addprefix $(OBJS_DIR), ${BONUS:.c=.o})
 
 all :  $(OBJS_DIR) ${NAME}
 
@@ -72,9 +69,6 @@ $(OBJS_DIR)%.o :  %.c ${HEADER} | $(OBJS_DIR)
 ${NAME} :  ${OBJS} Makefile
 	${AR} ${NAME} ${OBJS}
 
-bonus   : all $(OBJS_DIR) ${B_OBJS}
-	${AR} ${NAME} ${B_OBJS}
-
 clean   :
 	@rm -rf ${OBJS_DIR}
 
@@ -83,4 +77,4 @@ fclean  :  clean
 
 re  :  fclean all
 
-.PHONY  :  all clean fclean re bonus
+.PHONY  :  all clean fclean re
