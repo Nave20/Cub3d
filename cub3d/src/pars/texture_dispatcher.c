@@ -6,13 +6,13 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 11:55:07 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/29 17:11:41 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 16:34:54 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3D.h"
 
-bool	all_textures_valid(t_texture *texture)
+static bool	all_textures_valid(t_texture *texture)
 {
 	if (texture->valid_north == true && texture->valid_south == true
 		&& texture->valid_west == true && texture->valid_east == true
@@ -22,7 +22,7 @@ bool	all_textures_valid(t_texture *texture)
 		return (0);
 }
 
-int	wall_dispatcher(char *line, t_all *all, int fd)
+static int	wall_dispatcher(char *line, t_all *all, int fd)
 {
 	if (ft_strnstr(line, "NO ", ft_strlen(line)) != NULL
 		&& all->texture->valid_north == false)
@@ -51,7 +51,7 @@ int	wall_dispatcher(char *line, t_all *all, int fd)
 	return (0);
 }
 
-int	floor_ceiling_dispatcher(char *line, t_all *all, int fd)
+static int	floor_ceiling_dispatcher(char *line, t_all *all, int fd)
 {
 	if (ft_strnstr(line, "F ", ft_strlen(line)) != NULL
 		&& all->texture->valid_floor == false)

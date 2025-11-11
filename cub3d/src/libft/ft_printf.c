@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 10:16:07 by vpirotti          #+#    #+#             */
-/*   Updated: 2024/11/23 10:16:07 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/11/11 17:30:36 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,3 @@ int	ft_printf(const char *s, ...)
 	va_end(arg);
 	return (final);
 }
-// #include <limits.h>
-// #include <stdio.h>
-// int main(void)
-// {
-// 	printf(" %x \n", LONG_MAX);
-// 	ft_printf(" %x ", LONG_MAX);
-// 	return (0);
-// }

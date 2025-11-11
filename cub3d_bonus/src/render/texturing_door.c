@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 15:08:01 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/27 16:44:37 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 14:25:59 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define EPSILON 1e-6f
 
-void	init_render_d(t_all *all, t_render *render)
+static void	init_render_d(t_all *all, t_render *render)
 {
 	if (render->wall_height < EPSILON)
 	{
@@ -23,15 +23,15 @@ void	init_render_d(t_all *all, t_render *render)
 		return ;
 	}
 	render->coef_pix = 100 / render->wall_height;
-	render->start_on_texture = (render->draw_start
+	render->start_on_texture = ((float)render->draw_start
 			- (float)all->data->screen_height / 2.0f
 			+ render->wall_height / 2.0f) * render->coef_pix;
-	render->to_draw = render->draw_end - render->draw_start;
+	render->to_draw = (float)render->draw_end - (float)render->draw_start;
 	render->impact = 100 - select_impact(all->data)
 		* 100;
 }
 
-void	pixel_loop_d(t_all *all, t_render *render, float texpos, int x)
+static void	pixel_loop_d(t_all *all, t_render *render, float texpos, int x)
 {
 	t_argb	color;
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 17:44:32 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 17:20:33 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,7 +292,6 @@ int		strnstr_int(const char *src, const char *tofind, size_t size);
 void	texture_print(t_texture *texture);
 
 //--------------------------------FREE---------------------------------
-int		free_textures(t_texture *texture, char *line);
 int		free_double_tab(char **tab);
 
 //-----------------------------ERR_MESSAGE-----------------------------
@@ -311,6 +310,8 @@ void	free_map_tab(char **tab);
 void	print_map(char **tab);
 bool	is_map_line(char *str);
 bool	is_good_char(char c);
+bool	is_player(char c);
+bool	is_invalid_char(char c);
 void	find_cols_nb_map(t_data *data, t_list *lst);
 void	add_fist_border_to_tab(t_list *lst, t_all *all);
 void	add_last_border_to_tab(t_list *lst, t_all *all, int i);
@@ -354,15 +355,12 @@ void	print_pos(t_player *player);
 //---------------------------------------------------------------------
 
 void	ray_servo(t_data *data, int i);
-float	pre_dda(t_data *data, float ray);
 float	dda(t_data *data, float dir_x, float dir_y);
-void	side_touched(t_data *data, int side, float dir_x, float dir_y);
 void	fast_trig(t_data *data);
 float	ft_trig(t_data *data, float angle, t_trig type);
 void	print_ray_touch(t_data *data, int x, int y);
 void	wall_height(t_data *data, float wall_dist, int col,float ray);
 float	select_impact(t_data *data);
-void	get_ray_impact(t_data *data, float distance);
 
 //-------------------------------------------------------------------------
 //----------------------------------RENDER---------------------------------

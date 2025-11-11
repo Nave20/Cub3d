@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:27:20 by vpirotti          #+#    #+#             */
-/*   Updated: 2024/11/23 17:27:28 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:30:05 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	check_base(const char *base)
+static int	check_base(const char *base)
 {
 	int	i;
 	int	a;
@@ -36,7 +36,7 @@ int	check_base(const char *base)
 	return (1);
 }
 
-size_t	ft_base_res(unsigned long long int nbr, size_t base)
+static size_t	ft_base_res(unsigned long long int nbr, size_t base)
 {
 	size_t	res;
 
@@ -49,7 +49,7 @@ size_t	ft_base_res(unsigned long long int nbr, size_t base)
 	return (res);
 }
 
-char	*ft_miniputnbr(unsigned long long int nbr, char *base, char *res)
+static char	*ft_miniputnbr(unsigned long long int nbr, char *base, char *res)
 {
 	size_t	size;
 	size_t	len;

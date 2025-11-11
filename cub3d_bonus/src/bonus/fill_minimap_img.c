@@ -6,13 +6,13 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:18:33 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/27 17:19:30 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:02:21 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3D.h"
 
-void	put_color_pxl(t_all *all, uint32_t argb, int x, int y)
+static void	put_color_pxl(t_all *all, uint32_t argb, int x, int y)
 {
 	*(uint32_t *)(all->minimap->addr->addr
 			+ (y * all->minimap->addr->line_length
@@ -20,11 +20,11 @@ void	put_color_pxl(t_all *all, uint32_t argb, int x, int y)
 		= argb;
 }
 
-void	fill_minimap_lines(t_all *all, float line, int y, int x)
+static void	fill_minimap_lines(t_all *all, float line, int y, int x)
 {
 	float	col;
 
-	col = ((x - 100.0) / 40.0) + all->data->player->pos_x;
+	col = (((float)x - 100.0f) / 40.0f) + all->data->player->pos_x;
 	if (all->data->map[(int)line][(int)col] == '1')
 		put_color_pxl(all, all->minimap->w_color->argb, x, y);
 	else if (x >= 95 && x <= 105 && y >= 95 && y <= 105)
@@ -47,7 +47,7 @@ void	fill_minimap_image(t_all *all)
 	y = 0;
 	while (y < 200)
 	{
-		line = ((y - 100.0) / 40.0) + all->data->player->pos_y;
+		line = (((float)y - 100.0f) / 40.0f) + all->data->player->pos_y;
 		while (x < 200)
 		{
 			fill_minimap_lines(all, line, y, x);

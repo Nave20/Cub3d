@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 14:31:11 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/28 17:34:16 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:05:48 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ float	door_detect(t_data *data, float ray)
 	return (res);
 }
 
-void	second_grid_door_check(t_all *all, int x, int y)
+static void	second_grid_door_check(t_all *all, int x, int y)
 {
 	if (all->data->map[y - 1][x] == 'C' || all->data->map[y - 1][x] == 'O')
 	{
@@ -46,7 +46,7 @@ void	second_grid_door_check(t_all *all, int x, int y)
 	}
 }
 
-void	first_grid_door_check(t_all *all, int x, int y)
+static void	first_grid_door_check(t_all *all, int x, int y)
 {
 	if (all->data->map[y + 1][x] == 'C' || all->data->map[y + 1][x] == 'O')
 	{

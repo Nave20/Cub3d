@@ -6,13 +6,13 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:22:13 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/29 17:21:39 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:16:21 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3D.h"
 
-void	free_addr(t_texture *texture)
+static void	free_addr(t_texture *texture)
 {
 	if (texture->addr_e)
 		free(texture->addr_e);
@@ -50,7 +50,7 @@ void	free_texture(t_texture *texture)
 	free(texture);
 }
 
-void	free_data(t_data *data)
+static void	free_data(t_data *data)
 {
 	if (data->map)
 		free_map_tab(data->map);

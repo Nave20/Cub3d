@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:30:49 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/07 14:39:02 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/11/11 17:58:28 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,7 @@ char				*read_buffer(int fd, char **buffrest, int *error);
 char				*ft_strcpy(char *dest, const char *src);
 char				*ft_strjoin_gnl(char *s1, char *s2);
 char				*ft_strcpy_gnl(char *dest, const char *src);
+char				*str_return(char *str, char *buffer, char **buffrest,
+						char *line);
 
 #endif

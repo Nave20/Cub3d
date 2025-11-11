@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 11:39:38 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/16 11:17:11 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 17:18:51 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define EPSILON 1e-6f
 #define HUGE 1e30f
 
-float	side_x(t_data *data, float dir_x, float delta_x)
+static float	side_x(t_data *data, float dir_x, float delta_x)
 {
 	t_ray	*ray;
 
@@ -32,7 +32,7 @@ float	side_x(t_data *data, float dir_x, float delta_x)
 	}
 }
 
-float	side_y(t_data *data, float dir_y, float delta_y)
+static float	side_y(t_data *data, float dir_y, float delta_y)
 {
 	t_ray	*ray;
 
@@ -49,7 +49,7 @@ float	side_y(t_data *data, float dir_y, float delta_y)
 	}
 }
 
-void	ray_values(t_data *data, float dir_x, float dir_y)
+static void	ray_values(t_data *data, float dir_x, float dir_y)
 {
 	t_ray	*ray;
 
@@ -62,7 +62,7 @@ void	ray_values(t_data *data, float dir_x, float dir_y)
 	ray->side_y = side_y(data, dir_y, ray->delta_y);
 }
 
-float	dda_return(t_data *data, float dir_x, float dir_y)
+static float	dda_return(t_data *data, float dir_x, float dir_y)
 {
 	float	wall_dist;
 	t_ray	*ray;

@@ -6,13 +6,13 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:01:43 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/30 17:22:15 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:03:16 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3D.h"
 
-void	get_w_image(t_all *all, t_mlx *mlx, int w, int h)
+static void	get_w_image(t_all *all, t_mlx *mlx, int w, int h)
 {
 	t_addr	*addr_w;
 
@@ -32,7 +32,7 @@ void	get_w_image(t_all *all, t_mlx *mlx, int w, int h)
 	addr_w->bpp /= 8;
 }
 
-void	get_e_image(t_all *all, t_mlx *mlx, int w, int h)
+static void	get_e_image(t_all *all, t_mlx *mlx, int w, int h)
 {
 	t_addr	*addr_e;
 
@@ -52,7 +52,7 @@ void	get_e_image(t_all *all, t_mlx *mlx, int w, int h)
 	addr_e->bpp /= 8;
 }
 
-void	get_s_image(t_all *all, t_mlx *mlx, int w, int h)
+static void	get_s_image(t_all *all, t_mlx *mlx, int w, int h)
 {
 	t_addr	*addr_s;
 
@@ -72,7 +72,7 @@ void	get_s_image(t_all *all, t_mlx *mlx, int w, int h)
 	addr_s->bpp /= 8;
 }
 
-void	get_n_image(t_all *all, t_mlx *mlx, int w, int h)
+static void	get_n_image(t_all *all, t_mlx *mlx, int w, int h)
 {
 	t_addr	*addr_n;
 

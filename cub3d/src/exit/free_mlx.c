@@ -6,13 +6,13 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 10:58:21 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/29 10:58:56 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:16:34 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3D.h"
 
-void	destroy_images(t_mlx *mlx)
+static void	destroy_images(t_mlx *mlx)
 {
 	if (mlx->e_texture)
 		mlx_destroy_image(mlx->mlx_ptr, mlx->e_texture);

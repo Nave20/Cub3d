@@ -6,13 +6,13 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 17:18:51 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/29 13:34:24 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:16:54 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3D.h"
 
-bool	all_textures_valid(t_texture *texture)
+static bool	all_textures_valid(t_texture *texture)
 {
 	if (texture->valid_north == true && texture->valid_south == true
 		&& texture->valid_west == true && texture->valid_east == true
@@ -23,7 +23,7 @@ bool	all_textures_valid(t_texture *texture)
 		return (0);
 }
 
-int	first_dispatch(char *line, int fd, t_all *all)
+static int	first_dispatch(char *line, int fd, t_all *all)
 {
 	if (ft_strnstr(line, "NO ", ft_strlen(line)) != NULL
 		&& all->texture->valid_north == false)
@@ -52,7 +52,7 @@ int	first_dispatch(char *line, int fd, t_all *all)
 	return (0);
 }
 
-int	second_dispatch(char *line, t_all *all, int fd)
+static int	second_dispatch(char *line, t_all *all, int fd)
 {
 	if (ft_strnstr(line, "EA ", ft_strlen(line)) != NULL
 		&& all->texture->valid_east == false)

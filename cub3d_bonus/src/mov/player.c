@@ -6,13 +6,13 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 09:47:19 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 14:12:01 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:07:24 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3D.h"
 
-void	find_player(t_data *data, int i, int j)
+static void	find_player(t_data *data, int i, int j)
 {
 	while (data->map[i])
 	{

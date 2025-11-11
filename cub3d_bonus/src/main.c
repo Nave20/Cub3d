@@ -6,25 +6,25 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 17:38:29 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:20:10 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3D.h"
 
-void	arg_nbr_and_extension_check(t_all *all, int argc, char **argv)
+static void	arg_nbr_and_extension_check(t_all *all, int argc, char **argv)
 {
 	int	nb;
 
 	if (argc != 2)
 		error_exit("Error\nThere must be only one arg\n", all, NULL);
 	(void)argv;
-	nb = ft_strlen(argv[1]);
+	nb = (int)ft_strlen(argv[1]);
 	if (ft_strncmp(".cub", argv[1] + ft_strlen(argv[1]) - 4, 5) != 0)
 		error_exit("Error\nWrong file extension\n", all, NULL);
 }
 
-void	struct_init(t_all *all)
+static void	struct_init(t_all *all)
 {
 	all->data = ft_calloc(1, sizeof(t_data));
 	if (!all->data)
@@ -52,7 +52,7 @@ void	struct_init(t_all *all)
 	all->string_color.b = 0;
 }
 
-void	open_game(t_all *all, t_mlx *mlx)
+static void	open_game(t_all *all, t_mlx *mlx)
 {
 	all->mouse->mid_x = all->data->screen_width / 2;
 	all->mouse->mid_y = all->data->screen_height / 2;
@@ -75,7 +75,7 @@ void	open_game(t_all *all, t_mlx *mlx)
 	mlx_loop(mlx->mlx_ptr);
 }
 
-void	main_dispatcher(t_all *all, int fd)
+static void	main_dispatcher(t_all *all, int fd)
 {
 	struct_init(all);
 	parsing_servo(all, fd);

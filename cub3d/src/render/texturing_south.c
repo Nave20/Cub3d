@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 10:04:04 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 12:04:05 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 17:22:39 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define EPSILON 1e-6f
 
-void	init_render_s(t_all *all, t_render *render)
+static void	init_render_s(t_all *all, t_render *render)
 {
 	if (render->wall_height < EPSILON)
 	{
@@ -30,7 +30,7 @@ void	init_render_s(t_all *all, t_render *render)
 	render->impact = select_impact(all->data) * all->data->texture->width_s;
 }
 
-void	pixel_loop_s(t_all *all, t_render *render, float texpos, int x)
+static void	pixel_loop_s(t_all *all, t_render *render, float texpos, int x)
 {
 	t_argb	color;
 	int		i;

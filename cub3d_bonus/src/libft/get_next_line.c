@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:30:49 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/07 14:30:49 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:55:16 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*create_line(char *buffer, char *line)
 	}
 	temp = ft_strjoin_gnl(line, buffer);
 	if (!temp)
-		return (free(line), NULL);
+		return (str_return(NULL, NULL, NULL, line));
 	free(line);
 	line = temp;
 	return (line);
@@ -60,7 +60,7 @@ char	*new_line(char **buffrest, char *buffer, int i, char *line)
 		buffrest = NULL;
 	line = create_line(buffer, line);
 	if (!line)
-		return (free(buffer), NULL);
+		return (str_return(NULL, buffer, NULL, NULL));
 	free(buffer);
 	return (line);
 }
@@ -78,12 +78,12 @@ char	*linecheck(char *buffer, char **buffrest, int fd, int i)
 		{
 			line = create_line(buffer, line);
 			if (!line)
-				return (free(buffer), NULL);
+				return (str_return(NULL, buffer, NULL, NULL));
 			nbread = read(fd, buffer, BUFFER_SIZE);
 			if (nbread < 0)
-				return (free_tabs(buffer, buffrest, line), NULL);
+				return (str_return(NULL, buffer, buffrest, line));
 			if (nbread == 0)
-				return (free_tabs(buffer, buffrest, NULL), line);
+				return (str_return(line, buffer, buffrest, NULL));
 			buffer[nbread] = '\0';
 			i = 0;
 		}

@@ -6,13 +6,13 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 11:39:25 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 16:30:15 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 11:58:11 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3D.h"
 
-char	*get_anim_file_name(t_all *all, int x)
+static char	*get_anim_file_name(t_all *all, int x)
 {
 	char	*name;
 	char	*tmp;
@@ -32,7 +32,7 @@ char	*get_anim_file_name(t_all *all, int x)
 	return (name);
 }
 
-void	load_x_anim(t_all *all, int x, int h, int w)
+static void	load_x_anim(t_all *all, int x, int h, int w)
 {
 	char	*name;
 	t_anim	*anim;
@@ -61,7 +61,7 @@ void	load_x_anim(t_all *all, int x, int h, int w)
 	anim->frame_width[x] = w;
 }
 
-void	init_anim_struct(t_all *all)
+static void	init_anim_struct(t_all *all)
 {
 	all->anim = ft_calloc(1, sizeof(t_anim));
 	if (!all->anim)

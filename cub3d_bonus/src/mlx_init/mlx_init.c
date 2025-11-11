@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 12:16:45 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/30 17:11:00 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 14:11:07 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,19 @@ void	get_screen_size(t_all *all)
 	all->data->screen_width = x - 400; ///modif
 }
 
-void	fill_color_struct(t_all *all)
+static void	fill_color_struct(t_all *all)
 {
 	all->mlx->c_color.a = 255;
-	all->mlx->c_color.r = all->texture->ceiling_color->r;
-	all->mlx->c_color.g = all->texture->ceiling_color->g;
-	all->mlx->c_color.b = all->texture->ceiling_color->b;
+	all->mlx->c_color.r = (u_int8_t)all->texture->ceiling_color->r;
+	all->mlx->c_color.g = (u_int8_t)all->texture->ceiling_color->g;
+	all->mlx->c_color.b = (u_int8_t)all->texture->ceiling_color->b;
 	all->mlx->f_color.a = 255;
-	all->mlx->f_color.r = all->texture->floor_color->r;
-	all->mlx->f_color.g = all->texture->floor_color->g;
-	all->mlx->f_color.b = all->texture->floor_color->b;
+	all->mlx->f_color.r = (u_int8_t)all->texture->floor_color->r;
+	all->mlx->f_color.g = (u_int8_t)all->texture->floor_color->g;
+	all->mlx->f_color.b = (u_int8_t)all->texture->floor_color->b;
 }
 
-void	init_texture_addr(t_all *all)
+static void	init_texture_addr(t_all *all)
 {
 	all->texture->addr_n = malloc(sizeof(t_addr));
 	if (!all->texture->addr_n)

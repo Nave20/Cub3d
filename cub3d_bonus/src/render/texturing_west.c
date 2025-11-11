@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 10:39:01 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/27 16:48:08 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:10:14 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define EPSILON 1e-6f
 
-void	init_render_w(t_all *all, t_render *render)
+static void	init_render_w(t_all *all, t_render *render)
 {
 	if (render->wall_height < EPSILON)
 	{
@@ -22,16 +22,17 @@ void	init_render_w(t_all *all, t_render *render)
 		render->start_on_texture = 0.0f;
 		return ;
 	}
-	render->coef_pix = all->data->texture->height_w / render->wall_height;
-	render->start_on_texture = (render->draw_start
+	render->coef_pix = (float)all->data->texture->height_w
+		/ (float)render->wall_height;
+	render->start_on_texture = ((float)render->draw_start
 			- (float)all->data->screen_height / 2.0f
 			+ render->wall_height / 2.0f) * render->coef_pix;
-	render->to_draw = render->draw_end - render->draw_start;
+	render->to_draw = (float)render->draw_end - (float)render->draw_start;
 	render->impact = select_impact(all->data)
-		* all->data->texture->width_w;
+		* (float)all->data->texture->width_w;
 }
 
-void	pixel_loop_w(t_all *all, t_render *render, float texpos, int x)
+static void	pixel_loop_w(t_all *all, t_render *render, float texpos, int x)
 {
 	t_argb	color;
 	int		i;

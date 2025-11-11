@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:37:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2024/11/06 15:37:29 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/11/11 17:53:15 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,3 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
-//
-// #include <stdio.h>
-// int main(void)
-// {
-// 	char	*test1 = "test\200";
-// 	char	*test2 = "test\0";
-// 	printf("%d \n", ft_strncmp(test1, test2, 6));
-// 	return (0);
-// }

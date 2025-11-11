@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:30:49 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/07 14:38:48 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:51:58 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+char	*str_return(char *str, char *buffer, char **buffrest, char *line)
+{
+	free_tabs(buffer, buffrest, line);
+	return (str);
+}
 
 void	free_tabs(char *buffer, char **buffrest, char *line)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 16:15:31 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/06 16:15:31 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:14:28 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	strnstr_int(const char *src, const char *tofind, size_t size)
 	return (0);
 }
 
-void	texture_print(t_texture *texture)
+void	texture_print(t_texture *texture) // a enlever avant de push
 {
 	if (texture->north_texture)
 		printf("North texture : %s\n", texture->north_texture);

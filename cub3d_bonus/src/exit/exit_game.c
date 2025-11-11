@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:22:13 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/30 17:27:26 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:02:31 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	free_addr(t_texture *texture)
 		free(texture->addr_txt);
 }
 
-void	free_data(t_data *data)
+static void	free_data(t_data *data)
 {
 	if (data->map)
 		free_map_tab(data->map);
@@ -41,7 +41,7 @@ void	free_data(t_data *data)
 	free(data);
 }
 
-void	free_minimap(t_all *all)
+static void	free_minimap(t_all *all)
 {
 	if (all->minimap->image)
 		mlx_destroy_image(all->mlx->mlx_ptr, all->minimap->image);

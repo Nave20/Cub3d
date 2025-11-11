@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:21:37 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/30 17:22:09 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:00:26 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	put_txt_to_window(t_all *all, t_addr *addr, int height, int width)
 
 	i_txt = 0;
 	i = all->data->screen_height / 2;
-	j = all->data->screen_width / 2.5;
+	j = (int)(all->data->screen_width / 2.5);
 	while (i_txt < height)
 	{
-		j = all->data->screen_width / 2.5;
+		j = (int)(all->data->screen_width / 2.5);
 		j_txt = 0;
 		while (j_txt < width)
 		{

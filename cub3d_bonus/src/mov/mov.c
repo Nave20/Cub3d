@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:54:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/30 17:10:57 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:06:39 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	update(t_all *all)
 		all->mlx->win_ptr, all->minimap->image, 0, 0);
 }
 
-void	key_dispatcher(t_all *all)
+static void	key_dispatcher(t_all *all)
 {
 	if (all->key->w)
 		w_key(all->data, all->data->player->pos_x,

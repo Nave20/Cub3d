@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:54:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 16:53:13 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/03 13:17:17 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	key_check(t_all *all)
 	static int	nb_frame;
 
 	nb_frame++;
-	if (nb_frame % 5000 == 0)
+	if (nb_frame % 1000 == 0)
 	{
 		if (all->key->w)
 			w_key(all->data, all->data->player->pos_x,

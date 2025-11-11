@@ -1,7 +1,7 @@
 NAME    =  libft.a
 CC      =  cc
 AR      =  ar -rcs
-FLAGS   =  -Wall -Wextra -Werror -g3 -fPIE
+FLAGS   =  -Wall -Wextra -g3 -fPIE
 HEADER  =  libft.h
 
 OBJS_DIR = objs/

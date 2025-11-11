@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 12:16:45 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/29 17:43:37 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:18:38 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	get_screen_size(t_all *all)
 	all->data->screen_width = x - 400; ///modif
 }
 
-void	fill_color_struct(t_all *all)
+static void	fill_color_struct(t_all *all)
 {
 	all->mlx->c_color.a = 255;
 	all->mlx->c_color.r = all->texture->ceiling_color->r;
@@ -35,7 +35,7 @@ void	fill_color_struct(t_all *all)
 	all->mlx->f_color.b = all->texture->floor_color->b;
 }
 
-void	init_texture_addr(t_all *all)
+static void	init_texture_addr(t_all *all)
 {
 	all->texture->addr_n = malloc(sizeof(t_addr));
 	if (!all->texture->addr_n)

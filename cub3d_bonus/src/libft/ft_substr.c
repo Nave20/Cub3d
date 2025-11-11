@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:44:49 by vpirotti          #+#    #+#             */
-/*   Updated: 2024/11/13 13:44:49 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:46:38 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	res[j] = '\0';
 	return (res);
 }
-// #include <stdio.h>
-// int main(void)
-// {
-// 	char *test = "bonjour j adore le monde";
-//
-// 	printf("%s \n", ft_substr(test, 1, 5));
-// 	return 0;
-// }

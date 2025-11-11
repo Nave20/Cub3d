@@ -6,7 +6,7 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 08:31:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/30 17:22:45 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:19:20 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ typedef struct	s_player		t_player;
 typedef struct	s_ray			t_ray;
 typedef struct  s_mlx			t_mlx;
 typedef struct  s_all			t_all;
-typedef enum    e_side			t_side;
-typedef enum    e_trig			t_trig;
 typedef union   s_argb			t_argb;
 typedef struct	s_render		t_render;
 typedef struct	s_addr			t_addr;
@@ -75,20 +73,20 @@ typedef struct	s_mouse			t_mouse;
 typedef struct	s_minimap		t_minimap;
 typedef struct	s_anim			t_anim;
 
-enum			e_side
+typedef enum			e_side
 {
 	EAST,
 	NORTH,
 	WEST,
 	SOUTH,
-};
+}t_side;
 
-enum			e_trig
+typedef enum			e_trig
 {
 	COS,
 	SIN,
 	TAN,
-};
+}t_trig;
 
 struct			s_minimap
 {
@@ -356,6 +354,8 @@ void	free_map_tab(char **tab);
 void	print_map(char **tab);
 bool	is_map_line(char *str);
 bool	is_good_char(char c);
+bool	is_player(char c);
+bool	is_invalid_char(char c);
 void	find_cols_nb_map(t_data *data, t_list *lst);
 void	add_fist_border_to_tab(t_list *lst, t_all *all);
 void	add_last_border_to_tab(t_list *lst, t_all *all, int i);
@@ -393,8 +393,6 @@ int		mouse_hook(int x, int y, t_all *all);
 //---------------------------------POV---------------------------------
 void	letf_arr(t_data *data);
 void	right_arr(t_data *data);
-void	left_arr_mouse(t_data *data);
-void	right_arr_mouse(t_data *data);
 
 //--------------------------------UTILS--------------------------------
 void	print_pos(t_player *player);
@@ -404,7 +402,6 @@ void	print_pos(t_player *player);
 //---------------------------------------------------------------------
 
 void	ray_servo(t_data *data, int i);
-float	pre_dda(t_data *data, float ray);
 float	dda(t_data *data, float dir_x, float dir_y);
 void	side_touched(t_data *data, int side, float dir_x, float dir_y);
 void	fast_trig(t_data *data);
@@ -412,7 +409,6 @@ float	ft_trig(t_data *data, float angle, t_trig type);
 void	print_ray_touch(t_data *data, int x, int y);
 void	wall_height(t_data *data, float wall_dist, int col,float ray);
 float	select_impact(t_data *data);
-void	get_ray_impact(t_data *data, float distance);
 float	side_y(t_data *data, float dir_y, float delta_y);
 float	side_x(t_data *data, float dir_x, float delta_x);
 

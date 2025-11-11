@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:08:36 by vpirotti          #+#    #+#             */
-/*   Updated: 2024/11/20 14:08:36 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:47:18 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,3 @@ int	ft_putnbr_fd(long long int n, int fd)
 	}
 	return (count);
 }
-// #include <stdio.h>
-// int main(void)
-// {
-// 	printf("\n%d",ft_putnbr_fd(4593, 1));
-// }

@@ -6,13 +6,13 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:04:00 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 17:17:26 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 16:33:31 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3D.h"
 
-void	texture_init(t_texture *texture)
+static void	texture_init(t_texture *texture)
 {
 	texture->valid = false;
 	texture->floor_color->color = NULL;
@@ -29,7 +29,7 @@ void	texture_init(t_texture *texture)
 	texture->valid_east = false;
 }
 
-void	texture_alloc(t_all *all)
+static void	texture_alloc(t_all *all)
 {
 	all->texture->floor_color = malloc(sizeof(t_color));
 	if (all->texture->floor_color == NULL)

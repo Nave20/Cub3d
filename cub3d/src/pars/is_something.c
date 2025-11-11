@@ -6,11 +6,27 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:40:24 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/09 12:48:36 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 16:15:55 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3D.h"
+
+bool	is_invalid_char(char c)
+{
+	if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	else
+		return (0);
+}
+
+bool	is_player(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	else
+		return (0);
+}
 
 bool	is_good_char(char c)
 {

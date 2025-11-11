@@ -103,9 +103,9 @@ HEADER          = $(INC_DIR)cub3D.h
 NAME            = cub3D
 
 CC              = cc
-FLAGS           = -Wall -Wextra -Werror -g3 -I$(INC_DIR)
+FLAGS           = -Wall -Wextra -g3 -I$(INC_DIR)
 
-all: $(OBJ_DIR) $(PARS_OBJDIR) $(MOV_OBJDIR) $(RAY_OBJDIR) $(RENDER_OBJDIR) $(EXIT_OBJDIR) $(MLX_INIT_OBJDIR) $(BONUS_OBJDIR) makelibft makemlx $(NAME)
+all: $(OBJ_DIR) $(PARS_OBJDIR) $(MOV_OBJDIR) $(RAY_OBJDIR) $(RENDER_OBJDIR) $(EXIT_OBJDIR) $(MLX_INIT_OBJDIR) $(BONUS_OBJDIR) makelibft $(NAME)
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)

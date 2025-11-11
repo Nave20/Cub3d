@@ -6,13 +6,13 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 17:38:13 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 17:23:59 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3D.h"
 
-void	arg_nbr_and_extension_check(t_all *all, int argc, char **argv)
+static void	arg_nbr_and_extension_check(t_all *all, int argc, char **argv)
 {
 	int	nb;
 
@@ -24,7 +24,7 @@ void	arg_nbr_and_extension_check(t_all *all, int argc, char **argv)
 		error_exit("Error\nWrong file extension\n", all, NULL);
 }
 
-void	struct_init(t_all *all)
+static void	struct_init(t_all *all)
 {
 	all->data = ft_calloc(1, sizeof(t_data));
 	if (!all->data)
@@ -45,7 +45,7 @@ void	struct_init(t_all *all)
 		error_exit("Error\nMalloc failure\n", all, NULL);
 }
 
-void	open_game(t_all *all, t_mlx *mlx)
+static void	open_game(t_all *all, t_mlx *mlx)
 {
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr,
 			all->data->screen_width, all->data->screen_height, "cub3D");
@@ -58,7 +58,7 @@ void	open_game(t_all *all, t_mlx *mlx)
 	mlx_loop(mlx->mlx_ptr);
 }
 
-void	main_dispatcher(t_all *all, int fd)
+static void	main_dispatcher(t_all *all, int fd)
 {
 	struct_init(all);
 	parsing_servo(all, fd);

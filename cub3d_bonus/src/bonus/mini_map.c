@@ -6,13 +6,13 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 12:25:37 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/29 17:41:15 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:00:50 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3D.h"
 
-void	fill_minimap_colors(t_minimap *minimap)
+static void	fill_minimap_colors(t_minimap *minimap)
 {
 	minimap->p_color->a = 255;
 	minimap->p_color->b = 0;
@@ -36,7 +36,7 @@ void	fill_minimap_colors(t_minimap *minimap)
 	minimap->c_color->r = 0;
 }
 
-void	init_minimap_colors(t_all *all)
+static void	init_minimap_colors(t_all *all)
 {
 	all->minimap->p_color = ft_calloc(1, sizeof(t_argb));
 	if (!all->minimap->p_color)

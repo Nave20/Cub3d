@@ -6,13 +6,13 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 12:36:20 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 17:28:28 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 16:35:47 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3D.h"
 
-int	valid_xpm(char *line)
+static int	valid_xpm(char *line)
 {
 	int		i;
 	char	*tmp;
@@ -35,7 +35,7 @@ int	valid_xpm(char *line)
 	return (0);
 }
 
-int	color_components(t_all *all, char **line, int i, int j)
+static int	color_components(t_all *all, char **line, int i, int j)
 {
 	while (line[i])
 		i++;
@@ -64,7 +64,7 @@ int	color_components(t_all *all, char **line, int i, int j)
 	return (0);
 }
 
-int	color_range(t_all *all, t_color *color)
+static int	color_range(t_all *all, t_color *color)
 {
 	if (color->r < 0 || color->r > 255)
 	{
@@ -84,7 +84,7 @@ int	color_range(t_all *all, t_color *color)
 	return (0);
 }
 
-void	valid_color(t_all *all, t_color *color, int i, char **tmp)
+static void	valid_color(t_all *all, t_color *color, int i, char **tmp)
 {
 	while (color->color[i])
 	{

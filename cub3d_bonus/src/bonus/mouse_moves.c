@@ -6,20 +6,20 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:50:08 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/28 17:02:21 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:01:35 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3D.h"
 
-void	left_arr_mouse(t_data *data)
+static void	left_arr_mouse(t_data *data)
 {
 	data->player->radian += 0.00675f;
 	if (data->player->radian < 0)
 		data->player->radian = 2.0f - fabsf(data->player->radian);
 }
 
-void	right_arr_mouse(t_data *data)
+static void	right_arr_mouse(t_data *data)
 {
 	data->player->radian -= 0.00675f;
 	if (data->player->radian < 0)

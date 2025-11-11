@@ -6,13 +6,13 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:54:38 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/16 15:44:00 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:19:25 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3D.h"
 
-float	pre_dda(t_data *data, float ray)
+static float	pre_dda(t_data *data, float ray)
 {
 	float	res;
 
@@ -54,7 +54,7 @@ void	side_touched(t_data *data, int side, float dir_x, float dir_y)
 	}
 }
 
-void	get_ray_impact(t_data *data, float distance)
+static void	get_ray_impact(t_data *data, float distance)
 {
 	float	pos_x;
 	float	pos_y;

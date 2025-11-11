@@ -6,13 +6,13 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 17:32:19 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/28 17:33:16 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:04:39 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3D.h"
 
-void	door_dda_loop(t_data *data, t_ray *ray, bool *hit)
+static void	door_dda_loop(t_data *data, t_ray *ray, bool *hit)
 {
 	if (ray->side_x < ray->side_y)
 	{

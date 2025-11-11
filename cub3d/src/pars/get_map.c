@@ -6,13 +6,13 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:07:44 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/29 17:03:04 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/11 16:14:13 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3D.h"
 
-void	fill_line(t_data *data, char *line, int i, int j)
+static void	fill_line(t_data *data, char *line, int i, int j)
 {
 	int	i_line;
 
@@ -32,7 +32,7 @@ void	fill_line(t_data *data, char *line, int i, int j)
 	data->map[i][j] = ' ';
 }
 
-void	cpy_lst_to_tab(t_list *lst, t_all *all, int i, int j)
+static void	cpy_lst_to_tab(t_list *lst, t_all *all, int i, int j)
 {
 	t_list	*ptr;
 
@@ -58,7 +58,7 @@ void	cpy_lst_to_tab(t_list *lst, t_all *all, int i, int j)
 	add_last_border_to_tab(lst, all, i);
 }
 
-t_list	*cpy_map_to_lst(t_all *all, char *buffer, int fd, int error)
+static t_list	*cpy_map_to_lst(t_all *all, char *buffer, int fd, int error)
 {
 	t_list	*ptr;
 	t_list	*lst;
@@ -82,7 +82,7 @@ t_list	*cpy_map_to_lst(t_all *all, char *buffer, int fd, int error)
 	return (lst);
 }
 
-void	map_handling(char *buffer, int fd, t_all *all, t_list *lst)
+static void	map_handling(char *buffer, int fd, t_all *all, t_list *lst)
 {
 	int	error;
 
