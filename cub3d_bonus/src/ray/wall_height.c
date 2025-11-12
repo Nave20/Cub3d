@@ -6,14 +6,14 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 12:27:53 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/27 16:40:43 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:31:12 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/cub3D.h"
+#include "../../header/cub3d.h"
 
 #define EPSILON 1e-6f
-#define ONE_MINUS_EPSILON (1.0f - EPSILON)
+#define ONE_MINUS_EPSILON 0.999999f
 
 float	select_impact(t_data *data)
 {

@@ -6,11 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:22:13 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/11/11 12:02:31 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:48:42 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3D.h"
+#include "../header/cub3d.h"
 
 void	free_addr(t_texture *texture)
 {
@@ -22,8 +22,6 @@ void	free_addr(t_texture *texture)
 		free(texture->addr_s);
 	if (texture->addr_w)
 		free(texture->addr_w);
-	if (texture->addr_d)
-		free(texture->addr_d);
 	if (texture->addr_txt)
 		free(texture->addr_txt);
 }

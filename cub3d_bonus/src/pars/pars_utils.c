@@ -6,11 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 16:15:31 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/11/11 12:14:28 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 11:56:15 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/cub3D.h"
+#include "../../header/cub3d.h"
 
 int	strnstr_int(const char *src, const char *tofind, size_t size)
 {

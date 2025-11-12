@@ -6,11 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:54:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/11/11 12:06:39 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:40:14 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/cub3D.h"
+#include "../../header/cub3d.h"
 
 void	update(t_all *all)
 {

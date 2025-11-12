@@ -6,11 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 12:36:20 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/11/11 12:17:44 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:47:35 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/cub3D.h"
+#include "../../header/cub3d.h"
 
 static int	valid_xpm(char *line)
 {
@@ -118,8 +118,6 @@ void	arg_validation(t_all *all, t_texture *texture)
 	if (valid_xpm(texture->west_texture))
 		return (wrong_format(all));
 	if (valid_xpm(texture->east_texture))
-		return (wrong_format(all));
-	if (valid_xpm(texture->door_texture))
 		return (wrong_format(all));
 	valid_color(all, texture->floor_color, 0, NULL);
 	valid_color(all, texture->ceiling_color, 0, NULL);

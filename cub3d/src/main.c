@@ -6,11 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/11/11 17:23:59 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:23:49 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3D.h"
+#include "../header/cub3d.h"
 
 static void	arg_nbr_and_extension_check(t_all *all, int argc, char **argv)
 {
@@ -49,6 +49,8 @@ static void	open_game(t_all *all, t_mlx *mlx)
 {
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr,
 			all->data->screen_width, all->data->screen_height, "cub3D");
+	if (!mlx->win_ptr)
+		error_exit(RED"Error\nmlx_new_window failed\n"RESET, all, NULL);
 	mlx_mouse_hide(mlx->mlx_ptr, mlx->win_ptr);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->fc_image, 0, 0);
 	mlx_hook(mlx->win_ptr, 17, 0, exit_game, all);

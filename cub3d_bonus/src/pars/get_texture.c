@@ -6,11 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:56:53 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 17:26:59 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:51:00 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/cub3D.h"
+#include "../../header/cub3d.h"
 
 void	get_no(int fd, t_all *all, char *line)
 {
@@ -117,34 +117,6 @@ void	get_ea(int fd, t_all *all, char *line)
 		all->texture->valid_east = true;
 		all->texture->east_texture = ft_strdup(&line[i]);
 		if (!all->texture->east_texture)
-		{
-			free(line);
-			return (err_strdup(all));
-		}
-	}
-}
-
-void	get_do(int fd, t_all *all, char *line)
-{
-	int	i;
-	int	error;
-
-	error = 0;
-	while (line && ft_strnstr(line, "DO ", ft_strlen(line)) == NULL)
-	{
-		line = get_next_line(fd, &error);
-		if (error)
-			return (err_gnl(all));
-	}
-	if (line)
-	{
-		i = strnstr_int(line, "DO ", ft_strlen(line));
-		i += 3;
-		while (line[i] == ' ' || line[i] == '\t')
-			i++;
-		all->texture->valid_door = true;
-		all->texture->door_texture = ft_strdup(&line[i]);
-		if (!all->texture->door_texture)
 		{
 			free(line);
 			return (err_strdup(all));

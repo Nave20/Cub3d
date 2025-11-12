@@ -6,11 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 11:39:38 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/11/11 17:18:51 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:01:55 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/cub3D.h"
+#include "../../header/cub3d.h"
 
 #define EPSILON 1e-6f
 #define HUGE 1e30f

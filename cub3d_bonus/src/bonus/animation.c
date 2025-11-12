@@ -6,11 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 11:39:25 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/11/11 11:58:11 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 11:56:15 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3D.h"
+#include "../header/cub3d.h"
 
 static char	*get_anim_file_name(t_all *all, int x)
 {

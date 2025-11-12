@@ -6,31 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:21:37 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/11/11 13:00:26 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:49:42 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3D.h"
-
-void	get_d_image(t_all *all, t_mlx *mlx, int w, int h)
-{
-	t_addr	*addr_d;
-
-	mlx->d_texture = mlx_xpm_file_to_image(all->mlx->mlx_ptr,
-			all->texture->door_texture, &w, &h);
-	if (!mlx->d_texture)
-		error_exit("Error\nXPM to image failure\n", all, NULL);
-	if (w <= 0 || h <= 0)
-		error_exit("Error\nBad image dimensions\n", all, NULL);
-	all->texture->width_d = w;
-	all->texture->height_d = h;
-	addr_d = all->texture->addr_d;
-	addr_d->addr = mlx_get_data_addr(all->mlx->d_texture,
-			&addr_d->bpp, &addr_d->line_length, &addr_d->endian);
-	if (!addr_d->addr)
-		error_exit("Error\nGet data addr failure\n", all, NULL);
-	addr_d->bpp /= 8;
-}
+#include "../header/cub3d.h"
 
 void	put_txt_to_window(t_all *all, t_addr *addr, int height, int width)
 {

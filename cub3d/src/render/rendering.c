@@ -6,11 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 12:18:55 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/16 15:37:56 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:01:55 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/cub3D.h"
+#include "../../header/cub3d.h"
 
 void	yx_converter(t_all *all, t_argb color, int y, int x)
 {

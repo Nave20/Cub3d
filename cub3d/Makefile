@@ -81,7 +81,8 @@ OBJS            = $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o)) \
 				  $(addprefix $(EXIT_OBJDIR), $(EXIT_FILES:.c=.o)) \
 				  $(addprefix $(MLX_INIT_OBJDIR), $(MLX_INIT_FILES:.c=.o)) \
 
-HEADER          = $(INC_DIR)cub3D.h
+HEADER          = $(INC_DIR)cub3d.h $(INC_DIR)struct.h Makefile
+
 NAME            = cub3D
 
 CC              = cc

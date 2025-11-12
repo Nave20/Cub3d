@@ -6,11 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 12:16:45 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/11/11 15:18:38 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:52:05 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3D.h"
+#include "../header/cub3d.h"
 
 void	get_screen_size(t_all *all)
 {
@@ -19,8 +19,8 @@ void	get_screen_size(t_all *all)
 
 	all->mlx->mlx_ptr = mlx_init();
 	mlx_get_screen_size(all->mlx->mlx_ptr, &x, &y);
-	all->data->screen_height = y - 200; ///modif
-	all->data->screen_width = x - 400; ///modif
+	all->data->screen_height = y / 2;
+	all->data->screen_width = x / 2;
 }
 
 static void	fill_color_struct(t_all *all)

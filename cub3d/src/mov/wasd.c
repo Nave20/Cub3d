@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   wasd.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpirotti <vpirotti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 09:51:46 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/09 09:51:46 by vpirotti         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:54:29 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/cub3D.h"
+#include "../../header/cub3d.h"
 
 void	s_key(t_data *data, float new_x, float new_y)
 {
@@ -25,7 +25,6 @@ void	s_key(t_data *data, float new_x, float new_y)
 		data->player->pos_x = new_x;
 	player->grid_y = (int) player->pos_y;
 	player->grid_x = (int) player->pos_x;
-	update(data->all);
 }
 
 void	a_key(t_data *data, float new_x, float new_y)
@@ -41,7 +40,6 @@ void	a_key(t_data *data, float new_x, float new_y)
 		data->player->pos_x = new_x;
 	player->grid_y = (int) player->pos_y;
 	player->grid_x = (int) player->pos_x;
-	update(data->all);
 }
 
 void	w_key(t_data *data, float new_x, float new_y)
@@ -70,7 +68,6 @@ void	w_key(t_data *data, float new_x, float new_y)
 		data->player->pos_x = new_x;
 	player->grid_y = (int) player->pos_y;
 	player->grid_x = (int) player->pos_x;
-	update(data->all);
 }
 
 void	d_key(t_data *data, float new_x, float new_y)
@@ -99,5 +96,4 @@ void	d_key(t_data *data, float new_x, float new_y)
 		data->player->pos_x = new_x;
 	player->grid_y = (int) player->pos_y;
 	player->grid_x = (int) player->pos_x;
-	update(data->all);
 }

@@ -6,11 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:43:51 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/27 17:44:25 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 11:56:15 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/cub3D.h"
+#include "../../header/cub3d.h"
 
 float	side_x(t_data *data, float dir_x, float delta_x)
 {

@@ -6,11 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:18:33 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/11/11 13:02:21 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 11:56:15 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3D.h"
+#include "../header/cub3d.h"
 
 static void	put_color_pxl(t_all *all, uint32_t argb, int x, int y)
 {

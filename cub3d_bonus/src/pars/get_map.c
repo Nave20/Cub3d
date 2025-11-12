@@ -6,11 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:07:44 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/11/11 12:10:21 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:29:31 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/cub3D.h"
+#include "../../header/cub3d.h"
 
 static void	fill_line(t_data *data, char *line, int i, int j)
 {
@@ -92,7 +92,6 @@ static void	map_handling(char *buffer, int fd, t_all *all, t_list *lst)
 		lst = cpy_map_to_lst(all, buffer, fd, error);
 		cpy_lst_to_tab(lst, all, 2, 0);
 		free_lst(lst);
-		print_map(all->data->map);
 		return ;
 	}
 	else

@@ -6,11 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 11:55:07 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/11/11 16:34:54 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:01:55 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3D.h"
+#include "../header/cub3d.h"
 
 static bool	all_textures_valid(t_texture *texture)
 {

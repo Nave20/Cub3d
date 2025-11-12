@@ -6,46 +6,46 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 13:09:29 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/11/11 12:20:10 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:40:40 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3D.h"
+#include "../header/cub3d.h"
 
 static void	arg_nbr_and_extension_check(t_all *all, int argc, char **argv)
 {
 	int	nb;
 
 	if (argc != 2)
-		error_exit("Error\nThere must be only one arg\n", all, NULL);
+		error_exit(RED"Error\nThere must be only one arg\n"RESET, all, NULL);
 	(void)argv;
 	nb = (int)ft_strlen(argv[1]);
 	if (ft_strncmp(".cub", argv[1] + ft_strlen(argv[1]) - 4, 5) != 0)
-		error_exit("Error\nWrong file extension\n", all, NULL);
+		error_exit(RED"Error\nWrong file extension\n"RESET, all, NULL);
 }
 
 static void	struct_init(t_all *all)
 {
 	all->data = ft_calloc(1, sizeof(t_data));
 	if (!all->data)
-		error_exit("Error\nMalloc failure\n", all, NULL);
+		error_exit(RED"Error\nMalloc failure\n"RESET, all, NULL);
 	all->data->all = all;
 	all->mlx = ft_calloc(1, sizeof(t_mlx));
 	if (!all->mlx)
-		error_exit("Error\nMalloc failure\n", all, NULL);
+		error_exit(RED"Error\nMalloc failure\n"RESET, all, NULL);
 	all->texture = ft_calloc(1, sizeof(t_texture));
 	if (!all->texture)
-		error_exit("Error\nMalloc failure\n", all, NULL);
+		error_exit(RED"Error\nMalloc failure\n"RESET, all, NULL);
 	all->data->texture = all->texture;
 	all->data->ray = malloc(sizeof(t_ray));
 	if (!all->data->ray)
-		error_exit("Error\nMalloc failure\n", all, NULL);
+		error_exit(RED"Error\nMalloc failure\n"RESET, all, NULL);
 	all->data->render = malloc(sizeof(t_render));
 	if (!all->data->render)
-		error_exit("Error\nMalloc failure\n", all, NULL);
+		error_exit(RED"Error\nMalloc failure\n"RESET, all, NULL);
 	all->mouse = ft_calloc(1, sizeof(t_mouse));
 	if (!all->mouse)
-		error_exit("Error\nMalloc failure\n", all, NULL);
+		error_exit(RED"Error\nMalloc failure\n"RESET, all, NULL);
 	all->string_color.a = 255;
 	all->string_color.r = 0;
 	all->string_color.g = 255;
@@ -63,6 +63,11 @@ static void	open_game(t_all *all, t_mlx *mlx)
 	fill_minimap_image(all);
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr,
 			all->data->screen_width, all->data->screen_height, "cub3D");
+	if (!mlx->win_ptr)
+	{
+		ft_putendl_fd(RED"Error\nmlx_new_window failed"RESET, 2);
+		exit_game(all);
+	}
 	mlx_mouse_hide(mlx->mlx_ptr, mlx->win_ptr);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->fc_image, 0, 0);
 	mlx_put_image_to_window(all->mlx->mlx_ptr, all->mlx->win_ptr,
@@ -85,9 +90,6 @@ static void	main_dispatcher(t_all *all, int fd)
 	init_mlx(all, all->mlx);
 	fast_trig(all->data);
 	create_player(all);
-	printf("screen h : %d, screen w : %d\n", all->data->screen_height,
-		all->data->screen_width);
-	// ray_servo(all->data, 0);
 	open_game(all, all->mlx);
 }
 

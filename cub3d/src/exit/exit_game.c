@@ -6,11 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 18:22:13 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/11/11 15:16:21 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:01:55 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3D.h"
+#include "../header/cub3d.h"
 
 static void	free_addr(t_texture *texture)
 {

@@ -6,11 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 12:16:45 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/11/11 14:11:07 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:49:09 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3D.h"
+#include "../header/cub3d.h"
 
 void	get_screen_size(t_all *all)
 {
@@ -19,8 +19,8 @@ void	get_screen_size(t_all *all)
 
 	all->mlx->mlx_ptr = mlx_init();
 	mlx_get_screen_size(all->mlx->mlx_ptr, &x, &y);
-	all->data->screen_height = y - 200; ///modif
-	all->data->screen_width = x - 400; ///modif
+	all->data->screen_height = y / 2;
+	all->data->screen_width = x / 2;
 }
 
 static void	fill_color_struct(t_all *all)
@@ -48,9 +48,6 @@ static void	init_texture_addr(t_all *all)
 		error_exit("Error\nMalloc failure\n", all, NULL);
 	all->texture->addr_w = malloc(sizeof(t_addr));
 	if (!all->texture->addr_w)
-		error_exit("Error\nMalloc failure\n", all, NULL);
-	all->texture->addr_d = malloc(sizeof(t_addr));
-	if (!all->texture->addr_d)
 		error_exit("Error\nMalloc failure\n", all, NULL);
 	all->texture->addr_txt = malloc(sizeof(t_addr));
 	if (!all->texture->addr_txt)

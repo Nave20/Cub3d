@@ -6,11 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 16:11:51 by vpirotti          #+#    #+#             */
-/*   Updated: 2025/10/29 17:39:36 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:01:55 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/cub3D.h"
+#include "../../header/cub3d.h"
 
 void	err_malloc(t_all *all, int fd)
 {

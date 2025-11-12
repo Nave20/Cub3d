@@ -6,11 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:01:43 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/11/11 12:03:16 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:51:14 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3D.h"
+#include "../header/cub3d.h"
 
 static void	get_w_image(t_all *all, t_mlx *mlx, int w, int h)
 {
@@ -98,6 +98,5 @@ void	get_images(t_all *all, t_mlx *mlx)
 	get_s_image(all, mlx, 0, 0);
 	get_e_image(all, mlx, 0, 0);
 	get_w_image(all, mlx, 0, 0);
-	get_d_image(all, mlx, 0, 0);
 	get_txt_image(all, mlx, 0, 0);
 }

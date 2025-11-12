@@ -6,11 +6,11 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 16:49:12 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/10/30 17:27:16 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:48:34 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3D.h"
+#include "../header/cub3d.h"
 
 void	destroy_images(t_mlx *mlx)
 {
@@ -22,8 +22,6 @@ void	destroy_images(t_mlx *mlx)
 		mlx_destroy_image(mlx->mlx_ptr, mlx->s_texture);
 	if (mlx->n_texture)
 		mlx_destroy_image(mlx->mlx_ptr, mlx->n_texture);
-	if (mlx->d_texture)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->d_texture);
 	if (mlx->fc_image)
 		mlx_destroy_image(mlx->mlx_ptr, mlx->fc_image);
 	if (mlx->txt_texture)

@@ -6,18 +6,17 @@
 /*   By: lpaysant <lpaysant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 17:18:51 by lpaysant          #+#    #+#             */
-/*   Updated: 2025/11/11 12:16:54 by lpaysant         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:48:02 by lpaysant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3D.h"
+#include "../header/cub3d.h"
 
 static bool	all_textures_valid(t_texture *texture)
 {
 	if (texture->valid_north == true && texture->valid_south == true
 		&& texture->valid_west == true && texture->valid_east == true
-		&& texture->valid_floor == true && texture->valid_ceiling == true
-		&& texture->valid_door == true)
+		&& texture->valid_floor == true && texture->valid_ceiling == true)
 		return (1);
 	else
 		return (0);
@@ -58,12 +57,6 @@ static int	second_dispatch(char *line, t_all *all, int fd)
 		&& all->texture->valid_east == false)
 	{
 		get_ea(fd, all, line);
-		return (1);
-	}
-	else if (ft_strnstr(line, "DO ", ft_strlen(line)) != NULL
-		&& all->texture->valid_door == false)
-	{
-		get_do(fd, all, line);
 		return (1);
 	}
 	else if (ft_strnstr(line, "F ", ft_strlen(line)) != NULL
