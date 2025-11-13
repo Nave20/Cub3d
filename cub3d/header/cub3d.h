@@ -145,7 +145,7 @@ float	dda(t_data *data, float dir_x, float dir_y);
 void	fast_trig(t_data *data);
 float	ft_trig(t_data *data, float angle, t_trig type);
 void	print_ray_touch(t_data *data, int x, int y);
-void	wall_height(t_data *data, float wall_dist, int col,float ray);
+void	wall_height(t_data *data, float wall_dist, int col, float ray);
 float	select_impact(t_data *data);
 
 //-------------------------------------------------------------------------
@@ -170,6 +170,5 @@ void	render_s(t_all *all, t_render *render, int x);
 
 void	draw_ceiling(t_all *all, int max, int z);
 void	draw_floor(t_all *all, int start, int z);
-
 
 #endif

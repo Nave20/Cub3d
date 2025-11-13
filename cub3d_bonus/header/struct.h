@@ -13,38 +13,38 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
-#include "cub3d.h"
+# include "cub3d.h"
 
-typedef struct  s_texture		t_texture;
-typedef struct  s_data			t_data;
-typedef struct	s_color			t_color;
-typedef struct	s_player		t_player;
-typedef struct	s_ray			t_ray;
-typedef struct  s_mlx			t_mlx;
-typedef struct  s_all			t_all;
-typedef union   s_argb			t_argb;
-typedef struct	s_render		t_render;
-typedef struct	s_addr			t_addr;
-typedef struct	s_pxl			t_pxl;
-typedef struct	s_key			t_key;
-typedef struct	s_mouse			t_mouse;
-typedef struct	s_minimap		t_minimap;
-typedef struct	s_anim			t_anim;
+typedef struct s_texture		t_texture;
+typedef struct s_data			t_data;
+typedef struct s_color			t_color;
+typedef struct s_player			t_player;
+typedef struct s_ray			t_ray;
+typedef struct s_mlx			t_mlx;
+typedef struct s_all			t_all;
+typedef union u_argb			t_argb;
+typedef struct s_render			t_render;
+typedef struct s_addr			t_addr;
+typedef struct s_pxl			t_pxl;
+typedef struct s_key			t_key;
+typedef struct s_mouse			t_mouse;
+typedef struct s_minimap		t_minimap;
+typedef struct s_anim			t_anim;
 
-typedef enum			e_side
+typedef enum e_side
 {
 	EAST,
 	NORTH,
 	WEST,
 	SOUTH,
-}t_side;
+}	t_side;
 
-typedef enum			e_trig
+typedef enum e_trig
 {
 	COS,
 	SIN,
 	TAN,
-}t_trig;
+}	t_trig;
 
 struct			s_minimap
 {
@@ -56,7 +56,6 @@ struct			s_minimap
 	t_argb	*c_color;
 	t_addr	*addr;
 };
-
 
 struct			s_mouse
 {
@@ -72,13 +71,12 @@ struct			s_key
 	int	a;
 	int	s;
 	int	d;
-	int f;
+	int	f;
 	int	left_arrow;
 	int	right_arrow;
 };
 
-
-union			s_argb
+union			u_argb
 {
 	uint32_t	argb;
 	struct

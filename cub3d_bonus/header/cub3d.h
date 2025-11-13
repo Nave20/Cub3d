@@ -60,17 +60,17 @@ int		parsing_servo(t_all *all, int fd);
 int		dispatcher_loop(int fd, t_all *all, int error, char *line);
 
 //-----------------------------GET_TEXTURE-----------------------------
-void		get_no(int fd, t_all *all, char *line);
-void		get_so(int fd, t_all *all, char *line);
-void		get_we(int fd, t_all *all, char *line);
-void		get_ea(int fd, t_all *all, char *line);
+void	get_no(int fd, t_all *all, char *line);
+void	get_so(int fd, t_all *all, char *line);
+void	get_we(int fd, t_all *all, char *line);
+void	get_ea(int fd, t_all *all, char *line);
 
 //------------------------------GET_COLOR------------------------------
-void		get_f(int fd, t_all *all, char *line);
-void		get_c(int fd, t_all *all, char *line);
+void	get_f(int fd, t_all *all, char *line);
+void	get_c(int fd, t_all *all, char *line);
 
 //------------------------------VALIDATION-----------------------------
-void		arg_validation(t_all *all, t_texture *texture);
+void	arg_validation(t_all *all, t_texture *texture);
 
 //--------------------------------UTILS--------------------------------
 int		strnstr_int(const char *src, const char *tofind, size_t size);
@@ -114,8 +114,6 @@ void	check_file_ending(int fd, t_all *all, char *buffer, t_list *lst);
 void	init_mlx(t_all *all, t_mlx *mlx);
 void	get_screen_size(t_all *all);
 
-
-
 //-------------------------------MINIMAP-------------------------------
 void	get_minimap(t_all *all);
 void	init_minimap(t_all *all);
@@ -155,7 +153,7 @@ void	side_touched(t_data *data, int side, float dir_x, float dir_y);
 void	fast_trig(t_data *data);
 float	ft_trig(t_data *data, float angle, t_trig type);
 void	print_ray_touch(t_data *data, int x, int y);
-void	wall_height(t_data *data, float wall_dist, int col,float ray);
+void	wall_height(t_data *data, float wall_dist, int col, float ray);
 float	select_impact(t_data *data);
 float	side_y(t_data *data, float dir_y, float delta_y);
 float	side_x(t_data *data, float dir_x, float delta_x);
@@ -198,6 +196,5 @@ void	anim_void_error(t_all *all, int end);
 void	put_txt_to_window(t_all *all, t_addr *addr, int height, int width);
 void	get_d_image(t_all *all, t_mlx *mlx, int w, int h);
 void	get_txt_image(t_all *all, t_mlx *mlx, int w, int h);
-
 
 #endif
