@@ -8,6 +8,9 @@
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
     <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
   </component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
   <component name="CMakeRunConfigurationManager">
     <generated>
       <config projectName="cub3d" targetName="fclean" />
@@ -19,17 +22,18 @@
       <config projectName="cub3d" targetName="re" />
     </generated>
   </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="895dd37b-c718-4af3-bc71-8c9d8e29a0f2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/header/cub3d.h" beforeDir="false" afterPath="$PROJECT_DIR$/header/cub3d.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cub3d_bonus/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../cub3d_bonus/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cub3d_bonus/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cub3d_bonus/src/bonus/mouse_moves.c" beforeDir="false" afterPath="$PROJECT_DIR$/../cub3d_bonus/src/bonus/mouse_moves.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cub3d_bonus/src/mov/mov.c" beforeDir="false" afterPath="$PROJECT_DIR$/../cub3d_bonus/src/mov/mov.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/libft/ft_arg_error.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/libft/ft_arg_error.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pars/error_messages.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/pars/error_messages.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pars/validation.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/pars/validation.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ray/dda.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/ray/dda.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +172,7 @@
       <option name="presentableId" value="Default" />
       <updated>1763029984740</updated>
       <workItem from="1763029991013" duration="166000" />
-      <workItem from="1763031527281" duration="345000" />
+      <workItem from="1763031527281" duration="1029000" />
     </task>
     <servers />
   </component>

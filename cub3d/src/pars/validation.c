@@ -42,7 +42,7 @@ static int	color_components(t_all *all, char **line, int i, int j)
 	if (i != 3)
 	{
 		free_double_tab(line);
-		perror(RED"Error\n -> too many color components"RESET);
+		ft_putendl_fd(RED"Error\n -> too many color components"RESET, 2);
 		exit_game(all);
 	}
 	i = 0;
@@ -54,8 +54,8 @@ static int	color_components(t_all *all, char **line, int i, int j)
 			if (line[i][j] < '0' || line[i][j] > '9')
 			{
 				free_double_tab(line);
-				perror(RED"Error\n -> color components must be numeric"RESET);
-				exit_game(all);
+				error_exit(RED"Error\n -> color components "
+					"must be numeric"RESET, all, NULL);
 			}
 			j++;
 		}
@@ -68,17 +68,20 @@ static int	color_range(t_all *all, t_color *color)
 {
 	if (color->r < 0 || color->r > 255)
 	{
-		perror(RED"Error\n -> color must be in range of [0 - 255]"RESET);
+		ft_putendl_fd(RED"Error\n -> color must be in "
+			"range of [0 - 255]"RESET, 2);
 		exit_game(all);
 	}
 	if (color->g < 0 || color->g > 255)
 	{
-		perror(RED"Error\n -> color must be in range of [0 - 255]"RESET);
+		ft_putendl_fd(RED"Error\n -> color must be in "
+			"range of [0 - 255]"RESET, 2);
 		exit_game(all);
 	}
 	if (color->b < 0 || color->b > 255)
 	{
-		perror(RED"Error\n -> color must be in range of [0 - 255]"RESET);
+		ft_putendl_fd(RED"Error\n -> color must be in "
+			"range of [0 - 255]"RESET, 2);
 		exit_game(all);
 	}
 	return (0);

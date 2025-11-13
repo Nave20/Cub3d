@@ -16,30 +16,31 @@ void	err_malloc(t_all *all, int fd)
 {
 	if (fd != -1)
 		close(fd);
-	perror(RED"Error\n -> allocating memory"RESET);
+	ft_putendl_fd(RED"Error\n -> allocating memory"RESET, 2);
 	exit_game(all);
 }
 
 void	err_gnl(t_all *all)
 {
-	perror(RED"Error\n -> get_next_line"RESET);
+	ft_putendl_fd(RED"Error\n -> get_next_line"RESET, 2);
 	exit_game(all);
 }
 
 void	err_strdup(t_all *all)
 {
-	perror(RED"Error\n -> ft_strdup"RESET);
+	ft_putendl_fd(RED"Error\n -> ft_strdup"RESET, 2);
 	exit_game(all);
 }
 
 void	wrong_format(t_all *all)
 {
-	perror(RED"Error\n -> all texture files must be terminated by .xpm"RESET);
+	ft_putendl_fd(RED"Error\n -> all texture files must be terminated "
+		"by .xpm"RESET, 2);
 	exit_game(all);
 }
 
 void	err_split(t_all *all)
 {
-	perror(RED"Error\n -> ft_split"RESET);
+	ft_putendl_fd(RED"Error\n -> ft_split"RESET, 2);
 	exit_game(all);
 }

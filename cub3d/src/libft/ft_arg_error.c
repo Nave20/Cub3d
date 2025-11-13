@@ -15,5 +15,5 @@
 void	ft_arg_error(void)
 {
 	errno = EINVAL;
-	perror("\033[31mError");
+	ft_putendl_fd("\033[31mError", 2);
 }
