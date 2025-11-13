@@ -28,13 +28,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="895dd37b-c718-4af3-bc71-8c9d8e29a0f2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/libft/ft_arg_error.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/libft/ft_arg_error.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pars/error_messages.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/pars/error_messages.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pars/validation.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/pars/validation.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ray/dda.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/ray/dda.c" afterDir="false" />
-    </list>
+    <list default="true" id="895dd37b-c718-4af3-bc71-8c9d8e29a0f2" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -172,7 +166,7 @@
       <option name="presentableId" value="Default" />
       <updated>1763029984740</updated>
       <workItem from="1763029991013" duration="166000" />
-      <workItem from="1763031527281" duration="1029000" />
+      <workItem from="1763031527281" duration="1334000" />
     </task>
     <servers />
   </component>
