@@ -60,7 +60,7 @@ int	key_check(t_all *all)
 	static int	nb_frame;
 
 	nb_frame++;
-	if (nb_frame % 1000 == 0)
+	if (nb_frame % 5000 == 0)
 	{
 		key_dispatcher(all);
 		update(all);

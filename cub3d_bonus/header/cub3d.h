@@ -31,6 +31,7 @@
 # define PI 3.14159265358979323846
 # define TWOPI 6.28318530717958647692
 # define POV_INCR 0.0621
+# define POV_MOUSE 0.0171f
 # define TRIG_TABLE 8192
 # define SIZE 100
 # define POV 0.5f

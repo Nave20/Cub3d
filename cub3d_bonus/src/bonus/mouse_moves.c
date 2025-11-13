@@ -14,14 +14,14 @@
 
 static void	left_arr_mouse(t_data *data)
 {
-	data->player->radian += 0.00675f;
+	data->player->radian += POV_MOUSE;
 	if (data->player->radian < 0)
 		data->player->radian = 2.0f - fabsf(data->player->radian);
 }
 
 static void	right_arr_mouse(t_data *data)
 {
-	data->player->radian -= 0.00675f;
+	data->player->radian -= POV_MOUSE;
 	if (data->player->radian < 0)
 		data->player->radian = 2.0f - fabsf(data->player->radian);
 }
