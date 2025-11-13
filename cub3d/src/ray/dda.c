@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+	/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
@@ -64,8 +64,8 @@ static void	ray_values(t_data *data, float dir_x, float dir_y)
 
 static float	dda_return(t_data *data, float dir_x, float dir_y)
 {
-	float	wall_dist;
-	t_ray	*ray;
+	float			wall_dist;
+	t_ray			*ray;
 
 	ray = data->ray;
 	if (ray->last_side == 0)
@@ -78,7 +78,8 @@ static float	dda_return(t_data *data, float dir_x, float dir_y)
 		wall_dist = (ray->map_y - data->player->pos_y
 				+ (1 - ray->step_y) / 2.0f) / dir_y;
 	}
-	return (fabsf(wall_dist));
+	wall_dist = fabsf(wall_dist);
+	return (wall_dist);
 }
 
 float	dda(t_data *data, float dir_x, float dir_y)

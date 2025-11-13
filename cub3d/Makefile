@@ -21,7 +21,7 @@ MLX_INIT_DIR        = $(SRC_DIR)mlx_init/
 MLX_INIT_OBJDIR     = $(OBJ_DIR)mlx_init/
 
 LIB            = $(SRC_DIR)/libft/libft.a
-MLXPATH        = ../minilibx-linux
+MLXPATH        = ./minilibx-linux
 MLX            =$(MLXPATH)/libmlx.a
 
 PARS_FILES      =	get_texture.c		\
